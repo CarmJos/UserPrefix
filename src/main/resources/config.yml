@@ -1,0 +1,102 @@
+version: ${project.version}
+
+debug: false
+
+functions:
+  OnNamePrefix: true # 是否给头顶上添加前缀，该方法用到了头顶的那个计分板，如有冲突请关掉哦~
+  autoUsePrefix: true # 自动前缀显示 当玩家没有自己选择一个前缀的时候，会自动使用所拥有的的前缀中权重最高的那一个
+
+messages:
+  selected:
+    - "&7您选择了 &f%(name) &7作为当前显示的前缀。"
+  expired:
+    - "&7您先前使用的前缀 &f%(oldName) &7已到期。"
+    - "&7现在已为您重新调整为 &f%(newName) &7。"
+  help:
+    - "&7输入 &b/prefix &7打开前缀选择菜单。"
+
+Sounds: #相关的声音，注释掉则不播放声音 格式为 【声音名:音量:音调】 或 【声音名:音量】 或 【声音名】
+  openGUI: "BLOCK_NOTE_BLOCK_PLING:1:1"
+  guiClick: "UI_BUTTON_CLICK"
+  prefixChange: "ENTITY_VILLAGER_YES"
+  prefixExpired: "ENTITY_VILLAGER_NO"
+
+# 默认前缀的配置
+# 默认前缀的权重为0哦
+defaultPrefix:
+  name: "默认前缀"
+  content: "&b"
+  itemNotUsing:
+    ==: org.bukkit.inventory.ItemStack
+    type: NAME_TAG
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: "§f默认玩家前缀 §f(点击切换)"
+      lore:
+        - ""
+        - "§a➥ 点击切换到该前缀"
+  itemUsing:
+    ==: org.bukkit.inventory.ItemStack
+    type: NAME_TAG
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: "§f默认玩家前缀"
+      lore:
+        - ""
+        - "§a✔ 您正在使用该前缀"
+
+prefixes:
+  VIP:
+    name: "&b&lPro&b" # [必须] 名字(切换的时候左下角会弹提示 用的就是这个名字)
+    content: "§b§lPro §b" # [必须] 显示在名字前面的内容
+    weight: 1 # [必须] 权重，用于GUI里面的排序(越大显示在越后面)和自动前缀显示
+    permission: "yc.pro" # [非必须] 检测的权限，如果没有就是人人都能用，也代表不用配置“itemNoPermission”了(因为压根不可能显示没权限时候的物品)
+    itemHasPermission: #  [必须] 当有权限的时候会显示这个Item
+      ==: org.bukkit.inventory.ItemStack
+      type: DIAMOND
+      meta:
+        ==: ItemMeta
+        meta-type: UNSPECIFIC
+        display-name: "§b§lPro §b会员前缀"
+        lore:
+          - "§7Pro会员专属称号"
+          - ""
+          - "§f尊贵的Pro会员专属称号。"
+          - "§f您将获得多种特权与更好的游戏体验。"
+          - ""
+          - "§a➥ 点击切换到该前缀"
+    itemUsing: # [非必需] 当有权限的时候会显示这个Item,如果没有这个配置就自动显示“itemHasPermission”的。
+      ==: org.bukkit.inventory.ItemStack
+      type: DIAMOND
+      meta:
+        ==: ItemMeta
+        meta-type: UNSPECIFIC
+        display-name: "§b§lPro §b会员前缀"
+        enchants:
+          PROTECTION_ENVIRONMENTAL: 1 #加一个附魔这样看上去就像是选中了的
+        lore:
+          - "§7Pro会员专属称号"
+          - ""
+          - "§f尊贵的Pro会员专属称号。"
+          - "§f您将获得多种特权与更好的游戏体验。"
+          - ""
+          - "§a✔ 您正在使用该前缀"
+    itemNoPermission: # [非必需] 如果没有权限就会显示这个item。如果不配置该物品，则玩家没有使用权限时不会显示在GUI里面。
+      ==: org.bukkit.inventory.ItemStack
+      type: INK_SACK
+      damage: 8
+      meta:
+        ==: ItemMeta
+        meta-type: UNSPECIFIC
+        display-name: "§b§lPro+ §b会员前缀 §c(未拥有)"
+        lore:
+          - "§7Pro+会员专属称号"
+          - ""
+          - "§f尊贵的Pro会员专属称号。"
+          - "§f您将获得多种特权与更好的游戏体验。"
+          - "§f您可以输入 §b/vip §f指令查看详细特权！"
+          - ""
+          - "§e✯ 加入Pro+会员以使用该前缀！"
+

@@ -1,0 +1,20 @@
+main: cc.carm.plugin.userprefix.Main
+name: UserPrefix
+version: ${project.version}
+authors:
+  - Carm
+depend:
+  - LuckPerms
+softdepend:
+  - PlaceholderAPI
+commands:
+  UserPrefix:
+    aliases:
+      - prefix
+    description: "用户前缀系统玩家指令，用于打开前缀GUI。"
+  UserPrefixAdmin:
+    aliases:
+      - upa
+      - prefixAdmin
+    permission: "UserPrefix.admin"
+    description: "用户前缀系统管理指令，可以查看前缀列表与重载配置文件。"
