@@ -17,9 +17,10 @@
     </properties>
 
     <repositories>
+
         <repository>
-            <id>maven-central</id>
-            <url>https://repo1.maven.org/maven2/</url>
+            <id>spigotmc-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/public/</url>
         </repository>
 
         <repository>
@@ -28,18 +29,23 @@
         </repository>
 
         <repository>
+            <id>lss233-repo</id>
+            <url>https://lss233.littleservice.cn/repositories/minecraft</url>
+        </repository>
+
+        <repository>
             <id>oss-repo</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
 
         <repository>
-            <id>spigotmc-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/public/</url>
+            <id>luck-repo</id>
+            <url>https://repo.lucko.me/</url>
         </repository>
 
         <repository>
-            <id>luck-repo</id>
-            <url>https://repo.lucko.me/</url>
+            <id>maven-central</id>
+            <url>https://repo1.maven.org/maven2/</url>
         </repository>
     </repositories>
 
