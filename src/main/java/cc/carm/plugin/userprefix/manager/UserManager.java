@@ -4,6 +4,7 @@ import cc.carm.plugin.userprefix.Main;
 import cc.carm.plugin.userprefix.configuration.PrefixConfig;
 import cc.carm.plugin.userprefix.model.ConfiguredPrefix;
 import cc.carm.plugin.userprefix.nametag.UserNameTag;
+import cc.carm.plugin.userprefix.ui.PrefixSelectGUI;
 import cc.carm.plugin.userprefix.util.MessageUtil;
 import net.luckperms.api.model.user.User;
 import net.luckperms.api.node.NodeType;
@@ -28,6 +29,20 @@ public class UserManager {
         UserNameTag nameTag = new UserNameTag(player);
         nameTags.put(player.getUniqueId(), nameTag);
         return nameTag;
+    }
+
+    public static void initPlayer(Player player) {
+        UserManager.checkPrefix(player, false);
+        if (PrefixConfig.Functions.NAME_PREFIX.get()) {
+            UserManager.createNameTag(player);
+            UserManager.updatePrefixView(player, true);
+        }
+    }
+
+    public static void unloadPlayer(Player player) {
+        PrefixSelectGUI.removeOpening(player);
+        UserManager.unloadNameTag(player.getUniqueId());
+        UserManager.checkingPlayers.remove(player.getUniqueId());
     }
 
     /**
@@ -61,7 +76,7 @@ public class UserManager {
                 if (onlinePlayerPrefix != null) {
                     tag.setPrefix(onlinePlayer, onlinePlayerPrefix.getContent());
                     tag.setOrder(onlinePlayer, onlinePlayerPrefix.getWeight());
-                    Main.debug("为玩家 " + player.getName() + " 设置了 " + player.getName() + "的前缀为 #" + onlinePlayerPrefix.getWeight() + " " + onlinePlayerPrefix.getName());
+                    Main.debug("为玩家 " + player.getName() + " 设置了 " + onlinePlayer.getName() + "的前缀为 #" + onlinePlayerPrefix.getWeight() + " " + onlinePlayerPrefix.getName());
                 }
             }
         }

@@ -37,56 +37,28 @@ public class ConfiguredPrefix {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getContent() {
         return ColorParser.parseColor(content);
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public int getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
     public String getPermission() {
         return permission;
-    }
-
-    public void setPermission(String permission) {
-        this.permission = permission;
     }
 
     public ItemStack getItemHasPermission() {
         return itemHasPermission;
     }
 
-    public void setItemHasPermission(ItemStack itemHasPermission) {
-        this.itemHasPermission = itemHasPermission;
-    }
-
     public ItemStack getItemNoPermission() {
         return itemNoPermission;
     }
 
-    public void setItemNoPermission(ItemStack itemNoPermission) {
-        this.itemNoPermission = itemNoPermission;
-    }
-
     public ItemStack getItemWhenUsing() {
         return itemWhenUsing;
-    }
-
-    public void setItemWhenUsing(ItemStack itemWhenUsing) {
-        this.itemWhenUsing = itemWhenUsing;
     }
 
     public boolean isVisibleNoPermission() {

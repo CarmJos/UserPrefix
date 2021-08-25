@@ -33,7 +33,9 @@ public class PrefixManager {
             Main.log("配置文件中暂无任何前缀配置，请检查。");
             return;
         }
+
         HashMap<String, ConfiguredPrefix> dataPrefixes = new HashMap<>();
+
         for (String prefixIdentifier : prefixesSection.getKeys(false)) {
             ConfigurationSection configuredPrefixSection = prefixesSection.getConfigurationSection(prefixIdentifier);
             if (configuredPrefixSection == null) continue;
@@ -55,10 +57,12 @@ public class PrefixManager {
             dataPrefixes.put(prefixIdentifier, new ConfiguredPrefix(prefixIdentifier, name, content, weight, permission, itemHasPermission, itemNoPermission, itemUsing));
         }
 
-        prefixes = dataPrefixes;
+        PrefixManager.prefixes.clear();
+        PrefixManager.prefixes = dataPrefixes;
     }
 
     public static void loadDefaultPrefix() {
+        PrefixManager.defaultPrefix = null;
         ConfigurationSection defaultPrefixSection = ConfigManager.getConfig().getConfigurationSection("defaultPrefix");
         if (defaultPrefixSection != null) {
             String name = defaultPrefixSection.getString("name", "默认前缀");
@@ -80,9 +84,9 @@ public class PrefixManager {
                             .addFlag(ItemFlag.HIDE_ENCHANTS)
                             .toItemStack()
             );
-            defaultPrefix = new ConfiguredPrefix("default", name, content, 0, null, itemNotUsing, null, itemUsing);
+            PrefixManager.defaultPrefix = new ConfiguredPrefix("default", name, content, 0, null, itemNotUsing, null, itemUsing);
         } else {
-            defaultPrefix = new ConfiguredPrefix("default", "默认前缀", "&r", 0, null,
+            PrefixManager.defaultPrefix = new ConfiguredPrefix("default", "默认前缀", "&r", 0, null,
                     new ItemStackFactory(Material.NAME_TAG)
                             .setDisplayName("&f默认前缀")
                             .addLore(" ")

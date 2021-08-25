@@ -128,14 +128,4 @@ public class ItemStackFactory {
         this.item.setItemMeta(im);
         return this;
     }
-
-    public ItemStackFactory setSkullOwner(String name) {
-        if (this.item.getType() == Material.PLAYER_HEAD || this.item.getType() == Material.PLAYER_WALL_HEAD) {
-            SkullMeta im = (SkullMeta) this.item.getItemMeta();
-            im.setOwner(name);
-            this.item.setItemMeta(im);
-        }
-
-        return this;
-    }
 }
