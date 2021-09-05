@@ -1,4 +1,5 @@
 # 用户前缀系统插件
+[![CodeFactor](https://www.codefactor.io/repository/github/carmjos/userprefix/badge?s=b76fec1f64726b5f19989aace6adb5f85fdab840)](https://www.codefactor.io/repository/github/carmjos/userprefix)
 
 轻便、高效、实时的用户前缀系统。
 
