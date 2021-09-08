@@ -58,21 +58,16 @@ public class AutoPagedGUI extends CommonPagedGUI {
                         .addLore("&7&o右键可前往第一页哦")
                         .toItemStack() : previousPageUI) {
                     @Override
-                    public void ClickAction(ClickType type, Player u) {
+                    public void onClick(ClickType type) {
                         if (type == ClickType.RIGHT) {
                             goFirstPage();
                         } else {
                             goPreviousPage();
                         }
-                        PrefixConfig.Sounds.GUI_CLICK.play(u);
-                        openGUI(u);
-//                        u.playSound(u.getLocation(), Sound.ENTITY_CHICKEN_EGG, 0.5f, 1);
+                        PrefixConfig.Sounds.GUI_CLICK.play(user);
+                        openGUI(user);
                     }
                 });
-            } else {
-//                setItem(previousPageSlot, new GUIItem(noPreviousPageUI == null ? new ItemStackFactory(Material.GRAY_STAINED_GLASS_PANE)
-//                        .setDisplayName("已经是第一页啦")
-//                        .toItemStack() : noPreviousPageUI));
             }
 
         if (previousPageSlot >= 0)
@@ -82,21 +77,16 @@ public class AutoPagedGUI extends CommonPagedGUI {
                         .addLore("&7&o右键可前往最后一页哦")
                         .toItemStack() : nextPageUI) {
                     @Override
-                    public void ClickAction(ClickType type, Player u) {
+                    public void onClick(ClickType type) {
                         if (type == ClickType.RIGHT) {
                             goLastPage();
                         } else {
                             goNextPage();
                         }
-                        PrefixConfig.Sounds.GUI_CLICK.play(u);
-                        openGUI(u);
-//                        u.playSound(u.getLocation(), Sound.ENTITY_CHICKEN_EGG, 0.5f, 1);
+                        PrefixConfig.Sounds.GUI_CLICK.play(user);
+                        openGUI(user);
                     }
                 });
-            } else {
-//                setItem(nextPageSlot, new GUIItem(noNextPageUI == null ? new ItemStackFactory(Material.GRAY_STAINED_GLASS_PANE)
-//                        .setDisplayName("已经是最后一页啦")
-//                        .toItemStack() : noNextPageUI));
             }
 
         super.openGUI(user);
