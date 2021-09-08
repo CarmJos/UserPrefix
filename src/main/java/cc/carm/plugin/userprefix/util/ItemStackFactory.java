@@ -6,11 +6,11 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.SkullMeta;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ItemStackFactory {
     ItemStack item;
@@ -57,75 +57,83 @@ public class ItemStackFactory {
         return this;
     }
 
-    public ItemStackFactory setDisplayName(String name) {
+    public ItemStackFactory setDisplayName(@NotNull String name) {
         ItemMeta im = this.item.getItemMeta();
-        im.setDisplayName(name.replace("&", "§").replace("§§", "&&"));
-        this.item.setItemMeta(im);
+        if (im != null) {
+            im.setDisplayName(ColorParser.parseColor(name));
+            this.item.setItemMeta(im);
+        }
         return this;
     }
 
-    public ItemStackFactory setLore(List<String> lores) {
+    public ItemStackFactory setLore(@NotNull List<String> loreList) {
         ItemMeta im = this.item.getItemMeta();
-        List<String> lores_ = new ArrayList();
-        Iterator var4 = lores.iterator();
+        if (im != null) {
+            im.setLore(
+                    loreList.stream()
+                            .map(ColorParser::parseColor)
+                            .collect(Collectors.toList())
+            );
+            this.item.setItemMeta(im);
+        }
+        return this;
+    }
 
-        while (var4.hasNext()) {
-            String lore = (String) var4.next();
-            lores_.add(lore.replace("&", "§").replace("§§", "&&"));
+    public ItemStackFactory addLore(@NotNull String s) {
+        ItemMeta im = this.item.getItemMeta();
+        if (im != null) {
+            List<String> lore = im.getLore() != null ? im.getLore() : new ArrayList<>();
+            lore.add(ColorParser.parseColor(s));
+            im.setLore(lore);
+            this.item.setItemMeta(im);
+        }
+        return this;
+    }
+
+    public ItemStackFactory addEnchant(@NotNull Enchantment enchant, int level, boolean ignoreLevelRestriction) {
+        ItemMeta im = this.item.getItemMeta();
+        if (im != null) {
+            im.addEnchant(enchant, level, ignoreLevelRestriction);
+            this.item.setItemMeta(im);
         }
 
-        im.setLore(lores_);
-        this.item.setItemMeta(im);
         return this;
     }
 
-    public ItemStackFactory addLore(String name) {
+    public ItemStackFactory removeEnchant(@NotNull Enchantment enchant) {
         ItemMeta im = this.item.getItemMeta();
-        Object lores;
-        if (im.hasLore()) {
-            lores = im.getLore();
-        } else {
-            lores = new ArrayList();
+        if (im != null) {
+            im.removeEnchant(enchant);
+            this.item.setItemMeta(im);
+        }
+        return this;
+    }
+
+    public ItemStackFactory addFlag(@NotNull ItemFlag flag) {
+        ItemMeta im = this.item.getItemMeta();
+        if (im != null) {
+            im.addItemFlags(flag);
+            this.item.setItemMeta(im);
         }
 
-        ((List) lores).add(name.replace("&", "§").replace("§§", "&&"));
-        im.setLore((List) lores);
-        this.item.setItemMeta(im);
         return this;
     }
 
-    public ItemStackFactory addEnchant(Enchantment ench, int level, boolean ignoreLevelRestriction) {
+    public ItemStackFactory removeFlag(@NotNull ItemFlag flag) {
         ItemMeta im = this.item.getItemMeta();
-        im.addEnchant(ench, level, ignoreLevelRestriction);
-        this.item.setItemMeta(im);
-        return this;
-    }
-
-    public ItemStackFactory removeEnchant(Enchantment ench) {
-        ItemMeta im = this.item.getItemMeta();
-        im.removeEnchant(ench);
-        this.item.setItemMeta(im);
-        return this;
-    }
-
-    public ItemStackFactory addFlag(ItemFlag flag) {
-        ItemMeta im = this.item.getItemMeta();
-        im.addItemFlags(new ItemFlag[]{flag});
-        this.item.setItemMeta(im);
-        return this;
-    }
-
-    public ItemStackFactory removeFlag(ItemFlag flag) {
-        ItemMeta im = this.item.getItemMeta();
-        im.removeItemFlags(new ItemFlag[]{flag});
-        this.item.setItemMeta(im);
+        if (im != null) {
+            im.removeItemFlags(flag);
+            this.item.setItemMeta(im);
+        }
         return this;
     }
 
     public ItemStackFactory setUnbreakable(boolean unbreakable) {
         ItemMeta im = this.item.getItemMeta();
-        im.setUnbreakable(unbreakable);
-        this.item.setItemMeta(im);
+        if (im != null) {
+            im.setUnbreakable(unbreakable);
+            this.item.setItemMeta(im);
+        }
         return this;
     }
 }

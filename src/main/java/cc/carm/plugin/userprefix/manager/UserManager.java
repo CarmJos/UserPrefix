@@ -6,11 +6,14 @@ import cc.carm.plugin.userprefix.model.ConfiguredPrefix;
 import cc.carm.plugin.userprefix.nametag.UserNameTag;
 import cc.carm.plugin.userprefix.ui.PrefixSelectGUI;
 import cc.carm.plugin.userprefix.util.MessageUtil;
+import cc.carm.plugin.userprefix.util.gui.GUI;
 import net.luckperms.api.model.user.User;
 import net.luckperms.api.node.NodeType;
 import net.luckperms.api.node.types.MetaNode;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -43,6 +46,7 @@ public class UserManager {
         PrefixSelectGUI.removeOpening(player);
         UserManager.unloadNameTag(player.getUniqueId());
         UserManager.checkingPlayers.remove(player.getUniqueId());
+        GUI.removeOpenedGUI(player); // 清空打开过的GUI缓存 (用于记录物品点击的
     }
 
     /**
@@ -73,11 +77,9 @@ public class UserManager {
 
             if (loadOthers) {
                 ConfiguredPrefix onlinePlayerPrefix = UserManager.getPrefix(onlinePlayer);
-                if (onlinePlayerPrefix != null) {
-                    tag.setPrefix(onlinePlayer, onlinePlayerPrefix.getContent());
-                    tag.setOrder(onlinePlayer, onlinePlayerPrefix.getWeight());
-                    Main.debug("为玩家 " + player.getName() + " 设置了 " + onlinePlayer.getName() + "的前缀为 #" + onlinePlayerPrefix.getWeight() + " " + onlinePlayerPrefix.getName());
-                }
+                tag.setPrefix(onlinePlayer, onlinePlayerPrefix.getContent());
+                tag.setOrder(onlinePlayer, onlinePlayerPrefix.getWeight());
+                Main.debug("为玩家 " + player.getName() + " 设置了 " + onlinePlayer.getName() + "的前缀为 #" + onlinePlayerPrefix.getWeight() + " " + onlinePlayerPrefix.getName());
             }
         }
     }
@@ -89,7 +91,13 @@ public class UserManager {
      * @param updateView 是否更新头顶与TabList中的前缀
      */
     public static void checkPrefix(Player player, boolean updateView) {
-        if (checkingPlayers.contains(player.getUniqueId())) return;
+        if (checkingPlayers.contains(player.getUniqueId())) {
+            /*
+             * 这里为了避免极短时间内的重复触发导致多次判断且结果相同误导玩家，
+             * 故没有采用同步锁，而是采用添加到一个临时Set中，对Set中玩家跳过判断。
+             */
+            return;
+        }
         checkingPlayers.add(player.getUniqueId());
         String currentPrefixIdentifier = UserManager.getPrefixData(player);
         ConfiguredPrefix currentPrefix = PrefixManager.getPrefix(currentPrefixIdentifier);
@@ -119,12 +127,14 @@ public class UserManager {
      * @param player 玩家
      * @return 前缀配置
      */
+    @NotNull
     public static ConfiguredPrefix getPrefix(Player player) {
         String identifier = getPrefixData(player);
         if (identifier == null || !isPrefixUsable(player, identifier)) {
             return getHighestPrefix(player);
         } else {
-            return PrefixManager.getPrefix(identifier);
+            ConfiguredPrefix prefix = PrefixManager.getPrefix(identifier);
+            return prefix == null ? PrefixManager.getDefaultPrefix() : prefix;
         }
     }
 
@@ -146,11 +156,12 @@ public class UserManager {
      * @param player 玩家
      * @return 可用前缀列表
      */
+    @NotNull
     public static List<ConfiguredPrefix> getUsablePrefixes(Player player) {
         return PrefixManager.getPrefixes().values().stream()
-                .filter(configuredPrefix -> isPrefixUsable(player, configuredPrefix))
-                .sorted(Comparator.comparingInt(ConfiguredPrefix::getWeight))
-                .collect(Collectors.toList());
+                .filter(configuredPrefix -> isPrefixUsable(player, configuredPrefix)) //过滤出玩家可用的前缀
+                .sorted(Comparator.comparingInt(ConfiguredPrefix::getWeight)) // 以前缀排序
+                .collect(Collectors.toList()); // 返回集合
     }
 
 
@@ -161,13 +172,15 @@ public class UserManager {
      * @param player 玩家
      * @return 权限内容
      */
+    @NotNull
     public static ConfiguredPrefix getHighestPrefix(Player player) {
         if (PrefixConfig.Functions.AUTO_USE.get()) {
-            // 关闭了自动选择，就直接给默认的前缀，让玩家自己去设置吧
+            // 关闭了自动选择，就直接给默认的前缀，让玩家自己去设置吧~
             return PrefixManager.getDefaultPrefix();
         }
-        List<ConfiguredPrefix> prefixes = getUsablePrefixes(player);
-        return prefixes.stream().max(Comparator.comparingInt(ConfiguredPrefix::getWeight)).orElseGet(PrefixManager::getDefaultPrefix);
+        return getUsablePrefixes(player).stream()
+                .max(Comparator.comparingInt(ConfiguredPrefix::getWeight)) // 取权重最大
+                .orElseGet(PrefixManager::getDefaultPrefix); // 啥都没有？ 返回默认前缀。
     }
 
     /**
@@ -192,7 +205,8 @@ public class UserManager {
      * @return 若前缀标识不存在，则返回false；若前缀为默认前缀，或该前缀无权限，或玩家有该前缀的权限，则返回true。
      */
     public static boolean isPrefixUsable(Player player, ConfiguredPrefix configuredPrefix) {
-        return configuredPrefix.getPermission() == null || ServiceManager.hasPermission(ServiceManager.getUser(player), configuredPrefix.getPermission());
+        return configuredPrefix.getPermission() == null //为null的话说明无需权限了
+                || ServiceManager.hasPermission(ServiceManager.getUser(player), configuredPrefix.getPermission());
     }
 
     /**
@@ -202,8 +216,11 @@ public class UserManager {
      * @param player 玩家
      * @return 正在使用的前缀Identifier(若不存在则返回null)
      */
+    @Nullable
     public static String getPrefixData(Player player) {
-        return ServiceManager.getAPI().getMetaData(player).getMetaValue("userprefix", String::valueOf).orElse(null);
+        return ServiceManager.getAPI().getMetaData(player)
+                .getMetaValue("userprefix", String::valueOf)
+                .orElse(null);
     }
 
     /**
@@ -215,11 +232,11 @@ public class UserManager {
      */
     public static void setPrefixData(Player player, String prefixIdentifier) {
         User user = ServiceManager.getUser(player);
-        clearPrefixData(player);
-        // LuckPerms竟然会把所有的metaKey全部转换为小写... 那我这里就直接写成小写吧~
-        MetaNode node = MetaNode.builder("userprefix", prefixIdentifier).build();
-        user.data().add(node);
-        ServiceManager.getService().getUserManager().saveUser(user);
+        clearPrefixData(player); // 清除掉旧的数据，LuckPerms不会去覆盖一个Meta，需要手动清除。
+        if (prefixIdentifier != null) {
+            user.data().add(MetaNode.builder("userprefix", prefixIdentifier).build());
+            ServiceManager.getService().getUserManager().saveUser(user); // 保存数据
+        }
     }
 
     /**

@@ -39,17 +39,6 @@ public class GUIItem {
     /**
      * 玩家点击GUI后执行的代码
      *
-     * @param type   点击的类型
-     * @param player 点击GUI的玩家
-     */
-    @Deprecated
-    public void ClickAction(ClickType type, Player player) {
-
-    }
-
-    /**
-     * 玩家点击GUI后执行的代码
-     *
      * @param type 点击的类型
      */
     public void onClick(ClickType type) {

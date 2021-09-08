@@ -11,20 +11,6 @@ public enum GUIType {
     FOURBYNINE,
     FIVEBYNINE,
     SIXBYNINE,
-    DISPENSER,
-    DROPPER,
-    FURNACE,
-    WORKBENCH,
-    CRAFTING,
-    ENCHANTING,
-    BREWING,
-    PLAYER,
-    CREATIVE,
-    MERCHANT,
-    ENDER_CHEST,
-    BEACON,
-    HOPPER,
-    UNKNOWN,
     CANCEL;
 
 }

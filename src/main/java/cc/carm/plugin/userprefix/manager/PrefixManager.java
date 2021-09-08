@@ -8,6 +8,8 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -113,16 +115,21 @@ public class PrefixManager {
                 .collect(Collectors.toList());
     }
 
+    @NotNull
     public static ConfiguredPrefix getDefaultPrefix() {
         return defaultPrefix;
     }
 
+    @NotNull
     public static HashMap<String, ConfiguredPrefix> getPrefixes() {
         return prefixes;
     }
 
+    @Nullable
     public static ConfiguredPrefix getPrefix(String identifier) {
-        if (identifier == null || identifier.equalsIgnoreCase("default")) {
+        if (identifier == null) {
+            return null;
+        } else if (identifier.equalsIgnoreCase("default")) {
             return getDefaultPrefix();
         } else {
             return getPrefixes().get(identifier);

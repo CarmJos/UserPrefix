@@ -12,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -59,47 +58,6 @@ public class GUI {
             default:
             case SIXBYNINE:
                 this.items = new GUIItem[54];
-                break;
-
-            case HOPPER:
-                this.items = new GUIItem[InventoryType.HOPPER.getDefaultSize()];
-                break;
-            case BEACON:
-                this.items = new GUIItem[InventoryType.BEACON.getDefaultSize()];
-                break;
-            case DISPENSER:
-                this.items = new GUIItem[InventoryType.DISPENSER.getDefaultSize()];
-                break;
-            case DROPPER:
-                this.items = new GUIItem[InventoryType.DROPPER.getDefaultSize()];
-                break;
-            case FURNACE:
-                this.items = new GUIItem[InventoryType.FURNACE.getDefaultSize()];
-                break;
-            case WORKBENCH:
-                this.items = new GUIItem[InventoryType.WORKBENCH.getDefaultSize()];
-                break;
-            case CRAFTING:
-                this.items = new GUIItem[InventoryType.CRAFTING.getDefaultSize()];
-                break;
-            case ENCHANTING:
-                this.items = new GUIItem[InventoryType.ENCHANTING.getDefaultSize()];
-                break;
-            case BREWING:
-                this.items = new GUIItem[InventoryType.BREWING.getDefaultSize()];
-                break;
-            case PLAYER:
-                this.items = new GUIItem[InventoryType.PLAYER.getDefaultSize()];
-                break;
-            case MERCHANT:
-                this.items = new GUIItem[InventoryType.MERCHANT.getDefaultSize()];
-                break;
-            case ENDER_CHEST:
-                this.items = new GUIItem[InventoryType.ENDER_CHEST.getDefaultSize()];
-                break;
-
-            case CREATIVE:
-                this.items = new GUIItem[InventoryType.CREATIVE.getDefaultSize()];
                 break;
             case CANCEL:
                 this.items = null;
@@ -219,45 +177,6 @@ public class GUI {
             case SIXBYNINE:
                 inv = Bukkit.createInventory(null, this.items.length, this.name);
                 break;
-            case HOPPER:
-                inv = Bukkit.createInventory(null, InventoryType.HOPPER, this.name);
-                break;
-            case BEACON:
-                inv = Bukkit.createInventory(null, InventoryType.BEACON, this.name);
-                break;
-            case DISPENSER:
-                inv = Bukkit.createInventory(null, InventoryType.DISPENSER, this.name);
-                break;
-            case DROPPER:
-                inv = Bukkit.createInventory(null, InventoryType.DROPPER, this.name);
-                break;
-            case FURNACE:
-                inv = Bukkit.createInventory(null, InventoryType.FURNACE, this.name);
-                break;
-            case WORKBENCH:
-                inv = Bukkit.createInventory(null, InventoryType.WORKBENCH, this.name);
-                break;
-            case CRAFTING:
-                inv = Bukkit.createInventory(null, InventoryType.CRAFTING, this.name);
-                break;
-            case ENCHANTING:
-                inv = Bukkit.createInventory(null, InventoryType.ENCHANTING, this.name);
-                break;
-            case BREWING:
-                inv = Bukkit.createInventory(null, InventoryType.BREWING, this.name);
-                break;
-            case PLAYER:
-                inv = Bukkit.createInventory(null, InventoryType.PLAYER, this.name);
-                break;
-            case CREATIVE:
-                inv = Bukkit.createInventory(null, InventoryType.CREATIVE, this.name);
-                break;
-            case MERCHANT:
-                inv = Bukkit.createInventory(null, InventoryType.MERCHANT, this.name);
-                break;
-            case ENDER_CHEST:
-                inv = Bukkit.createInventory(null, InventoryType.ENDER_CHEST, this.name);
-                break;
         }
 
         for (int index = 0; index < this.items.length; index++) {
@@ -299,7 +218,6 @@ public class GUI {
                             if (event.getSlot() != -999 && GUI.this.items[event.getSlot()] != null) {
                                 if (GUI.this.items[event.getSlot()].isActionActive()) {
                                     GUI.this.items[event.getSlot()].onClick(event.getClick());
-                                    GUI.this.items[event.getSlot()].ClickAction(event.getClick(), player);
                                     GUI.this.items[event.getSlot()].rawClickAction(event);
                                     if (!GUI.this.items[event.getSlot()].actions.isEmpty()) {
                                         for (GUIItem.GUIClickAction action : GUI.this.items[event.getSlot()].actions) {
