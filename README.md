@@ -4,6 +4,7 @@
 
 轻便、高效、实时的用户前缀系统。
 
+本插件基于Spigot实现，**理论上支持全版本**。
 数据部分基于 [LuckPerms](https://www.spigotmc.org/resources/luckperms.28140/) 实现。
 
 ## 特性
