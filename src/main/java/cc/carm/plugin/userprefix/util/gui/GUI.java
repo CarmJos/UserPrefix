@@ -194,24 +194,28 @@ public class GUI {
             Bukkit.getPluginManager().registerEvents(listener = new Listener() {
                 @EventHandler
                 public void onInventoryClickEvent(InventoryClickEvent event) {
-                    rawClickListener(event);
-                    if (!(event.getWhoClicked() instanceof Player)) {
-                        return;
-                    }
+                    if (!(event.getWhoClicked() instanceof Player)) return;
                     Player p = (Player) event.getWhoClicked();
+                    rawClickListener(event);
                     if (event.getSlot() != -999) {
                         try {
-                            if (getOpenedGUI(p) == GUI.this && event.getClickedInventory() != null && event.getClickedInventory().equals(GUI.this.inv) && GUI.this.items[event.getSlot()] != null)
+                            if (getOpenedGUI(p) == GUI.this
+                                    && event.getClickedInventory() != null
+                                    && event.getClickedInventory().equals(GUI.this.inv)
+                                    && GUI.this.items[event.getSlot()] != null) {
                                 GUI.this.items[event.getSlot()].realRawClickAction(event);
+                            }
                         } catch (ArrayIndexOutOfBoundsException e) {
+                            System.err.print("err cause by GUI(" + GUI.this + "), name=" + name);
                             e.printStackTrace();
-                            System.err.print("err cause by GUI(" + GUI.this.toString() + "), name=" + name);
                             return;
                         }
-                    } else {
-                        if (setCancelledIfClickOnOuter) event.setCancelled(true);
+                    } else if (setCancelledIfClickOnOuter) {
+                        event.setCancelled(true);
                     }
-                    if (hasOpenedGUI(p) && /*player.openedGUI.inv.equals(event.getClickedInventory())*/ getOpenedGUI(p) == GUI.this && event.getClickedInventory() != null) {
+                    if (hasOpenedGUI(p)
+                            && getOpenedGUI(p) == GUI.this
+                            && event.getClickedInventory() != null) {
                         if (event.getClickedInventory().equals(GUI.this.inv)) {
                             if (setCancelledIfClickOnTarget) event.setCancelled(true);
 
@@ -231,8 +235,8 @@ public class GUI {
                                     }
                                 }
                             }
-                        } else if (event.getClickedInventory().equals(p.getInventory())) {
-                            if (setCancelledIfClickOnSelf) event.setCancelled(true);
+                        } else if (event.getClickedInventory().equals(p.getInventory()) && setCancelledIfClickOnSelf) {
+                            event.setCancelled(true);
                         }
                     }
                 }
@@ -254,6 +258,7 @@ public class GUI {
                         if (event.getInventory().equals(inv)) {
                             HandlerList.unregisterAll(this);
                             listener = null;
+                            removeOpenedGUI(p);
                             onClose();
                         }
                     }

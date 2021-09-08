@@ -53,19 +53,11 @@ public class GUIItem {
         actionsIgnoreActive.add(action);
     }
 
-    public void customAction() {
-
-    }
-
     public void rawClickAction(InventoryClickEvent event) {
 
     }
 
     public void realRawClickAction(InventoryClickEvent event) {
-
-    }
-
-    public void customAction(Object obj) {
 
     }
 

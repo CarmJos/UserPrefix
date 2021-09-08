@@ -1,9 +1,9 @@
 package cc.carm.plugin.userprefix.hooker;
 
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import cc.carm.plugin.userprefix.manager.PrefixManager;
 import cc.carm.plugin.userprefix.manager.UserManager;
 import cc.carm.plugin.userprefix.model.ConfiguredPrefix;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -36,17 +36,17 @@ public class UserPrefixExpansion extends PlaceholderExpansion {
     }
 
     @Override
-    public String getAuthor() {
+    public @NotNull String getAuthor() {
         return plugin.getDescription().getAuthors().toString();
     }
 
     @Override
-    public String getIdentifier() {
+    public @NotNull String getIdentifier() {
         return "UserPrefix";
     }
 
     @Override
-    public String getVersion() {
+    public @NotNull String getVersion() {
         return plugin.getDescription().getVersion();
     }
 
@@ -82,8 +82,10 @@ public class UserPrefixExpansion extends PlaceholderExpansion {
             case "version": {
                 return getVersion().replace("-SNAPSHOT", "");
             }
+            default: {
+                return "参数错误";
+            }
         }
-        return null;
     }
 
 }
