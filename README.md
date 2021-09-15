@@ -1,7 +1,7 @@
 # 用户前缀系统插件
 [![CodeFactor](https://www.codefactor.io/repository/github/carmjos/userprefix/badge?s=b76fec1f64726b5f19989aace6adb5f85fdab840)](https://www.codefactor.io/repository/github/carmjos/userprefix)
 [![Java CI with Maven](https://github.com/CarmJos/UserPrefix/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/CarmJos/UserPrefix/actions/workflows/maven.yml)
-
+![](https://visitor-badge.glitch.me/badge?page_id=userprefix.readme)
 轻便、高效、实时的用户前缀系统。
 
 本插件基于Spigot实现，**理论上支持全版本**。
