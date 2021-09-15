@@ -193,4 +193,4 @@ prefixes:
 <img height=25% width=25% src="https://user-images.githubusercontent.com/36306882/133410996-3718d9ad-1460-45ef-a7f1-33fff78643fb.jpg" />
 
 ## 开源协议
-本项目采用 [GNU General Public License v2.0](https://opensource.org/licenses/gpl-2.0.php) 开源协议。
+本项目采用 [GNU General Public License v3.0](https://opensource.org/licenses/gpl-3.0.php) 开源协议。
