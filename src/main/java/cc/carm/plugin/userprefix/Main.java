@@ -43,11 +43,14 @@ public class Main extends JavaPlugin {
             log("注册变量...");
             new UserPrefixExpansion(getInstance()).register();
         } else {
-            log("未安装 PlaceholderAPI 放弃注册变量...");
+            log("未安装 PlaceholderAPI 不进行变量注册...");
+            log("若您想使用变量进行前缀的显示，请安装PlaceholderAPI！");
         }
 
 
         log("加载完成 ，共耗时 " + (System.currentTimeMillis() - startTime) + " ms 。");
+
+        showAD();
 
         if (Bukkit.getOnlinePlayers().size() > 0) {
             Bukkit.getOnlinePlayers().forEach(UserManager::initPlayer);  // 适配热重载
@@ -64,6 +67,9 @@ public class Main extends JavaPlugin {
         Bukkit.getServicesManager().unregisterAll(this);
 
         log("卸载完成 ，共耗时 " + (System.currentTimeMillis() - startTime) + " ms 。");
+
+        showAD();
+
     }
 
     /**
@@ -87,6 +93,11 @@ public class Main extends JavaPlugin {
 
     public static JavaPlugin getInstance() {
         return instance;
+    }
+
+    private void showAD() {
+        log("&7感谢您使用 &3&lUserPrefix " + getDescription().getVersion() + "&7!");
+        log("&7本插件由 &b&lYourCraft &7提供长期支持与维护。");
     }
 
 }

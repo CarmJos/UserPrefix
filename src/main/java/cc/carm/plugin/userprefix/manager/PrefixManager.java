@@ -41,22 +41,26 @@ public class PrefixManager {
         for (String prefixIdentifier : prefixesSection.getKeys(false)) {
             ConfigurationSection configuredPrefixSection = prefixesSection.getConfigurationSection(prefixIdentifier);
             if (configuredPrefixSection == null) continue;
+            try {
+                String name = configuredPrefixSection.getString("name", "前缀名配置错误");
+                String content = configuredPrefixSection.getString("content", "&r");
+                String permission = configuredPrefixSection.getString("permission");
+                int weight = configuredPrefixSection.getInt("weight", 1);
 
-            String name = configuredPrefixSection.getString("name", "前缀名配置错误");
-            String content = configuredPrefixSection.getString("content", "&r");
-            String permission = configuredPrefixSection.getString("permission");
-            int weight = configuredPrefixSection.getInt("weight", 1);
-
-            ItemStack itemHasPermission = configuredPrefixSection.getItemStack("itemHasPermission",
-                    new ItemStackFactory(Material.STONE).setDisplayName(name).addLore(" ").addLore("§a➥ 点击切换到该前缀").toItemStack()
-            );
-            ItemStack itemNoPermission = configuredPrefixSection.getItemStack("itemNoPermission", itemHasPermission);
-            ItemStack itemUsing = configuredPrefixSection.getItemStack("itemUsing", itemHasPermission);
+                ItemStack itemHasPermission = configuredPrefixSection.getItemStack("itemHasPermission",
+                        new ItemStackFactory(Material.STONE).setDisplayName(name).addLore(" ").addLore("§a➥ 点击切换到该前缀").toItemStack()
+                );
+                ItemStack itemNoPermission = configuredPrefixSection.getItemStack("itemNoPermission", itemHasPermission);
+                ItemStack itemUsing = configuredPrefixSection.getItemStack("itemUsing", itemHasPermission);
 
 
-            Main.log("完成前缀加载 " + prefixIdentifier + " : " + name);
+                Main.log("完成前缀加载 " + prefixIdentifier + " : " + name);
 
-            dataPrefixes.put(prefixIdentifier, new ConfiguredPrefix(prefixIdentifier, name, content, weight, permission, itemHasPermission, itemNoPermission, itemUsing));
+                dataPrefixes.put(prefixIdentifier, new ConfiguredPrefix(prefixIdentifier, name, content, weight, permission, itemHasPermission, itemNoPermission, itemUsing));
+            } catch (Exception exception) {
+                Main.log("在加载前缀 " + prefixIdentifier + " 时出错，请检查配置！");
+                exception.printStackTrace();
+            }
         }
 
         PrefixManager.prefixes.clear();
@@ -67,26 +71,31 @@ public class PrefixManager {
         PrefixManager.defaultPrefix = null;
         ConfigurationSection defaultPrefixSection = ConfigManager.getConfig().getConfigurationSection("defaultPrefix");
         if (defaultPrefixSection != null) {
-            String name = defaultPrefixSection.getString("name", "默认前缀");
-            String content = defaultPrefixSection.getString("content", "&r");
-            ItemStack itemNotUsing = defaultPrefixSection.getItemStack(
-                    "itemNotUsing",
-                    new ItemStackFactory(Material.NAME_TAG)
-                            .setDisplayName("&f默认前缀")
-                            .addLore(" ")
-                            .addLore("§a➥ 点击切换到该前缀")
-                            .toItemStack()
-            );
-            ItemStack itemUsing = defaultPrefixSection.getItemStack("itemUsing",
-                    new ItemStackFactory(Material.NAME_TAG)
-                            .setDisplayName("&f默认前缀")
-                            .addLore(" ")
-                            .addLore("§a✔ 您正在使用该前缀")
-                            .addEnchant(Enchantment.DURABILITY, 1, false)
-                            .addFlag(ItemFlag.HIDE_ENCHANTS)
-                            .toItemStack()
-            );
-            PrefixManager.defaultPrefix = new ConfiguredPrefix("default", name, content, 0, null, itemNotUsing, null, itemUsing);
+            try {
+                String name = defaultPrefixSection.getString("name", "默认前缀");
+                String content = defaultPrefixSection.getString("content", "&r");
+                ItemStack itemNotUsing = defaultPrefixSection.getItemStack(
+                        "itemNotUsing",
+                        new ItemStackFactory(Material.NAME_TAG)
+                                .setDisplayName("&f默认前缀")
+                                .addLore(" ")
+                                .addLore("§a➥ 点击切换到该前缀")
+                                .toItemStack()
+                );
+                ItemStack itemUsing = defaultPrefixSection.getItemStack("itemUsing",
+                        new ItemStackFactory(Material.NAME_TAG)
+                                .setDisplayName("&f默认前缀")
+                                .addLore(" ")
+                                .addLore("§a✔ 您正在使用该前缀")
+                                .addEnchant(Enchantment.DURABILITY, 1, false)
+                                .addFlag(ItemFlag.HIDE_ENCHANTS)
+                                .toItemStack()
+                );
+                PrefixManager.defaultPrefix = new ConfiguredPrefix("default", name, content, 0, null, itemNotUsing, null, itemUsing);
+            } catch (Exception ex) {
+                Main.log("在加载默认前缀时出错，请检查配置！");
+                ex.printStackTrace();
+            }
         } else {
             PrefixManager.defaultPrefix = new ConfiguredPrefix("default", "默认前缀", "&r", 0, null,
                     new ItemStackFactory(Material.NAME_TAG)

@@ -3,6 +3,8 @@ name: UserPrefix
 version: ${project.version}
 authors:
   - Carm
+  - YourCraft
+  - SakuraGame
 depend:
   - LuckPerms
 softdepend:
