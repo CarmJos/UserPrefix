@@ -41,7 +41,7 @@
 如有冲突导致其他插件的计分板无法显示，请关掉配置文件中`functions.OnNamePrefix`。
 
 ### 3. 物品图标配置问题
-物品相关均通过Bukkit提供的ItemStack序列化方法读取，相关配置方式请参考其他文档。
+物品相关均通过Bukkit提供的ItemStack序列化方法读取，相关配置方式请参考[ItemStack Serialization(物品序列化)](https://www.spigotmc.org/wiki/itemstack-serialization/)。
 
 ## 指令
 
