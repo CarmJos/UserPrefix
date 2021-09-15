@@ -187,8 +187,10 @@ prefixes:
 ![1920x1080](https://user-images.githubusercontent.com/36306882/133410923-19dd31d7-5e18-4ba0-8fda-7537633b39f9.png)
 
 若您觉得本插件做的不错，您可以捐赠支持我！
-<img height=50% width=50% src="https://user-images.githubusercontent.com/36306882/133410996-3718d9ad-1460-45ef-a7f1-33fff78643fb.jpg" />
+
 感谢您成为开源项目的支持者！
+
+<img height=25% width=25% src="https://user-images.githubusercontent.com/36306882/133410996-3718d9ad-1460-45ef-a7f1-33fff78643fb.jpg" />
 
 ## 开源协议
 GPL
