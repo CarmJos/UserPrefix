@@ -7,9 +7,10 @@
 
 本插件基于Spigot实现，**理论上支持全版本**。
 
-数据部分基于 [LuckPerms](https://www.spigotmc.org/resources/luckperms.28140/) 实现。
-
-变量部分基于 [PlaceholderAPI](https://www.spigotmc.org/resources/6245/) 实现。
+## 依赖
+- 插件本体基于 [Spigot-API](https://hub.spigotmc.org/stash/projects/SPIGOT)、[BukkitAPI](http://bukkit.org/) 实现。
+- 数据部分基于 [LuckPerms](https://www.spigotmc.org/resources/luckperms.28140/) 实现。
+- 变量部分基于 [PlaceholderAPI](https://www.spigotmc.org/resources/6245/) 实现。
 
 ## 特性
 
