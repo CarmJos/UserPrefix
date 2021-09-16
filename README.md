@@ -8,6 +8,11 @@
 
 本插件基于Spigot实现，**理论上支持全版本**。
 
+本插件已在 [MCBBS](https://www.mcbbs.net/forum.php?mod=viewthread&tid=1261503) 上发布。
+
+## 示例
+![example](https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/example.png)
+
 ## 依赖
 - **[必须]** 插件本体基于 [Spigot-API](https://hub.spigotmc.org/stash/projects/SPIGOT)、[BukkitAPI](http://bukkit.org/) 实现。
 - **[必须]** 数据部分基于 [LuckPerms](https://www.spigotmc.org/resources/luckperms.28140/) 实现。
