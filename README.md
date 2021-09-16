@@ -196,4 +196,5 @@ prefixes:
 <img height=25% width=25% src="https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/PAY.jpg" />
 
 ## 开源协议
-本项目采用 [GNU General Public License v3.0](https://opensource.org/licenses/gpl-3.0.php) 开源协议。
+本项目源码采用 [GNU General Public License v3.0](https://opensource.org/licenses/gpl-3.0.php) 开源协议。
+
