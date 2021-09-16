@@ -93,10 +93,9 @@ messages:
   expired:
     - "&7您先前使用的前缀 &f%(oldName) &7已到期。"
     - "&7现在已为您重新调整为 &f%(newName) &7。"
-  help:
-    - "&7输入 &b/prefix &7打开前缀选择菜单。"
 
-Sounds: #相关的声音，注释掉则不播放声音 格式为 【声音名:音量:音调】 或 【声音名:音量】 或 【声音名】
+Sounds: #相关的声音，注释掉则不播放声音 
+  # 格式为 【声音名:音量:音调】 或 【声音名:音量】 或 【声音名】
   openGUI: "BLOCK_NOTE_BLOCK_PLING:1:1"
   guiClick: "UI_BUTTON_CLICK"
   prefixChange: "ENTITY_VILLAGER_YES"

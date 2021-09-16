@@ -19,7 +19,6 @@ public class PrefixConfig {
 
         public static ConfigValueList<String> SELECTED = new ConfigValueList<>("messages.selected", String.class);
         public static ConfigValueList<String> EXPIRED = new ConfigValueList<>("messages.expired", String.class);
-        public static ConfigValueList<String> HELP = new ConfigValueList<>("messages.help", String.class);
 
 
     }
