@@ -11,7 +11,7 @@
 本插件已在 [MCBBS](https://www.mcbbs.net/forum.php?mod=viewthread&tid=1261503) 上发布。
 
 ## 示例
-![example](https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/example.png)
+![example](https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/using-example.png)
 
 ## 依赖
 - **[必须]** 插件本体基于 [Spigot-API](https://hub.spigotmc.org/stash/projects/SPIGOT)、[BukkitAPI](http://bukkit.org/) 实现。
