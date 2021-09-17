@@ -172,7 +172,7 @@ prefixes:
 
 [hr]
 [size=3][b]最新版本 1.2.3[/b][/size][attach]1905406[/attach]
-[size=3]更新内容： [/size][quote][size=3]1. 支持支持Hex颜色！(1.16以上版本) 格式 [u]&(#颜色代码)[/u] 。[/size]
+[size=3]更新内容： [/size][quote][size=3]1. 支持Hex颜色！(1.16以上版本) 格式 [u]&(#颜色代码)[/u] 。[/size]
 [size=3][backcolor=initial]-   如 [/backcolor][/size][backcolor=initial][size=3]LightSlateBlue &(#8470FF) 、 DarkSlateBlue &(#483D8B)[/size][/backcolor]
 [backcolor=initial][size=3]2. 修复未安装PlaceholderAPI的情况下可能导致的部分报错。[/size][/backcolor]
 [backcolor=initial][size=3]
