@@ -12,6 +12,8 @@
 
 本插件已在 [MCBBS](https://www.mcbbs.net/forum.php?mod=viewthread&tid=1261503) 上发布。
 
+The English version of the introduction is [here](https://github.com/CarmJos/UserPrefix/blob/master/README-en.md).
+
 ## 示例
 
 ![example](https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/using-example.png)
