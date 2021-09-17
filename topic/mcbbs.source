@@ -24,7 +24,8 @@
 [*]TabList自动按照前缀的权重排序 (如有冲突可关掉)
 [*]玩家头顶前缀实时显示 (如有冲突可关掉)
 [*]自动排序，且可翻页的GUI！
-[*]支持PlaceholderAPI变量！
+[*]支持PlaceholderAPI变量！(凡支持的都可以使用，如BungeeTabListPlus)
+[*]支持Hex颜色！(1.16以上版本) 格式 [u]&(#颜色代码)[/u]
 [/list][size=5][b]
 注意事项[/b][/size]
 [hr]
@@ -177,7 +178,6 @@ prefixes:
 [backcolor=initial][size=3]
 [/size][/backcolor]
 [/quote]
-
 更多版本请移步 [url=https://github.com/CarmJos/UserPrefix/releases]Releases · CarmJos/UserPrefix (github.com)[/url] 。
 
 [size=5][b]开源地址[/b][/size]
@@ -196,27 +196,7 @@ prefixes:
 [attachimg]1905173[/attachimg]
 
 
+
+
 [hr]
 [align=center][b][size=4][color=#ff0000]本插件所用所有代码均为原创,不存在借用/抄袭等行为[/color][/size][/b][/align]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
