@@ -1,0 +1,216 @@
+[URL='https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/banner.png'][IMG]https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/banner.png[/IMG][/URL]
+
+[SIZE=6][B]UserPrefix Plugin[/B][/SIZE]
+[URL='https://www.codefactor.io/repository/github/carmjos/userprefix'][IMG]https://camo.githubusercontent.com/6040f5c07ea04f9cb666459d6b6f08d19971fc29a26183cdc6595297b287234b/68747470733a2f2f7777772e636f6465666163746f722e696f2f7265706f7369746f72792f6769746875622f6361726d6a6f732f757365727072656669782f62616467653f733d62373666656331663634373236623566313939383961616365366164623566383566646162383430[/IMG][/URL] [URL='https://github.com/CarmJos/UserPrefix/actions/workflows/maven.yml'][IMG]https://github.com/CarmJos/UserPrefix/actions/workflows/maven.yml/badge.svg?branch=master[/IMG][/URL] [URL='https://camo.githubusercontent.com/75543844e4f92947d837bd45ab75d5a268e63ff485cd7b354cf69f52e60be28d/68747470733a2f2f76697369746f722d62616467652e676c697463682e6d652f62616467653f706167655f69643d757365727072656669782e726561646d65'][IMG]https://camo.githubusercontent.com/75543844e4f92947d837bd45ab75d5a268e63ff485cd7b354cf69f52e60be28d/68747470733a2f2f76697369746f722d62616467652e676c697463682e6d652f62616467653f706167655f69643d757365727072656669782e726561646d65[/IMG][/URL]
+
+Lightweight, efficient, and real-time user prefix system.
+
+This plugin is implemented based on Spigot ,Theoretically support ALL MineCraft Versions.
+
+The development of this plugin is based on Chinese, which purpose is to help Chinese developers learn Bukkit plugin development.
+
+[QUOTE]
+本插件已在 [URL='https://www.mcbbs.net/forum.php?mod=viewthread&tid=1261503']MCBBS[/URL] 上发布，欢迎中文用户来这里下载。
+[/QUOTE]
+
+[SIZE=5][B]Examples[/B][/SIZE]
+[URL='https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/using-example.png'][IMG]https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/using-example.png[/IMG][/URL]
+
+[SIZE=5][B]Dependencies[/B][/SIZE]
+[LIST]
+[*][B][Necessary][/B] Plugin developed based on [URL='https://hub.spigotmc.org/stash/projects/SPIGOT']Spigot-API[/URL] and [URL='http://bukkit.org/']BukkitAPI[/URL].
+[*][B][Necessary][/B] Plugin data storage base on [URL='https://www.spigotmc.org/resources/luckperms.28140/']LuckPerms[/URL].
+[*][Recommend] Placeholders based on [URL='https://www.spigotmc.org/resources/6245/']PlaceholderAPI[/URL] .
+[/LIST]
+For development dependencies, please see [URL='https://github.com/CarmJos/UserPrefix/network/dependencies']Dependencies[/URL] .
+
+[SIZE=5][B]Features[/B][/SIZE]
+[LIST]
+[*]Theoretically support ALL MineCraft Versions.
+[*]Reloading the configuration will automatically refresh the prefix of all players.
+[*]Real-time judgment and feedback to the player when permissions are changed.
+[*]Configurable sounds and messages.
+[*]The prefix icon can be configured as "Selected", "Has Permission" and “No Permission”.
+[LIST]
+[*]Item configuration is natively configured through ItemStack, which supports all MC settings!
+[/LIST]
+[*]TabList is automatically sorted according to the weight of the prefix (if there is a conflict, it can be turned off)
+[*]The prefix display on the player name (can be turned off if there is a conflict)
+[*]GUI with automatic sorting and page turning!
+[*]Support PlaceholderAPI variables!
+[*]Support Hex color! (Version 1.16 and above) [U]&(#Color)[/U]
+[LIST]
+[*]Example: LightSlateBlue [U]&(#8470FF)[/U] 、 DarkSlateBlue [U]&(#483D8B)[/U]
+[/LIST]
+[/LIST]
+[SIZE=5][B]Notice[/B][/SIZE]
+[SIZE=4][B]1. Version support issues[/B][/SIZE]
+This plugin theoretically supports all versions.
+
+If the icon does not load, the sound cannot be played, etc., please check whether the type of the item and sound in the configuration file exists in the current version.
+
+Take the SOUND as an example. The sound that the villager said "OK" is "[U]VILLAGER_YES[/U]" in the lower version, but it becomes "[U]ENTITY_VILLAGER_YES[/U]" in the higher version.
+
+[SIZE=4][B]2. Scoreboard exception problem[/B][/SIZE]
+The display of the prefix on the head and the sorting of the TabList both use the scoreboard API.
+
+Please turn of the [U]functions.OnNamePrefix[/U] in the configuration if there is a conflict.
+
+[SIZE=4][B]3. Item icon configuration problem[/B][/SIZE]
+Items are read through the ItemStack serialization method provided by Bukkit. For related configuration methods, please refer to [URL='https://www.spigotmc.org/wiki/itemstack-serialization/']ItemStack Serialization[/URL].
+
+[SIZE=5][B]Commands[/B][/SIZE]
+This plugin's Commands are based on Chinese! May support multi-language in the future.
+
+[code]
+/UserPrefix or /prefix #Open prefix GUI
+/UserPrefixAdmin # View Admin Command Help
+/UserPrefixAdmin reload # Reload Config
+/UserPrefixAdmin list # List all configured prefixes.
+[/code]
+
+[SIZE=5][B]Placeholders (PlaceholderAPI)[/B][/SIZE]
+After installed the [URL='https://github.com/PlaceholderAPI/PlaceholderAPI']PlaceholderAPI[/URL] , you can type /papi info UserPrefix to see all the placeholders.
+
+[code]
+# %UserPrefix_prefix%
+- Get the content of the current prefix
+# %UserPrefix_weight%
+- Get the weight of the current prefix.
+# %UserPrefix_identifier%
+- Get the identifier of the current prefix.
+# %UserPrefix_name%
+- Get the name of the current prefix.
+# %UserPrefix_has_<Identifier>%
+- Determine whether the player has a certain prefix(true/false)
+[code]
+
+Sample configuration file
+Notice: The default configuration is based on Chinese. You can find the English Version here.
+
+[code=YAML]
+version: 1.0.0-SNAPSHOT # DO NOT EDIT IT
+
+debug: false #DEBUG OUT PUT
+
+GUI:
+  title: "&f&lMy Prefixes List" # Title of the GUI
+functions:
+  # Whether to add a prefix to the top of the head,
+  # this method uses the scoreboard above the head,
+  # please turn it off if there is a conflict.
+  OnNamePrefix: true
+  # Automatic prefix select.
+  # When the player does not choose a prefix by himself,
+  # the prefix with the highest weight will be used automatically
+  autoUsePrefix: true
+
+messages:
+  selected:
+   - "&7You have selected the  &f%(name) &7as current prefix."
+  expired:
+   - "&7Your prefix &f%(oldName) &7has expired,"
+   - "&7Now the prefix is changed to &f%(newName) &7."
+  reload:
+   - "&a&lReload completed！&7costs &f%(time)ms&7."
+  help:
+   - "&3&lUserPrefixAdmin &fHelp"
+   - "&8#/upa&f list"
+   - "&8- &7Show configured prefixes."
+   - "&8#/upa&f reload"
+   - "&8- &7Reload configuration."
+  list-title:
+   - "&3&lUserPrefixAdmin &fList"
+  list-value:
+   - "&8#%(weight) &f%(identifier)"
+   - "&8- &7Name &r%(name) &7Perm &r%(permission)"
+   - "&8- &7Example&r %(content) %(sender_name)"
+
+Sounds:
+  # Format is [SOUND_NAME:Volume:Pitch] or [SOUND_NAME:Volume] or [SOUND_NAME]
+  openGUI: "BLOCK_NOTE_BLOCK_PLING:1:1"
+  guiClick: "UI_BUTTON_CLICK"
+  prefixChange: "ENTITY_VILLAGER_YES"
+  prefixExpired: "ENTITY_VILLAGER_NO"
+
+# The default prefix's weight is 0.
+defaultPrefix:
+  name: "Default prefix"
+  content: "&b"
+  itemNotUsing:
+   ==: org.bukkit.inventory.ItemStack
+   type: NAME_TAG
+   meta:
+     ==: ItemMeta
+     meta-type: UNSPECIFIC
+     display-name: "§fThe default prefix §f(Click to select)"
+     lore:
+       - ""
+       - "§a➥ Click to use"
+  itemUsing:
+   ==: org.bukkit.inventory.ItemStack
+   type: NAME_TAG
+   meta:
+     ==: ItemMeta
+     meta-type: UNSPECIFIC
+     display-name: "§fThe default prefix"
+     lore:
+       - ""
+       - "§a✔ Selected"
+
+prefixes:
+  VIP:
+   name: "&b&lPro&b" # [Necessary] Name (Using in messages)
+   content: "§b§lPro §b" # [Necessary] What to display before the name
+   # [Necessary] Weight, used for sorting in the GUI
+   # (the larger is displayed at the back) and the automatic prefix display
+   weight: 1
+   # [Necessary] If there is no permission for detection, everyone can use it,
+   # which means there is no need to configure "itemNoPermission"
+   # (because it is impossible to display items without permission at all)
+   permission: "yc.pro"
+   itemHasPermission:
+     #  [Necessary] This Item will be displayed when player has permission
+     ==: org.bukkit.inventory.ItemStack
+     type: DIAMOND
+     meta:
+       ==: ItemMeta
+       meta-type: UNSPECIFIC
+       display-name: "§b§lVIP Prefix"
+       lore:
+         - ""
+         - "§a➥ Click to  use"
+   itemUsing:
+     # [Not Necessary] This Item will be displayed when the prefix is selected.
+     # If there is no such configuration, it will automatically display "itemHasPermission".
+     ==: org.bukkit.inventory.ItemStack
+     type: DIAMOND
+     meta:
+       ==: ItemMeta
+       meta-type: UNSPECIFIC
+       display-name: "§b§lVIP Prefix"
+       enchants:
+         PROTECTION_ENVIRONMENTAL: 1 #Add an enchantment so it looks like it’s selected
+       lore:
+         - ""
+         - "§a✔ Selected"
+   itemNoPermission:
+     # [Not Necessary] If player doesn't have the permission,this item will be displayed.
+     # If this item is not configured, it will not be displayed in the GUI when the player does not have permission to use it.
+     ==: org.bukkit.inventory.ItemStack
+     type: INK_SACK
+     damage: 8
+     meta:
+       ==: ItemMeta
+       meta-type: UNSPECIFIC
+       display-name: "§b§lVIP §c(Buy it!)"
+       lore:
+         - ""
+         - "§e✯ Buy the VIP to use it!"
+[/code]
+
+[SIZE=5][B]Support and Donation[/B][/SIZE]
+This project is support by the [URL='https://www.ycraft.cn/']YourCraft(你的世界)[/URL] . [URL='https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/team-logo.png'][IMG]https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/team-logo.png[/IMG][/URL]
+
+[SIZE=5][B]Open source agreement[/B][/SIZE]
+The source code of this project uses [URL='https://opensource.org/licenses/GPL-3.0']GNU General Public License v3.0[/URL] License.
