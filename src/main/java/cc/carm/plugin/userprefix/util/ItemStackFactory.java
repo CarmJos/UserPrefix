@@ -60,7 +60,7 @@ public class ItemStackFactory {
     public ItemStackFactory setDisplayName(@NotNull String name) {
         ItemMeta im = this.item.getItemMeta();
         if (im != null) {
-            im.setDisplayName(ColorParser.parseColor(name));
+            im.setDisplayName(ColorParser.parse(name));
             this.item.setItemMeta(im);
         }
         return this;
@@ -71,7 +71,7 @@ public class ItemStackFactory {
         if (im != null) {
             im.setLore(
                     loreList.stream()
-                            .map(ColorParser::parseColor)
+                            .map(ColorParser::parse)
                             .collect(Collectors.toList())
             );
             this.item.setItemMeta(im);
@@ -83,7 +83,7 @@ public class ItemStackFactory {
         ItemMeta im = this.item.getItemMeta();
         if (im != null) {
             List<String> lore = im.getLore() != null ? im.getLore() : new ArrayList<>();
-            lore.add(ColorParser.parseColor(s));
+            lore.add(ColorParser.parse(s));
             im.setLore(lore);
             this.item.setItemMeta(im);
         }

@@ -83,12 +83,12 @@ public class Main extends JavaPlugin {
     }
 
     public static void log(String message) {
-        Bukkit.getConsoleSender().sendMessage(ColorParser.parseColor("[" + getInstance().getName() + "] " + message));
+        Bukkit.getConsoleSender().sendMessage(ColorParser.parse("[" + getInstance().getName() + "] " + message));
     }
 
     public static void debug(String message) {
         if (PrefixConfig.DEBUG.get()) {
-            log("[DEBUG] " + ColorParser.parseColor(message));
+            log("[DEBUG] " + message);
         }
     }
 

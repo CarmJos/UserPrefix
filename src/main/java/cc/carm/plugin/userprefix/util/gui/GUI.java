@@ -38,7 +38,7 @@ public class GUI {
 
     public GUI(GUIType type, String name) {
         this.type = type;
-        this.name = ColorParser.parseColor(name);
+        this.name = ColorParser.parse(name);
         switch (type) {
             case ONEBYNINE:
                 this.items = new GUIItem[9];

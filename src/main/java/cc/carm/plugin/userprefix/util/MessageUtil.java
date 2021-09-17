@@ -2,6 +2,7 @@ package cc.carm.plugin.userprefix.util;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -12,34 +13,34 @@ public class MessageUtil {
         return Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
     }
 
-    public static void send(Player player, List<String> messages) {
+    public static void send(CommandSender sender, List<String> messages) {
         for (String s : messages) {
-            player.sendMessage(ColorParser.parseColor(s));
+            sender.sendMessage(ColorParser.parse(s));
         }
     }
 
-    public static void send(Player player, String... messages) {
-        send(player, Arrays.asList(messages));
+    public static void send(CommandSender sender, String... messages) {
+        send(sender, Arrays.asList(messages));
     }
 
-    public static void sendWithPlaceholders(Player player, String... messages) {
-        sendWithPlaceholders(player, Arrays.asList(messages));
+    public static void sendWithPlaceholders(CommandSender sender, String... messages) {
+        sendWithPlaceholders(sender, Arrays.asList(messages));
     }
 
-    public static void sendWithPlaceholders(Player player, List<String> messages) {
-        if (hasPlaceholderAPI()) {
-            send(player, PlaceholderAPI.setPlaceholders(player, messages));
+    public static void sendWithPlaceholders(CommandSender sender, List<String> messages) {
+        if (hasPlaceholderAPI() && sender instanceof Player) {
+            send(sender, PlaceholderAPI.setPlaceholders((Player) sender, messages));
         } else {
-            send(player, messages);
+            send(sender, messages);
         }
     }
 
-    public static void sendWithPlaceholders(Player player, List<String> messages, String param, Object value) {
-        sendWithPlaceholders(player, messages, new String[]{param}, new Object[]{value});
+    public static void sendWithPlaceholders(CommandSender sender, List<String> messages, String param, Object value) {
+        sendWithPlaceholders(sender, messages, new String[]{param}, new Object[]{value});
     }
 
-    public static void sendWithPlaceholders(Player player, List<String> messages, String[] params, Object[] values) {
-        sendWithPlaceholders(player, setCustomParams(messages, params, values));
+    public static void sendWithPlaceholders(CommandSender sender, List<String> messages, String[] params, Object[] values) {
+        sendWithPlaceholders(sender, setCustomParams(messages, params, values));
     }
 
     public static List<String> setCustomParams(List<String> messages, String param, Object value) {

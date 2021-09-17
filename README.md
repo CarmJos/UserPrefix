@@ -1,5 +1,7 @@
 ![BANNER](https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/banner.png)
+
 # 用户前缀系统插件
+
 [![CodeFactor](https://www.codefactor.io/repository/github/carmjos/userprefix/badge?s=b76fec1f64726b5f19989aace6adb5f85fdab840)](https://www.codefactor.io/repository/github/carmjos/userprefix)
 [![Java CI with Maven](https://github.com/CarmJos/UserPrefix/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/CarmJos/UserPrefix/actions/workflows/maven.yml)
 ![](https://visitor-badge.glitch.me/badge?page_id=userprefix.readme)
@@ -11,9 +13,11 @@
 本插件已在 [MCBBS](https://www.mcbbs.net/forum.php?mod=viewthread&tid=1261503) 上发布。
 
 ## 示例
+
 ![example](https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/using-example.png)
 
 ## 依赖
+
 - **[必须]** 插件本体基于 [Spigot-API](https://hub.spigotmc.org/stash/projects/SPIGOT)、[BukkitAPI](http://bukkit.org/) 实现。
 - **[必须]** 数据部分基于 [LuckPerms](https://www.spigotmc.org/resources/luckperms.28140/) 实现。
 - **[推荐]** 变量部分基于 [PlaceholderAPI](https://www.spigotmc.org/resources/6245/) 实现。
@@ -31,8 +35,10 @@
     - 具体的设定请参考其他文档哦~
 - TabList自动按照前缀的权重排序 (如有冲突可关掉)
 - 玩家头顶前缀显示 (如有冲突可关掉)
-- 自动排序，且可翻页的GUI
-- 支持PlaceholderAPI变量
+- 自动排序，且可翻页的GUI！
+- 支持PlaceholderAPI变量！(凡支持的都可以使用，如BungeeTabListPlus)
+- 支持Hex颜色！(1.16以上版本) 格式 `&(#颜色代码)`
+    - 示例： LightSlateBlue `&(#8470FF)` 、 DarkSlateBlue `&(#483D8B)`
 
 ## 注意事项
 
@@ -49,6 +55,7 @@
 如有冲突导致其他插件的计分板无法显示，请关掉配置文件中`functions.OnNamePrefix`。
 
 ### 3. 物品图标配置问题
+
 物品相关均通过Bukkit提供的ItemStack序列化方法读取，相关配置方式请参考[ItemStack Serialization(物品序列化)](https://www.spigotmc.org/wiki/itemstack-serialization/)。
 
 ## 指令
@@ -138,7 +145,7 @@ prefixes:
     content: "§b§lPro §b" # [必须] 显示在名字前面的内容
     weight: 1 # [必须] 权重，用于GUI里面的排序(越大显示在越后面)和自动前缀显示
     permission: "yc.pro" # [非必须] 检测的权限，如果没有就是人人都能用，也代表不用配置“itemNoPermission”了(因为压根不可能显示没权限时候的物品)
-    itemHasPermission: 
+    itemHasPermission:
       #  [必须] 当有权限的时候会显示这个Item
       ==: org.bukkit.inventory.ItemStack
       type: DIAMOND
@@ -153,7 +160,7 @@ prefixes:
           - "§f您将获得多种特权与更好的游戏体验。"
           - ""
           - "§a➥ 点击切换到该前缀"
-    itemUsing: 
+    itemUsing:
       # [非必需] 当有权限的时候会显示这个Item,如果没有这个配置就自动显示“itemHasPermission”的。
       ==: org.bukkit.inventory.ItemStack
       type: DIAMOND
@@ -170,7 +177,7 @@ prefixes:
           - "§f您将获得多种特权与更好的游戏体验。"
           - ""
           - "§a✔ 您正在使用该前缀"
-    itemNoPermission: 
+    itemNoPermission:
       # [非必需] 如果没有权限就会显示这个item。如果不配置该物品，则玩家没有使用权限时不会显示在GUI里面。
       ==: org.bukkit.inventory.ItemStack
       type: INK_SACK
@@ -190,6 +197,7 @@ prefixes:
 ```
 
 ## 支持与捐赠
+
 本项目由 [YourCraft(你的世界)](https://www.ycraft.cn) 团队提供长期支持与维护。
 ![TeamLogo](https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/team-logo.png)
 
@@ -200,5 +208,6 @@ prefixes:
 <img height=25% width=25% src="https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/PAY.jpg" />
 
 ## 开源协议
+
 本项目源码采用 [GNU General Public License v3.0](https://opensource.org/licenses/GPL-3.0) 开源协议。
 

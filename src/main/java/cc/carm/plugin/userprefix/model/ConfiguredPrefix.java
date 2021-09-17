@@ -38,7 +38,7 @@ public class ConfiguredPrefix {
     }
 
     public String getContent() {
-        return ColorParser.parseColor(content);
+        return ColorParser.parse(content);
     }
 
     public int getWeight() {

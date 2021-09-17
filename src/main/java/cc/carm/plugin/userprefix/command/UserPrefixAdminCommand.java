@@ -5,7 +5,7 @@ import cc.carm.plugin.userprefix.manager.PrefixManager;
 import cc.carm.plugin.userprefix.manager.UserManager;
 import cc.carm.plugin.userprefix.model.ConfiguredPrefix;
 import cc.carm.plugin.userprefix.ui.PrefixSelectGUI;
-import cc.carm.plugin.userprefix.util.ColorParser;
+import cc.carm.plugin.userprefix.util.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -21,11 +21,11 @@ public class UserPrefixAdminCommand implements CommandExecutor {
         if (args.length == 1) {
             String aim = args[0];
             if (aim.equalsIgnoreCase("list")) {
-                sender.sendMessage(ColorParser.parseColor("&3&l用户前缀系统 &f前缀列表"));
+                MessageUtil.send(sender, "&3&l用户前缀系统 &f前缀列表");
                 for (ConfiguredPrefix value : PrefixManager.getPrefixes().values()) {
-                    sender.sendMessage(ColorParser.parseColor("&8#" + value.getWeight() + " &f" + value.getIdentifier()));
-                    sender.sendMessage(ColorParser.parseColor("&8- &7显示名 &r" + value.getName() + " &7权限&r " + value.getPermission()));
-                    sender.sendMessage(ColorParser.parseColor("&8- &7内容示例&r " + value.getContent() + sender.getName()));
+                    MessageUtil.send(sender, "&8#" + value.getWeight() + " &f" + value.getIdentifier());
+                    MessageUtil.send(sender, "&8- &7显示名 &r" + value.getName() + " &7权限&r " + value.getPermission());
+                    MessageUtil.send(sender, "&8- &7内容示例&r " + value.getContent() + sender.getName());
                 }
                 return true;
             } else if (aim.equalsIgnoreCase("reload")) {
@@ -42,7 +42,7 @@ public class UserPrefixAdminCommand implements CommandExecutor {
                      */
                     UserManager.updatePrefixView(onlinePlayer, false);
                 }
-                sender.sendMessage(ColorParser.parseColor("&a&l重载完成！&7共耗时 &f" + (System.currentTimeMillis() - s1) + " ms&7。"));
+                MessageUtil.send(sender, "&a&l重载完成！&7共耗时 &f" + (System.currentTimeMillis() - s1) + " ms&7。");
                 return true;
             }
             return help(sender);
@@ -51,11 +51,11 @@ public class UserPrefixAdminCommand implements CommandExecutor {
     }
 
     public static boolean help(CommandSender sender) {
-        sender.sendMessage(ColorParser.parseColor("&3&l用户前缀系统 &f帮助"));
-        sender.sendMessage(ColorParser.parseColor("&8#&f list"));
-        sender.sendMessage(ColorParser.parseColor("&8- &7查看当前前缀列表。"));
-        sender.sendMessage(ColorParser.parseColor("&8#&f reload"));
-        sender.sendMessage(ColorParser.parseColor("&8- &7重载前缀配置。"));
+        MessageUtil.send(sender, "&3&l用户前缀系统 &f帮助");
+        MessageUtil.send(sender, "&8#&f list");
+        MessageUtil.send(sender, "&8- &7查看当前前缀列表。");
+        MessageUtil.send(sender, "&8#&f reload");
+        MessageUtil.send(sender, "&8- &7重载前缀配置。");
         return true;
     }
 
