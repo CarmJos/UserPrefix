@@ -3,7 +3,10 @@
 # 用户前缀系统插件
 
 [![CodeFactor](https://www.codefactor.io/repository/github/carmjos/userprefix/badge?s=b76fec1f64726b5f19989aace6adb5f85fdab840)](https://www.codefactor.io/repository/github/carmjos/userprefix)
+![CodeSize](https://img.shields.io/github/languages/code-size/CarmJos/UserPrefix)
+[![License](https://img.shields.io/github/license/CarmJos/UserPrefix)](https://opensource.org/licenses/GPL-3.0)
 [![Java CI with Maven](https://github.com/CarmJos/UserPrefix/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/CarmJos/UserPrefix/actions/workflows/maven.yml)
+![Support](https://img.shields.io/badge/Minecraft-Java%201.8--Latest-yellow)
 ![](https://visitor-badge.glitch.me/badge?page_id=userprefix.readme)
 
 轻便、高效、实时的用户前缀系统。
