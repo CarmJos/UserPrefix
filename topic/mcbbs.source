@@ -170,14 +170,15 @@ prefixes:
 [size=5][b]下载地址[/b][/size]
 
 [hr]
-
-[hide=d30]
-
-[size=3][b]最新版本 1.2.2[/b][/size]
-[attach]1905172[/attach]
+[size=3][b]最新版本 1.2.3[/b][/size][attach]1905406[/attach]
+[size=3]更新内容： [/size][quote][size=3]1. 支持支持Hex颜色！(1.16以上版本) 格式 [u]&(#颜色代码)[/u] 。[/size]
+[size=3][backcolor=initial]-   如 [/backcolor][/size][backcolor=initial][size=3]LightSlateBlue &(#8470FF) 、 DarkSlateBlue &(#483D8B)[/size][/backcolor]
+[backcolor=initial][size=3]2. 修复未安装PlaceholderAPI的情况下可能导致的部分报错。[/size][/backcolor]
+[backcolor=initial][size=3]
+[/size][/backcolor]
+[/quote]
 
 更多版本请移步 [url=https://github.com/CarmJos/UserPrefix/releases]Releases · CarmJos/UserPrefix (github.com)[/url] 。
-[/hide]
 
 [size=5][b]开源地址[/b][/size]
 [hr]
@@ -197,3 +198,25 @@ prefixes:
 
 [hr]
 [align=center][b][size=4][color=#ff0000]本插件所用所有代码均为原创,不存在借用/抄袭等行为[/color][/size][/b][/align]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
