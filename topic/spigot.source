@@ -83,10 +83,10 @@ After installed the [URL='https://github.com/PlaceholderAPI/PlaceholderAPI']Plac
 - Get the name of the current prefix.
 # %UserPrefix_has_<Identifier>%
 - Determine whether the player has a certain prefix(true/false)
-[code]
+[/code]
 
-Sample configuration file
-Notice: The default configuration is based on Chinese. You can find the English Version here.
+[B][SIZE=5][URL='https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/config-en.yml']Configuration File[/URL] Example[/SIZE][/B]
+Notice: The default configuration is based on Chinese. You can find the English Version [URL='https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/config-en.yml']here[/URL].
 
 [code=YAML]
 version: 1.0.0-SNAPSHOT # DO NOT EDIT IT
