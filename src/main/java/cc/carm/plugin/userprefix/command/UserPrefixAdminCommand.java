@@ -24,7 +24,7 @@ public class UserPrefixAdminCommand implements CommandExecutor {
                 MessageUtil.send(sender, "&3&l用户前缀系统 &f前缀列表");
                 for (ConfiguredPrefix value : PrefixManager.getPrefixes().values()) {
                     MessageUtil.send(sender, "&8#" + value.getWeight() + " &f" + value.getIdentifier());
-                    MessageUtil.send(sender, "&8- &7显示名 &r" + value.getName() + " &7权限&r " + value.getPermission());
+                    MessageUtil.send(sender, "&8- &7显示名 &r" + value.getName() + (value.isPublic() ? "" : " &7权限&r " + value.getPermission()));
                     MessageUtil.send(sender, "&8- &7内容示例&r " + value.getContent() + sender.getName());
                 }
                 return true;

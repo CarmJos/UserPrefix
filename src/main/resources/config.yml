@@ -6,6 +6,9 @@ functions:
   OnNamePrefix: true # 是否给头顶上添加前缀，该方法用到了头顶的那个计分板，如有冲突请关掉哦~
   autoUsePrefix: true # 自动前缀显示 当玩家没有自己选择一个前缀的时候，会自动使用所拥有的的前缀中权重最高的那一个
 
+GUI:
+  title: "&f&l我的前缀 &8| 列表"
+
 messages:
   selected:
     - "&7您选择了 &f%(name) &7作为当前显示的前缀。"

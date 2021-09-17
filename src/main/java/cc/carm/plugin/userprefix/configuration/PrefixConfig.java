@@ -15,6 +15,12 @@ public class PrefixConfig {
 
     }
 
+    public static class GUI {
+
+        public static ConfigValue<String> TITLE = new ConfigValue<>("GUI.title", String.class, "&f&l我的前缀 &8| 列表");
+
+    }
+
     public static class Messages {
 
         public static ConfigValueList<String> SELECTED = new ConfigValueList<>("messages.selected", String.class);

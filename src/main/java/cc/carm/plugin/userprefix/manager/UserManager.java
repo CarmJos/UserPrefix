@@ -205,7 +205,7 @@ public class UserManager {
      * @return 若前缀标识不存在，则返回false；若前缀为默认前缀，或该前缀无权限，或玩家有该前缀的权限，则返回true。
      */
     public static boolean isPrefixUsable(Player player, ConfiguredPrefix configuredPrefix) {
-        return configuredPrefix.getPermission() == null //为null的话说明无需权限了
+        return configuredPrefix.isPublic()
                 || ServiceManager.hasPermission(ServiceManager.getUser(player), configuredPrefix.getPermission());
     }
 
