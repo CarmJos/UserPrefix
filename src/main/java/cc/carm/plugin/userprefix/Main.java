@@ -11,6 +11,7 @@ import cc.carm.plugin.userprefix.manager.PrefixManager;
 import cc.carm.plugin.userprefix.manager.ServiceManager;
 import cc.carm.plugin.userprefix.manager.UserManager;
 import cc.carm.plugin.userprefix.util.ColorParser;
+import cc.carm.plugin.userprefix.util.MessageUtil;
 import net.luckperms.api.event.user.UserDataRecalculateEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -39,7 +40,7 @@ public class Main extends JavaPlugin {
         regListener(new UserListener());
         ServiceManager.getService().getEventBus().subscribe(this, UserDataRecalculateEvent.class, UserNodeUpdateProcessor::process);
 
-        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+        if (MessageUtil.hasPlaceholderAPI()) {
             log("注册变量...");
             new UserPrefixExpansion(getInstance()).register();
         } else {

@@ -1,11 +1,16 @@
 package cc.carm.plugin.userprefix.util;
 
 import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.*;
 
 public class MessageUtil {
+
+    public static boolean hasPlaceholderAPI() {
+        return Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
+    }
 
     public static void send(Player player, List<String> messages) {
         for (String s : messages) {
@@ -22,7 +27,11 @@ public class MessageUtil {
     }
 
     public static void sendWithPlaceholders(Player player, List<String> messages) {
-        send(player, PlaceholderAPI.setPlaceholders(player, messages));
+        if (hasPlaceholderAPI()) {
+            send(player, PlaceholderAPI.setPlaceholders(player, messages));
+        } else {
+            send(player, messages);
+        }
     }
 
     public static void sendWithPlaceholders(Player player, List<String> messages, String param, Object value) {
