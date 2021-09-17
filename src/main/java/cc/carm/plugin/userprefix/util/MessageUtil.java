@@ -28,6 +28,7 @@ public class MessageUtil {
     }
 
     public static void sendWithPlaceholders(CommandSender sender, List<String> messages) {
+        if (messages == null || messages.isEmpty()) return;
         if (hasPlaceholderAPI() && sender instanceof Player) {
             send(sender, PlaceholderAPI.setPlaceholders((Player) sender, messages));
         } else {

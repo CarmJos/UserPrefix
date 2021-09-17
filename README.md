@@ -90,7 +90,7 @@ The English version of the introduction is [here](https://github.com/CarmJos/Use
 - 判断玩家是否拥有某个前缀(true/false)
 ```
 
-## 配置文件示例
+## [配置文件](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/config.yml)示例
 
 ```yaml
 version: 1.0.0-SNAPSHOT # 配置文件版本，一般不会动。
@@ -101,12 +101,29 @@ functions:
   OnNamePrefix: true # 是否给头顶上添加前缀，该方法用到了头顶的那个计分板，如有冲突请关掉哦~
   autoUsePrefix: true # 自动前缀显示 当玩家没有自己选择一个前缀的时候，会自动使用所拥有的的前缀中权重最高的那一个
 
+GUI:
+  title: "&f&l我的前缀 &8| 列表"
+
 messages:
   selected:
     - "&7您选择了 &f%(name) &7作为当前显示的前缀。"
   expired:
     - "&7您先前使用的前缀 &f%(oldName) &7已到期。"
     - "&7现在已为您重新调整为 &f%(newName) &7。"
+  reload:
+      - "&a&l重载完成！&7共耗时 &f%(time)ms&7。"
+  help:
+    - "&3&l用户前缀系统 &f帮助"
+    - "&8#/upa&f list"
+    - "&8- &7查看当前前缀列表。"
+    - "&8#/upa&f reload"
+    - "&8- &7重载前缀配置。"
+  list-title:
+    - "&3&l用户前缀系统 &f前缀列表"
+  list-value:
+    - "&8#%(weight) &f%(identifier)"
+    - "&8- &7显示名 &r%(name) &7权限 &r%(permission)"
+    - "&8- &7内容示例&r %(content) %(sender_name)"
 
 Sounds: #相关的声音，注释掉则不播放声音 
   # 格式为 【声音名:音量:音调】 或 【声音名:音量】 或 【声音名】

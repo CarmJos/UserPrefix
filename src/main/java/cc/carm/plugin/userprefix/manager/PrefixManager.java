@@ -42,7 +42,7 @@ public class PrefixManager {
             ConfigurationSection configuredPrefixSection = prefixesSection.getConfigurationSection(prefixIdentifier);
             if (configuredPrefixSection == null) continue;
             try {
-                String name = configuredPrefixSection.getString("name", "前缀名配置错误");
+                String name = configuredPrefixSection.getString("name", "ERROR");
                 String content = configuredPrefixSection.getString("content", "&r");
                 String permission = configuredPrefixSection.getString("permission");
                 int weight = configuredPrefixSection.getInt("weight", 1);
@@ -58,7 +58,7 @@ public class PrefixManager {
 
                 dataPrefixes.put(prefixIdentifier, new ConfiguredPrefix(prefixIdentifier, name, content, weight, permission, itemHasPermission, itemNoPermission, itemUsing));
             } catch (Exception exception) {
-                Main.log("在加载前缀 " + prefixIdentifier + " 时出错，请检查配置！");
+                Main.log("Error occurred when loading prefix #" + prefixIdentifier + " !");
                 exception.printStackTrace();
             }
         }

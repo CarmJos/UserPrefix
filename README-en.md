@@ -95,13 +95,19 @@ type `/papi info UserPrefix` to see all the placeholders.
 - Determine whether the player has a certain prefix(true/false)
 ```
 
-## Sample configuration file
+## Sample [configuration file](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/config-en.yml)
+
+Notice: The default configuration is based on Chinese.
+You can find the [English Version here](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/config-en.yml).
 
 ```yaml
 version: 1.0.0-SNAPSHOT # DO NOT EDIT IT
 
 debug: false #DEBUG OUT PUT 
 
+GUI:
+  title: "&f&lMy Prefixes List" # Title of the GUI
+  
 functions:
   # Whether to add a prefix to the top of the head,
   # this method uses the scoreboard above the head, 
@@ -118,6 +124,20 @@ messages:
   expired:
     - "&7Your prefix &f%(oldName) &7has expired,"
     - "&7Now the prefix is changed to &f%(newName) &7."
+  reload:
+    - "&a&lReload completed！&7costs &f%(time)ms&7."
+  help:
+    - "&3&lUserPrefixAdmin &fHelp"
+    - "&8#/upa&f list"
+    - "&8- &7Show configured prefixes."
+    - "&8#/upa&f reload"
+    - "&8- &7Reload configuration."
+  list-title:
+    - "&3&lUserPrefixAdmin &fList"
+  list-value:
+    - "&8#%(weight) &f%(identifier)"
+    - "&8- &7Name &r%(name) &7Perm &r%(permission)"
+    - "&8- &7Example&r %(content) %(sender_name)"
 
 Sounds:
   # Format is [SOUND_NAME:Volume:Pitch] or [SOUND_NAME:Volume] or [SOUND_NAME]

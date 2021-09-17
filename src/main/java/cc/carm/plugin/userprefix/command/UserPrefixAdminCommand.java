@@ -1,5 +1,6 @@
 package cc.carm.plugin.userprefix.command;
 
+import cc.carm.plugin.userprefix.configuration.PrefixConfig;
 import cc.carm.plugin.userprefix.manager.ConfigManager;
 import cc.carm.plugin.userprefix.manager.PrefixManager;
 import cc.carm.plugin.userprefix.manager.UserManager;
@@ -21,11 +22,21 @@ public class UserPrefixAdminCommand implements CommandExecutor {
         if (args.length == 1) {
             String aim = args[0];
             if (aim.equalsIgnoreCase("list")) {
-                MessageUtil.send(sender, "&3&l用户前缀系统 &f前缀列表");
+                MessageUtil.sendWithPlaceholders(sender, PrefixConfig.Messages.LIST_TITLE.get());
                 for (ConfiguredPrefix value : PrefixManager.getPrefixes().values()) {
-                    MessageUtil.send(sender, "&8#" + value.getWeight() + " &f" + value.getIdentifier());
-                    MessageUtil.send(sender, "&8- &7显示名 &r" + value.getName() + (value.isPublic() ? "" : " &7权限&r " + value.getPermission()));
-                    MessageUtil.send(sender, "&8- &7内容示例&r " + value.getContent() + sender.getName());
+                    MessageUtil.sendWithPlaceholders(
+                            sender, PrefixConfig.Messages.LIST_VALUE.get(),
+                            new String[]{
+                                    "%(weight)", "%(identifier)",
+                                    "%(name)", "%(permission)",
+                                    "%(content)", "%(sender_name)"
+                            },
+                            new Object[]{
+                                    value.getWeight(), value.getIdentifier(),
+                                    value.getName(), value.getPermission(),
+                                    value.getContent(), sender.getName()
+                            }
+                    );
                 }
                 return true;
             } else if (aim.equalsIgnoreCase("reload")) {
@@ -42,7 +53,10 @@ public class UserPrefixAdminCommand implements CommandExecutor {
                      */
                     UserManager.updatePrefixView(onlinePlayer, false);
                 }
-                MessageUtil.send(sender, "&a&l重载完成！&7共耗时 &f" + (System.currentTimeMillis() - s1) + " ms&7。");
+                MessageUtil.sendWithPlaceholders(
+                        sender, PrefixConfig.Messages.RELOAD.get(),
+                        new String[]{"%(time)"}, new Object[]{(System.currentTimeMillis() - s1)}
+                );
                 return true;
             }
             return help(sender);
@@ -51,11 +65,7 @@ public class UserPrefixAdminCommand implements CommandExecutor {
     }
 
     public static boolean help(CommandSender sender) {
-        MessageUtil.send(sender, "&3&l用户前缀系统 &f帮助");
-        MessageUtil.send(sender, "&8#&f list");
-        MessageUtil.send(sender, "&8- &7查看当前前缀列表。");
-        MessageUtil.send(sender, "&8#&f reload");
-        MessageUtil.send(sender, "&8- &7重载前缀配置。");
+        MessageUtil.send(sender, PrefixConfig.Messages.HELP.get());
         return true;
     }
 

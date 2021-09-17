@@ -26,7 +26,11 @@ public class PrefixConfig {
         public static ConfigValueList<String> SELECTED = new ConfigValueList<>("messages.selected", String.class);
         public static ConfigValueList<String> EXPIRED = new ConfigValueList<>("messages.expired", String.class);
 
+        public static ConfigValueList<String> RELOAD = new ConfigValueList<>("messages.reload", String.class);
+        public static ConfigValueList<String> HELP = new ConfigValueList<>("messages.help", String.class);
 
+        public static ConfigValueList<String> LIST_TITLE = new ConfigValueList<>("messages.list-title", String.class);
+        public static ConfigValueList<String> LIST_VALUE = new ConfigValueList<>("messages.list-value", String.class);
     }
 
     public static class Sounds {

@@ -1,0 +1,120 @@
+version: ${project.version} # DO NOT EDIT IT
+
+debug: false #DEBUG OUT PUT
+
+GUI:
+  title: "&f&lMy Prefixes List" # Title of the GUI
+
+functions:
+  # Whether to add a prefix to the top of the head,
+  # this method uses the scoreboard above the head,
+  # please turn it off if there is a conflict.
+  OnNamePrefix: true
+  # Automatic prefix select.
+  # When the player does not choose a prefix by himself,
+  # the prefix with the highest weight will be used automatically
+  autoUsePrefix: true
+
+messages:
+  selected:
+    - "&7You have selected the  &f%(name) &7as current prefix."
+  expired:
+    - "&7Your prefix &f%(oldName) &7has expired,"
+    - "&7Now the prefix is changed to &f%(newName) &7."
+  reload:
+    - "&a&lReload completed！&7costs &f%(time)ms&7."
+  help:
+    - "&3&lUserPrefixAdmin &fHelp"
+    - "&8#/upa&f list"
+    - "&8- &7Show configured prefixes."
+    - "&8#/upa&f reload"
+    - "&8- &7Reload configuration."
+  list-title:
+    - "&3&lUserPrefixAdmin &fList"
+  list-value:
+    - "&8#%(weight) &f%(identifier)"
+    - "&8- &7Name &r%(name) &7Perm &r%(permission)"
+    - "&8- &7Example&r %(content) %(sender_name)"
+
+
+Sounds:
+  # Format is [SOUND_NAME:Volume:Pitch] or [SOUND_NAME:Volume] or [SOUND_NAME]
+  openGUI: "BLOCK_NOTE_BLOCK_PLING:1:1"
+  guiClick: "UI_BUTTON_CLICK"
+  prefixChange: "ENTITY_VILLAGER_YES"
+  prefixExpired: "ENTITY_VILLAGER_NO"
+
+# The default prefix's weight is 0.
+defaultPrefix:
+  name: "Default prefix"
+  content: "&b"
+  itemNotUsing:
+    ==: org.bukkit.inventory.ItemStack
+    type: NAME_TAG
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: "§fThe default prefix §f(Click to select)"
+      lore:
+        - ""
+        - "§a➥ Click to use"
+  itemUsing:
+    ==: org.bukkit.inventory.ItemStack
+    type: NAME_TAG
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: "§fThe default prefix"
+      lore:
+        - ""
+        - "§a✔ Selected"
+
+prefixes:
+  VIP:
+    name: "&b&lPro&b" # [Necessary] Name (Using in messages)
+    content: "§b§lPro §b" # [Necessary] What to display before the name
+    # [Necessary] Weight, used for sorting in the GUI
+    # (the larger is displayed at the back) and the automatic prefix display
+    weight: 1
+    # [Necessary] If there is no permission for detection, everyone can use it,
+    # which means there is no need to configure "itemNoPermission"
+    # (because it is impossible to display items without permission at all)
+    permission: "yc.pro"
+    itemHasPermission:
+      #  [Necessary] This Item will be displayed when player has permission
+      ==: org.bukkit.inventory.ItemStack
+      type: DIAMOND
+      meta:
+        ==: ItemMeta
+        meta-type: UNSPECIFIC
+        display-name: "§b§lVIP Prefix"
+        lore:
+          - ""
+          - "§a➥ Click to  use"
+    itemUsing:
+      # [Not Necessary] This Item will be displayed when the prefix is selected.
+      # If there is no such configuration, it will automatically display "itemHasPermission".
+      ==: org.bukkit.inventory.ItemStack
+      type: DIAMOND
+      meta:
+        ==: ItemMeta
+        meta-type: UNSPECIFIC
+        display-name: "§b§lVIP Prefix"
+        enchants:
+          PROTECTION_ENVIRONMENTAL: 1 #Add an enchantment so it looks like it’s selected
+        lore:
+          - ""
+          - "§a✔ Selected"
+    itemNoPermission:
+      # [Not Necessary] If player doesn't have the permission,this item will be displayed.
+      # If this item is not configured, it will not be displayed in the GUI when the player does not have permission to use it.
+      ==: org.bukkit.inventory.ItemStack
+      type: INK_SACK
+      damage: 8
+      meta:
+        ==: ItemMeta
+        meta-type: UNSPECIFIC
+        display-name: "§b§lVIP §c(Buy it!)"
+        lore:
+          - ""
+          - "§e✯ Buy the VIP to use it!"

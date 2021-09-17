@@ -15,6 +15,20 @@ messages:
   expired:
     - "&7您先前使用的前缀 &f%(oldName) &7已到期。"
     - "&7现在已为您重新调整为 &f%(newName) &7。"
+  reload:
+    - "&a&l重载完成！&7共耗时 &f%(time)ms&7。"
+  help:
+    - "&3&l用户前缀系统 &f帮助"
+    - "&8#/upa&f list"
+    - "&8- &7查看当前前缀列表。"
+    - "&8#/upa&f reload"
+    - "&8- &7重载前缀配置。"
+  list-title:
+    - "&3&l用户前缀系统 &f前缀列表"
+  list-value:
+    - "&8#%(weight) &f%(identifier)"
+    - "&8- &7显示名 &r%(name) &7权限 &r%(permission)"
+    - "&8- &7内容示例&r %(content) %(sender_name)"
 
 Sounds: #相关的声音，注释掉则不播放声音 格式为 【声音名:音量:音调】 或 【声音名:音量】 或 【声音名】
   openGUI: "BLOCK_NOTE_BLOCK_PLING:1:1"
