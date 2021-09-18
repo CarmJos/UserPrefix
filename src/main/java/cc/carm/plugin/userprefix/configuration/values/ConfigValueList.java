@@ -1,26 +1,52 @@
 package cc.carm.plugin.userprefix.configuration.values;
 
+import cc.carm.plugin.userprefix.configuration.file.FileConfig;
 import cc.carm.plugin.userprefix.manager.ConfigManager;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ConfigValueList<V> {
-    FileConfiguration source;
+    FileConfig source;
     String configSection;
     Class<V> clazz;
 
+    V[] defaultValue;
+
     public ConfigValueList(String configSection, Class<V> clazz) {
-        this.source = ConfigManager.getConfig();
-        this.configSection = configSection;
-        this.clazz = clazz;
+        this(ConfigManager.getPluginConfig(), configSection, clazz);
     }
 
+    public ConfigValueList(String configSection, Class<V> clazz, V[] defaultValue) {
+        this(ConfigManager.getPluginConfig(), configSection, clazz, defaultValue);
+    }
+
+    public ConfigValueList(FileConfig configuration, String configSection, Class<V> clazz) {
+        this(configuration, configSection, clazz, null);
+    }
+
+    public ConfigValueList(FileConfig configuration, String configSection, Class<V> clazz, V[] defaultValue) {
+        this.source = configuration;
+        this.configSection = configSection;
+        this.clazz = clazz;
+        this.defaultValue = defaultValue;
+    }
+
+    public FileConfiguration getConfiguration() {
+        return this.source.getConfig();
+    }
+
+
     public ArrayList<V> get() {
-        List<?> list = this.source.getList(this.configSection);
+        List<?> list = getConfiguration().getList(this.configSection);
         if (list == null) {
-            return new ArrayList(0);
+            if (defaultValue != null) {
+                return new ArrayList<>(Arrays.asList(defaultValue));
+            } else {
+                return new ArrayList(0);
+            }
         } else {
             ArrayList<V> result = new ArrayList();
 
@@ -29,17 +55,17 @@ public class ConfigValueList<V> {
                     result.add(this.clazz.cast(object));
                 }
             }
-
             return result;
         }
     }
 
     public void set(ArrayList<V> value) {
-        this.source.set(this.configSection, value);
+        getConfiguration().set(this.configSection, value);
         this.save();
     }
 
     public void save() {
-        ConfigManager.saveConfig();
+        this.source.save();
     }
+
 }

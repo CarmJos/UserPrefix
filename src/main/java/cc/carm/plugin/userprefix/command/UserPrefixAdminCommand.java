@@ -42,8 +42,8 @@ public class UserPrefixAdminCommand implements CommandExecutor {
             } else if (aim.equalsIgnoreCase("reload")) {
                 long s1 = System.currentTimeMillis();
                 PrefixSelectGUI.closeAll(); // 关掉所有正在显示的前缀列表
-                ConfigManager.reloadConfig(); // 重载配置文件
-                PrefixManager.loadConfiguredPrefixes(); //加载重载后了的配置文件
+                ConfigManager.reload(); // 重载配置文件
+                PrefixManager.loadPrefixes(); //加载重载后了的前缀配置
                 for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
                     UserManager.checkPrefix(onlinePlayer, false);
                     /*

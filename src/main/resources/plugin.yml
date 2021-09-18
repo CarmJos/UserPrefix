@@ -5,6 +5,7 @@ authors:
   - Carm
   - YourCraft
   - SakuraGame
+website: "https://github.com/CarmJos/UserPrefix"
 depend:
   - LuckPerms
 softdepend:

@@ -11,6 +11,8 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -21,45 +23,48 @@ public class PrefixManager {
     public static ConfiguredPrefix defaultPrefix;
     public static HashMap<String, ConfiguredPrefix> prefixes = new HashMap<>();
 
+    private static final String FOLDER_NAME = "prefixes";
 
     public static void init() {
-        loadConfiguredPrefixes();
+        loadPrefixes();
         Main.log("共加载了 " + prefixes.size() + " 个前缀。");
     }
 
-    public static void loadConfiguredPrefixes() {
+    public static void loadPrefixes() {
         loadDefaultPrefix();
+        loadConfiguredPrefixes();
+    }
 
-        ConfigurationSection prefixesSection = ConfigManager.getConfig().getConfigurationSection("prefixes");
-        if (prefixesSection == null || prefixesSection.getKeys(false).isEmpty()) {
+    public static void loadConfiguredPrefixes() {
+
+        File prefixDataFolder = new File(Main.getInstance().getDataFolder() + File.separator + FOLDER_NAME);
+        if (!prefixDataFolder.isDirectory() || !prefixDataFolder.exists()) {
+            prefixDataFolder.mkdir();
+        }
+
+        String[] filesList = prefixDataFolder.list();
+        if (filesList == null || filesList.length < 1) {
             Main.log("配置文件中暂无任何前缀配置，请检查。");
+            Main.log("There's no configured prefix.");
             return;
         }
+        List<File> files = Arrays.stream(filesList)
+                .map(s -> new File(prefixDataFolder, s))
+                .filter(File::isFile)
+                .collect(Collectors.toList());
 
         HashMap<String, ConfiguredPrefix> dataPrefixes = new HashMap<>();
 
-        for (String prefixIdentifier : prefixesSection.getKeys(false)) {
-            ConfigurationSection configuredPrefixSection = prefixesSection.getConfigurationSection(prefixIdentifier);
-            if (configuredPrefixSection == null) continue;
-            try {
-                String name = configuredPrefixSection.getString("name", "ERROR");
-                String content = configuredPrefixSection.getString("content", "&r");
-                String permission = configuredPrefixSection.getString("permission");
-                int weight = configuredPrefixSection.getInt("weight", 1);
-
-                ItemStack itemHasPermission = configuredPrefixSection.getItemStack("itemHasPermission",
-                        new ItemStackFactory(Material.STONE).setDisplayName(name).addLore(" ").addLore("§a➥ 点击切换到该前缀").toItemStack()
-                );
-                ItemStack itemNoPermission = configuredPrefixSection.getItemStack("itemNoPermission", itemHasPermission);
-                ItemStack itemUsing = configuredPrefixSection.getItemStack("itemUsing", itemHasPermission);
-
-
-                Main.log("完成前缀加载 " + prefixIdentifier + " : " + name);
-
-                dataPrefixes.put(prefixIdentifier, new ConfiguredPrefix(prefixIdentifier, name, content, weight, permission, itemHasPermission, itemNoPermission, itemUsing));
-            } catch (Exception exception) {
-                Main.log("Error occurred when loading prefix #" + prefixIdentifier + " !");
-                exception.printStackTrace();
+        if (files.size() > 0) {
+            for (File file : files) {
+                try {
+                    ConfiguredPrefix prefix = new ConfiguredPrefix(file);
+                    Main.log("完成前缀加载 " + prefix.getIdentifier() + " : " + prefix.getName());
+                    dataPrefixes.put(prefix.getIdentifier(), prefix);
+                } catch (Exception ex) {
+                    Main.log("Error occurred when loading prefix #" + file.getAbsolutePath() + " !");
+                    ex.printStackTrace();
+                }
             }
         }
 
@@ -69,7 +74,7 @@ public class PrefixManager {
 
     public static void loadDefaultPrefix() {
         PrefixManager.defaultPrefix = null;
-        ConfigurationSection defaultPrefixSection = ConfigManager.getConfig().getConfigurationSection("defaultPrefix");
+        ConfigurationSection defaultPrefixSection = ConfigManager.getPluginConfig().getConfig().getConfigurationSection("defaultPrefix");
         if (defaultPrefixSection != null) {
             try {
                 String name = defaultPrefixSection.getString("name", "默认前缀");

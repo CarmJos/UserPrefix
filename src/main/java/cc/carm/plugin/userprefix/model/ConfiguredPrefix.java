@@ -1,11 +1,22 @@
 package cc.carm.plugin.userprefix.model;
 
 import cc.carm.plugin.userprefix.util.ColorParser;
+import cc.carm.plugin.userprefix.util.ItemStackFactory;
+import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.File;
+
 public class ConfiguredPrefix {
+
+    @Nullable
+    private File dataFile;
+    @Nullable
+    private FileConfiguration configuration;
 
     String identifier;
 
@@ -19,6 +30,25 @@ public class ConfiguredPrefix {
     ItemStack itemHasPermission;
     ItemStack itemNoPermission;
     ItemStack itemWhenUsing;
+
+
+    public ConfiguredPrefix(@NotNull File dataFile) {
+        this.dataFile = dataFile;
+        this.configuration = YamlConfiguration.loadConfiguration(dataFile);
+        if (getConfiguration() != null) {
+            this.identifier = getConfiguration().getString("identifier", "ERROR");
+            this.name = getConfiguration().getString("name", "ERROR");
+            this.content = getConfiguration().getString("content", "&r");
+            this.permission = getConfiguration().getString("permission");
+            this.weight = getConfiguration().getInt("weight", 1);
+
+            this.itemHasPermission = (ItemStack) getConfiguration().get("itemHasPermission",
+                    new ItemStackFactory(Material.STONE).setDisplayName(name).addLore(" ").addLore("§a➥ 点击切换到该前缀").toItemStack()
+            );
+            this.itemNoPermission = (ItemStack) getConfiguration().get("itemNoPermission", itemHasPermission);
+            this.itemWhenUsing = (ItemStack) getConfiguration().get("itemUsing", itemHasPermission);
+        }
+    }
 
     public ConfiguredPrefix(@NotNull String identifier,
                             @NotNull String name,
@@ -35,6 +65,11 @@ public class ConfiguredPrefix {
         this.itemHasPermission = itemHasPermission;
         this.itemNoPermission = itemNoPermission;
         this.itemWhenUsing = itemWhenUsing;
+    }
+
+    @Nullable
+    public FileConfiguration getConfiguration() {
+        return configuration;
     }
 
     @NotNull

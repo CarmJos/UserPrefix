@@ -1,8 +1,11 @@
 package cc.carm.plugin.userprefix.configuration;
 
+import cc.carm.plugin.userprefix.configuration.message.ConfigMessageList;
 import cc.carm.plugin.userprefix.configuration.values.ConfigSound;
 import cc.carm.plugin.userprefix.configuration.values.ConfigValue;
-import cc.carm.plugin.userprefix.configuration.values.ConfigValueList;
+import cc.carm.plugin.userprefix.util.ItemStackFactory;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 public class PrefixConfig {
 
@@ -19,18 +22,35 @@ public class PrefixConfig {
 
         public static ConfigValue<String> TITLE = new ConfigValue<>("GUI.title", String.class, "&f&l我的前缀 &8| 列表");
 
+        public static class Items {
+
+            public static ConfigValue<ItemStack> NEXT_PAGE = new ConfigValue<>("GUI.items.next-page", ItemStack.class,
+                    new ItemStackFactory(Material.ARROW)
+                            .setDisplayName("下一页")
+                            .addLore("&7&o右键可前往最后一页哦")
+                            .toItemStack()
+            );
+            public static ConfigValue<ItemStack> PREVIOUS_PAGE = new ConfigValue<>("GUI.items.previous-page", ItemStack.class,
+                    new ItemStackFactory(Material.ARROW)
+                            .setDisplayName("上一页")
+                            .addLore("&7&o右键可前往第一页哦")
+                            .toItemStack()
+            );
+
+        }
+
     }
 
     public static class Messages {
 
-        public static ConfigValueList<String> SELECTED = new ConfigValueList<>("messages.selected", String.class);
-        public static ConfigValueList<String> EXPIRED = new ConfigValueList<>("messages.expired", String.class);
+        public static ConfigMessageList SELECTED = new ConfigMessageList("selected");
+        public static ConfigMessageList EXPIRED = new ConfigMessageList("expired");
 
-        public static ConfigValueList<String> RELOAD = new ConfigValueList<>("messages.reload", String.class);
-        public static ConfigValueList<String> HELP = new ConfigValueList<>("messages.help", String.class);
+        public static ConfigMessageList RELOAD = new ConfigMessageList("reload");
+        public static ConfigMessageList HELP = new ConfigMessageList("help");
 
-        public static ConfigValueList<String> LIST_TITLE = new ConfigValueList<>("messages.list-title", String.class);
-        public static ConfigValueList<String> LIST_VALUE = new ConfigValueList<>("messages.list-value", String.class);
+        public static ConfigMessageList LIST_TITLE = new ConfigMessageList("list-title");
+        public static ConfigMessageList LIST_VALUE = new ConfigMessageList("list-value");
     }
 
     public static class Sounds {

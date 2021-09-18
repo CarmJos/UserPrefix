@@ -36,14 +36,14 @@ The English version of the introduction is [here](https://github.com/CarmJos/Use
 - 当玩家权限变更时会实时监测前缀，若权限不足则自动更换前缀并提示！
 - 可配置的声音、消息！
 - 前缀图标可配置“选中”、“有权限”与“无权限”三种状态的物品
-    - 物品的配置通过ItemStack原生配置，支持MC所有的设定！
-    - 具体的设定请参考其他文档哦~
+  - 物品的配置通过ItemStack原生配置，支持MC所有的设定！
+  - 具体的设定请参考其他文档哦~
 - TabList自动按照前缀的权重排序 (如有冲突可关掉)
 - 玩家头顶前缀显示 (如有冲突可关掉)
 - 自动排序，且可翻页的GUI！
 - 支持PlaceholderAPI变量！(凡支持的都可以使用，如BungeeTabListPlus)
 - 支持Hex颜色！(1.16以上版本) 格式 `&(#颜色代码)`
-    - 示例： LightSlateBlue `&(#8470FF)` 、 DarkSlateBlue `&(#483D8B)`
+  - 示例： LightSlateBlue `&(#8470FF)` 、 DarkSlateBlue `&(#483D8B)`
 
 ## 注意事项
 
@@ -93,7 +93,9 @@ The English version of the introduction is [here](https://github.com/CarmJos/Use
 - 判断玩家是否拥有某个前缀(true/false)
 ```
 
-## [配置文件](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/config.yml)示例
+## 配置文件示例
+
+### [基础配置文件](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/config.yml) (config.yml)
 
 ```yaml
 version: 1.0.0-SNAPSHOT # 配置文件版本，一般不会动。
@@ -106,27 +108,28 @@ functions:
 
 GUI:
   title: "&f&l我的前缀 &8| 列表"
-
-messages:
-  selected:
-    - "&7您选择了 &f%(name) &7作为当前显示的前缀。"
-  expired:
-    - "&7您先前使用的前缀 &f%(oldName) &7已到期。"
-    - "&7现在已为您重新调整为 &f%(newName) &7。"
-  reload:
-      - "&a&l重载完成！&7共耗时 &f%(time)ms&7。"
-  help:
-    - "&3&l用户前缀系统 &f帮助"
-    - "&8#/upa&f list"
-    - "&8- &7查看当前前缀列表。"
-    - "&8#/upa&f reload"
-    - "&8- &7重载前缀配置。"
-  list-title:
-    - "&3&l用户前缀系统 &f前缀列表"
-  list-value:
-    - "&8#%(weight) &f%(identifier)"
-    - "&8- &7显示名 &r%(name) &7权限 &r%(permission)"
-    - "&8- &7内容示例&r %(content) %(sender_name)"
+  items:
+    # 【必须】 GUI中可能存在的其他物品
+    next-page: # 下一页物品，如果没有下一页则不显示
+      ==: org.bukkit.inventory.ItemStack
+      type: ARROW
+      meta:
+        ==: ItemMeta
+        meta-type: UNSPECIFIC
+        display-name: "§f下一页"
+        lore:
+          - ""
+          - "§f右键可前往最后一页哦~"
+    previous-page: # 上一页物品，如果没有上一页则不显示
+      ==: org.bukkit.inventory.ItemStack
+      type: ARROW
+      meta:
+        ==: ItemMeta
+        meta-type: UNSPECIFIC
+        display-name: "§f上一页"
+        lore:
+          - ""
+          - "§f右键可前往第一页哦~"
 
 Sounds: #相关的声音，注释掉则不播放声音 
   # 格式为 【声音名:音量:音调】 或 【声音名:音量】 或 【声音名】
@@ -160,63 +163,116 @@ defaultPrefix:
       lore:
         - ""
         - "§a✔ 您正在使用该前缀"
-
-prefixes:
-  VIP:
-    name: "&b&lPro&b" # [必须] 名字(切换的时候左下角会弹提示 用的就是这个名字)
-    content: "§b§lPro §b" # [必须] 显示在名字前面的内容
-    weight: 1 # [必须] 权重，用于GUI里面的排序(越大显示在越后面)和自动前缀显示
-    permission: "yc.pro" # [非必须] 检测的权限，如果没有就是人人都能用，也代表不用配置“itemNoPermission”了(因为压根不可能显示没权限时候的物品)
-    itemHasPermission:
-      #  [必须] 当有权限的时候会显示这个Item
-      ==: org.bukkit.inventory.ItemStack
-      type: DIAMOND
-      meta:
-        ==: ItemMeta
-        meta-type: UNSPECIFIC
-        display-name: "§b§lPro §b会员前缀"
-        lore:
-          - "§7Pro会员专属称号"
-          - ""
-          - "§f尊贵的Pro会员专属称号。"
-          - "§f您将获得多种特权与更好的游戏体验。"
-          - ""
-          - "§a➥ 点击切换到该前缀"
-    itemUsing:
-      # [非必需] 当有权限的时候会显示这个Item,如果没有这个配置就自动显示“itemHasPermission”的。
-      ==: org.bukkit.inventory.ItemStack
-      type: DIAMOND
-      meta:
-        ==: ItemMeta
-        meta-type: UNSPECIFIC
-        display-name: "§b§lPro §b会员前缀"
-        enchants:
-          PROTECTION_ENVIRONMENTAL: 1 #加一个附魔这样看上去就像是选中了的
-        lore:
-          - "§7Pro会员专属称号"
-          - ""
-          - "§f尊贵的Pro会员专属称号。"
-          - "§f您将获得多种特权与更好的游戏体验。"
-          - ""
-          - "§a✔ 您正在使用该前缀"
-    itemNoPermission:
-      # [非必需] 如果没有权限就会显示这个item。如果不配置该物品，则玩家没有使用权限时不会显示在GUI里面。
-      ==: org.bukkit.inventory.ItemStack
-      type: INK_SACK
-      damage: 8
-      meta:
-        ==: ItemMeta
-        meta-type: UNSPECIFIC
-        display-name: "§b§lPro+ §b会员前缀 §c(未拥有)"
-        lore:
-          - "§7Pro+会员专属称号"
-          - ""
-          - "§f尊贵的Pro会员专属称号。"
-          - "§f您将获得多种特权与更好的游戏体验。"
-          - "§f您可以输入 §b/vip §f指令查看详细特权！"
-          - ""
-          - "§e✯ 加入Pro+会员以使用该前缀！"
 ```
+
+### [消息配置文件](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/messages.yml) (messages.yml)
+```yaml
+selected:
+  - "&7您选择了 &f%(name) &7作为当前显示的前缀。"
+expired:
+  - "&7您先前使用的前缀 &f%(oldName) &7已到期。"
+  - "&7现在已为您重新调整为 &f%(newName) &7。"
+reload:
+  - "&a&l重载完成！&7共耗时 &f%(time)ms&7。"
+help:
+  - "&3&l用户前缀系统 &f帮助"
+  - "&8#/upa&f list"
+  - "&8- &7查看当前前缀列表。"
+  - "&8#/upa&f reload"
+  - "&8- &7重载前缀配置。"
+list-title:
+  - "&3&l用户前缀系统 &f前缀列表"
+list-value:
+  - "&8#%(weight) &f%(identifier)"
+  - "&8- &7显示名 &r%(name) &7权限 &r%(permission)"
+  - "&8- &7内容示例&r %(content) %(sender_name)"
+```
+
+### [前缀配置文件](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/prefixes/example-prefix.yml) (prefixes/*.yml)
+所有前缀均为单独的配置文件，存放于 `插件配置目录/prefixes` 下，便于管理。
+
+文件名理论上可以随便取，推荐使用英文，部分符号可能会影响正常读取，请避免使用。
+
+```yaml
+# 唯一标识 [必须]
+# 将用于记录玩家所选的前缀，以及用于数据的缓存。
+# 必须 必须 必须 保持唯一！
+identifier: "pro"
+
+# 名字 [必须]
+# 切换的时候左下角会弹提示 用的就是这个名字
+name: "&b&lPro&b"
+
+# 内容 [必须]
+# 显示在名字前面的内容
+content: "§b§lPro §b"
+
+# 权重 [必须]
+# 用于GUI、TabList的排序和自动前缀显示
+# 在GUI中，权重越高的会显示在越后面
+# 在TabList中，权重越高的会显示在越上面
+weight: 1
+
+# 检测的权限 [非必须]
+# 如果没有就是人人都能用，也代表不用配置“itemNoPermission”了(因为压根不可能显示没权限时候的物品)
+permission: "yc.pro"
+
+# 有权限时显示的物品  [必须]
+# 当用户有权限且未选中时，会显示该物品
+itemHasPermission: #
+  ==: org.bukkit.inventory.ItemStack
+  type: DIAMOND
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: "§b§lPro §b会员前缀"
+    lore:
+      - "§7Pro会员专属称号"
+      - ""
+      - "§f尊贵的Pro会员专属称号。"
+      - "§f您将获得多种特权与更好的游戏体验。"
+      - ""
+      - "§a➥ 点击切换到该前缀"
+
+# 正在使用时显示的物品 [非必需]
+# 当用户正在使用时会显示这个物品，不配置即自动加载“itemHasPermission”
+itemUsing:
+  ==: org.bukkit.inventory.ItemStack
+  type: DIAMOND
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: "§b§lPro §b会员前缀"
+    enchants:
+      PROTECTION_ENVIRONMENTAL: 1 #加一个附魔这样看上去就像是选中了的
+    lore:
+      - "§7Pro会员专属称号"
+      - ""
+      - "§f尊贵的Pro会员专属称号。"
+      - "§f您将获得多种特权与更好的游戏体验。"
+      - ""
+      - "§a✔ 您正在使用该前缀"
+
+# 没有权限时显示的物品 [非必需]
+# 如果没有权限就会显示这个item。如果不配置该物品，则玩家没有使用权限时不会显示在GUI里面。
+itemNoPermission:
+  ==: org.bukkit.inventory.ItemStack
+  type: INK_SACK
+  damage: 8
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: "§b§lPro+ §b会员前缀 §c(未拥有)"
+    lore:
+      - "§7Pro+会员专属称号"
+      - ""
+      - "§f尊贵的Pro会员专属称号。"
+      - "§f您将获得多种特权与更好的游戏体验。"
+      - "§f您可以输入 §b/vip §f指令查看详细特权！"
+      - ""
+      - "§e✯ 加入Pro+会员以使用该前缀！"
+```
+
 
 ## 支持与捐赠
 

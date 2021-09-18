@@ -1,8 +1,6 @@
 package cc.carm.plugin.userprefix.util.gui;
 
 import cc.carm.plugin.userprefix.configuration.PrefixConfig;
-import cc.carm.plugin.userprefix.util.ItemStackFactory;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
@@ -53,10 +51,7 @@ public class AutoPagedGUI extends CommonPagedGUI {
     public void openGUI(Player user) {
         if (previousPageSlot >= 0)
             if (hasPreviousPage()) {
-                setItem(previousPageSlot, new GUIItem(previousPageUI == null ? new ItemStackFactory(Material.ARROW)
-                        .setDisplayName("&f上一页")
-                        .addLore("&7&o右键可前往第一页哦")
-                        .toItemStack() : previousPageUI) {
+                setItem(previousPageSlot, new GUIItem(previousPageUI == null ? PrefixConfig.GUI.Items.PREVIOUS_PAGE.get() : previousPageUI) {
                     @Override
                     public void onClick(ClickType type) {
                         if (type == ClickType.RIGHT) {
@@ -70,12 +65,9 @@ public class AutoPagedGUI extends CommonPagedGUI {
                 });
             }
 
-        if (previousPageSlot >= 0)
+        if (nextPageSlot >= 0)
             if (hasNextPage()) {
-                setItem(nextPageSlot, new GUIItem(nextPageUI == null ? new ItemStackFactory(Material.ARROW)
-                        .setDisplayName("下一页")
-                        .addLore("&7&o右键可前往最后一页哦")
-                        .toItemStack() : nextPageUI) {
+                setItem(nextPageSlot, new GUIItem(nextPageUI == null ? PrefixConfig.GUI.Items.NEXT_PAGE.get() : nextPageUI) {
                     @Override
                     public void onClick(ClickType type) {
                         if (type == ClickType.RIGHT) {

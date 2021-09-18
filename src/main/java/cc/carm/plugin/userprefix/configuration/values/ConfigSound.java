@@ -1,13 +1,16 @@
 package cc.carm.plugin.userprefix.configuration.values;
 
 import cc.carm.plugin.userprefix.Main;
+import cc.carm.plugin.userprefix.configuration.file.FileConfig;
 import cc.carm.plugin.userprefix.manager.ConfigManager;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 public class ConfigSound {
-    FileConfiguration source;
+
+
+    FileConfig source;
     String configSection;
 
     Sound defaultValue;
@@ -17,18 +20,26 @@ public class ConfigSound {
     }
 
     public ConfigSound(String configSection, Sound defaultValue) {
-        this.source = ConfigManager.getConfig();
+        this(ConfigManager.getPluginConfig(), configSection, defaultValue);
+    }
+
+    public ConfigSound(FileConfig source, String configSection, Sound defaultValue) {
+        this.source = source;
         this.configSection = configSection;
         this.defaultValue = defaultValue;
     }
 
+    public FileConfiguration getConfiguration() {
+        return this.source.getConfig();
+    }
+
     public void set(Sound value, float volume) {
-        this.source.set(this.configSection, value.name() + ":" + volume);
+        getConfiguration().set(this.configSection, value.name() + ":" + volume);
         this.save();
     }
 
     public void set(Sound value, float volume, float pitch) {
-        this.source.set(this.configSection, value.name() + ":" + volume + ":" + pitch);
+        getConfiguration().set(this.configSection, value.name() + ":" + volume + ":" + pitch);
         this.save();
     }
 
@@ -36,7 +47,7 @@ public class ConfigSound {
         Sound finalSound = defaultValue;
         float pitch = 1;
         float volume = 1;
-        String soundString = this.source.getString(this.configSection);
+        String soundString = getConfiguration().getString(this.configSection);
         if (soundString != null) {
             String[] args = soundString.contains(":") ? soundString.split(":") : new String[]{soundString};
             try {
@@ -54,7 +65,7 @@ public class ConfigSound {
     }
 
     public void save() {
-        ConfigManager.saveConfig();
+        this.source.save();
     }
 
 }

@@ -1,0 +1,71 @@
+version: ${project.version} # DO NOT EDIT IT
+
+debug: false #DEBUG OUT PUT
+
+GUI:
+  title: "&f&lMy Prefixes List" # Title of the GUI
+  items:
+    next-page: # only show has next page
+      ==: org.bukkit.inventory.ItemStack
+      type: ARROW
+      meta:
+        ==: ItemMeta
+        meta-type: UNSPECIFIC
+        display-name: "§fNext Page"
+        lore:
+          - ""
+          - "§fRight-Click to the last page"
+    previous-page: # only show has previous page
+      ==: org.bukkit.inventory.ItemStack
+      type: ARROW
+      meta:
+        ==: ItemMeta
+        meta-type: UNSPECIFIC
+        display-name: "§fPrevious Page"
+        lore:
+          - ""
+          - "§fRight-Click to the first page"
+
+functions:
+  # Whether to add a prefix to the top of the head,
+  # this method uses the scoreboard above the head,
+  # please turn it off if there is a conflict.
+  OnNamePrefix: true
+  # Automatic prefix select.
+  # When the player does not choose a prefix by himself,
+  # the prefix with the highest weight will be used automatically
+  autoUsePrefix: true
+
+
+
+Sounds:
+  # Format is [SOUND_NAME:Volume:Pitch] or [SOUND_NAME:Volume] or [SOUND_NAME]
+  openGUI: "BLOCK_NOTE_BLOCK_PLING:1:1"
+  guiClick: "UI_BUTTON_CLICK"
+  prefixChange: "ENTITY_VILLAGER_YES"
+  prefixExpired: "ENTITY_VILLAGER_NO"
+
+# The default prefix's weight is 0.
+defaultPrefix:
+  name: "Default prefix"
+  content: "&b"
+  itemNotUsing:
+    ==: org.bukkit.inventory.ItemStack
+    type: NAME_TAG
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: "§fThe default prefix §f(Click to select)"
+      lore:
+        - ""
+        - "§a➥ Click to use"
+  itemUsing:
+    ==: org.bukkit.inventory.ItemStack
+    type: NAME_TAG
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: "§fThe default prefix"
+      lore:
+        - ""
+        - "§a✔ Selected"
