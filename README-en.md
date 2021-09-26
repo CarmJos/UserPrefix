@@ -144,8 +144,15 @@ functions:
   OnNamePrefix: true
   # Automatic prefix select.
   # When the player does not choose a prefix by himself,
-  # the prefix with the highest weight will be used automatically
+  # the prefix with the highest weight will be used~~~~ automatically
   autoUsePrefix: true
+  chat:
+    # Chat Function
+    # - I recommend using other chat plugins instead of using this plugin,
+    # - this plugin only provides very basic chat format placeholders.
+    # - Notice that: format must has “%1$s” and “%2$s” for PlayerName and Message (Bukkit Chat Event)
+    enable: false
+    format: "<%UserPrefix_prefix%%1$s> %2$s"
 
 Sounds:
   # Format is [SOUND_NAME:Volume:Pitch] or [SOUND_NAME:Volume] or [SOUND_NAME]

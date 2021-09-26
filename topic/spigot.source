@@ -59,9 +59,8 @@ Please turn of the [U]functions.OnNamePrefix[/U] in the configuration if there i
 [SIZE=4][B]3. Item icon configuration problem[/B][/SIZE]
 Items are read through the ItemStack serialization method provided by Bukkit. For related configuration methods, please refer to [URL='https://www.spigotmc.org/wiki/itemstack-serialization/']ItemStack Serialization[/URL].
 
-[SIZE=5][B]Commands[/B][/SIZE]
-This plugin's Commands are based on Chinese! May support multi-language in the future.
-
+[SIZE=5][B]Commands[/B]
+[/SIZE]
 [code]
 /UserPrefix or /prefix #Open prefix GUI
 /UserPrefixAdmin # View Admin Command Help
@@ -128,6 +127,13 @@ functions:
   # When the player does not choose a prefix by himself,
   # the prefix with the highest weight will be used automatically
   autoUsePrefix: true
+  chat:
+  # Chat Function
+  # - I recommend using other chat plugins instead of using this plugin,
+  # - this plugin only provides very basic chat format placeholders.
+  # - Notice that: format must has “%1$s” and “%2$s” for PlayerName and Message (Bukkit Chat Event)
+    enable: false
+    format: "<%UserPrefix_prefix%%1$s> %2$s"
 
 Sounds:
   # Format is [SOUND_NAME:Volume:Pitch] or [SOUND_NAME:Volume] or [SOUND_NAME]

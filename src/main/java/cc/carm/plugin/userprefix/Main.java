@@ -4,6 +4,7 @@ import cc.carm.plugin.userprefix.command.UserPrefixAdminCommand;
 import cc.carm.plugin.userprefix.command.UserPrefixCommand;
 import cc.carm.plugin.userprefix.configuration.PrefixConfig;
 import cc.carm.plugin.userprefix.hooker.UserPrefixExpansion;
+import cc.carm.plugin.userprefix.listener.ChatListener;
 import cc.carm.plugin.userprefix.listener.UserListener;
 import cc.carm.plugin.userprefix.listener.processor.UserNodeUpdateProcessor;
 import cc.carm.plugin.userprefix.manager.ConfigManager;
@@ -38,6 +39,7 @@ public class Main extends JavaPlugin {
 
         log("注册监听器...");
         regListener(new UserListener());
+        regListener(new ChatListener());
         ServiceManager.getService().getEventBus().subscribe(this, UserDataRecalculateEvent.class, UserNodeUpdateProcessor::process);
 
         if (MessageUtil.hasPlaceholderAPI()) {

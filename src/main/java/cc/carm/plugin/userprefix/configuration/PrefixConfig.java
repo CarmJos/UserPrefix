@@ -16,6 +16,13 @@ public class PrefixConfig {
         public static ConfigValue<Boolean> NAME_PREFIX = new ConfigValue<>("functions.OnNamePrefix", Boolean.class, true);
         public static ConfigValue<Boolean> AUTO_USE = new ConfigValue<>("functions.autoUsePrefix", Boolean.class, true);
 
+        public static class Chat {
+
+            public static ConfigValue<Boolean> ENABLE = new ConfigValue<>("functions.chat.enable", Boolean.class, false);
+            public static ConfigValue<String> FORMAT = new ConfigValue<>("functions.chat.format", String.class, "<%1$s> %2$s");
+
+        }
+
     }
 
     public static class GUI {

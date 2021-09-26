@@ -73,66 +73,7 @@ debug: false #debug输出，开发者用的
 
 functions:
   OnNamePrefix: true # 是否给头顶上添加前缀，该方法用到了头顶的那个计分板，如有冲突请关掉哦~
-  autoUsePrefix: true # 自动前缀显示 当玩家没有自己选择一个前缀的时候，会自动使用所拥有的的前缀中权重最高的那一个
-
-GUI:
-  title: "&f&l我的前缀 &8| 列表"
-  items:
-    # 【必须】 GUI中可能存在的其他物品
-    next-page: # 下一页物品，如果没有下一页则不显示
-      ==: org.bukkit.inventory.ItemStack
-      type: ARROW
-      meta:
-        ==: ItemMeta
-        meta-type: UNSPECIFIC
-        display-name: "§f下一页"
-        lore:
-          - ""
-          - "§f右键可前往最后一页哦~"
-    previous-page: # 上一页物品，如果没有上一页则不显示
-      ==: org.bukkit.inventory.ItemStack
-      type: ARROW
-      meta:
-        ==: ItemMeta
-        meta-type: UNSPECIFIC
-        display-name: "§f上一页"
-        lore:
-          - ""
-          - "§f右键可前往第一页哦~"
-
-Sounds: #相关的声音，注释掉则不播放声音
-  # 格式为 【声音名:音量:音调】 或 【声音名:音量】 或 【声音名】
-  openGUI: "BLOCK_NOTE_BLOCK_PLING:1:1"
-  guiClick: "UI_BUTTON_CLICK"
-  prefixChange: "ENTITY_VILLAGER_YES"
-  prefixExpired: "ENTITY_VILLAGER_NO"
-
-# 默认前缀的配置
-# 默认前缀的权重为0哦
-defaultPrefix:
-  name: "默认前缀"
-  content: "&b"
-  itemNotUsing:
-    ==: org.bukkit.inventory.ItemStack
-    type: NAME_TAG
-    meta:
-      ==: ItemMeta
-      meta-type: UNSPECIFIC
-      display-name: "§f默认玩家前缀 §f(点击切换)"
-      lore:
-        - ""
-        - "§a➥ 点击切换到该前缀"
-  itemUsing:
-    ==: org.bukkit.inventory.ItemStack
-    type: NAME_TAG
-    meta:
-      ==: ItemMeta
-      meta-type: UNSPECIFIC
-      display-name: "§f默认玩家前缀"
-      lore:
-        - ""
-        - "§a<img src="file:///C:\Users\Karmu\AppData\Roaming\Tencent\QQ\Temp\FZ~{7VEC09VVKFU7J7X3CT8.png"> 您正在使用该前缀"
-[/code][/spoiler]
+  autoUsePrefix: true # 自动前缀显示 当玩家没有自己选择一个前缀的时候，会自动使用所拥有的的前缀中权重最高的那一个[/code][/spoiler]
 
 [b][size=4][backcolor=transparent]消息配置文件[/backcolor][/size] [/b][size=4](messages.yml)[/size]
 [spoiler][code]selected:
@@ -236,13 +177,17 @@ itemNoPermission:
 
 [size=5][b]下载地址[/b][/size]
 [hr]
-[size=3][b]最新版本 [/b][/size][size=3][b] 2.0.0 [/b][/size][attach]1905700[/attach]
+[size=3][b]最新版本 2.1.0 [/b][/size][attach]1909962[/attach][quote][b][size=3]更新内容[/size][/b]
+1. 添加聊天相关设定，支持聊天前缀。(但不推荐使用哦~)[/quote]
+
+[spoiler]
+
+[size=3][b] 2.0.0 [/b][/size][attach]1905700[/attach]
 [quote][b][size=3]更新内容[/size][/b]
 1. 修复低版本可能无法读取物品的bug。
 2. 分离配置文件，消息配置文件改为messages.yml，前缀配置文件改 prefixes/*.yml，便于配置和管理。
 3. 允许配置GUI中上一页和下一页的物品。
 4. 补全帮助文档，在插件首次加载将提供一份英文版的配置，以便使用。[/quote]
-[spoiler]
 [size=3][b] 1.2.5 [/b][/size][attach]1905430[/attach][quote][size=3][b]更新内容[/b]
 1. 支持指令的多语言配置。[/size][/quote]
 [b][size=3]
@@ -285,6 +230,8 @@ itemNoPermission:
 
 [hr]
 [align=center][b][size=4][color=#ff0000]本插件所用所有代码均为原创,不存在借用/抄袭等行为[/color][/size][/b][/align]
+
+
 
 
 
