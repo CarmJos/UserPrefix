@@ -26,7 +26,7 @@ public class UserManager {
 
     @Nullable
     public static UserNameTag getNameTag(Player player) {
-        if (!PrefixConfig.Functions.NAME_PREFIX.get()) {
+        if (PrefixConfig.Functions.NAME_PREFIX.get()) {
             if (nameTags.containsKey(player.getUniqueId())) {
                 return nameTags.get(player.getUniqueId());
             } else {
