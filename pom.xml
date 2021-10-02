@@ -6,7 +6,7 @@
 
     <groupId>cc.carm.plugin</groupId>
     <artifactId>UserPrefix</artifactId>
-    <version>2.1.1</version>
+    <version>2.1.2</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
