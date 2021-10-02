@@ -24,11 +24,22 @@ public class UserManager {
 
     public static HashSet<UUID> checkingPlayers = new HashSet<>();
 
+    @Nullable
     public static UserNameTag getNameTag(Player player) {
-        return nameTags.get(player.getUniqueId());
+        if (!PrefixConfig.Functions.NAME_PREFIX.get()) {
+            if (nameTags.containsKey(player.getUniqueId())) {
+                return nameTags.get(player.getUniqueId());
+            } else {
+                return createNameTag(player);
+            }
+        } else {
+            return null;
+        }
     }
 
+    @NotNull
     public static UserNameTag createNameTag(Player player) {
+        if (nameTags.containsKey(player.getUniqueId())) return nameTags.get(player.getUniqueId());
         UserNameTag nameTag = new UserNameTag(player);
         nameTags.put(player.getUniqueId(), nameTag);
         return nameTag;
@@ -56,6 +67,7 @@ public class UserManager {
      * @param loadOthers 是否为玩家更新其他人的前缀(一般用于加入游戏)
      */
     public static void updatePrefixView(Player player, boolean loadOthers) {
+        if (!PrefixConfig.Functions.NAME_PREFIX.get()) return; //未启用的情况下，不需要进行任何操作。
         ConfiguredPrefix playerPrefix = UserManager.getPrefix(player);
 
         UserNameTag tag = getNameTag(player);
