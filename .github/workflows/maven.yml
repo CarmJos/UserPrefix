@@ -4,10 +4,11 @@
 name: Maven
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  # 支持手动触发构建
+  workflow_dispatch:
+  release:
+    # 创建release的时候触发
+    types: [ published ]
 
 jobs:
   build:
@@ -22,10 +23,16 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           cache: maven
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
+      - name: run Maven
+        run: mvn -B deploy --file pom.xml
+        with:
+          server-id: github
+          # Nexus用户名环境变量
+          server-username: ${{ secrets.MAVEN_USERNAME }}
+          # Nexus密码环境变量
+          server-password: ${{ secrets.GITHUB_TOKEN }}
       - run: mkdir staging && cp target/*.jar staging
       - uses: actions/upload-artifact@v2
         with:
-          name: Package
+          name: artifact
           path: staging
