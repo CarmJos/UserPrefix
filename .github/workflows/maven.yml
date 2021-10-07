@@ -23,14 +23,13 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           cache: maven
-      - name: run Maven
-        run: mvn -B deploy --file pom.xml
-        with:
           server-id: github
           # Nexus用户名环境变量
           server-username: ${{ secrets.MAVEN_USERNAME }}
           # Nexus密码环境变量
           server-password: ${{ secrets.GITHUB_TOKEN }}
+      - name: run Maven
+        run: mvn -B deploy --file pom.xml
       - run: mkdir staging && cp target/*.jar staging
       - uses: actions/upload-artifact@v2
         with:
