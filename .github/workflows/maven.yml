@@ -27,7 +27,7 @@ jobs:
           # Nexus用户名环境变量
           server-username: ${{ secrets.MAVEN_USERNAME }}
           # Nexus密码环境变量
-          server-password: ${{ secrets.GITHUB_TOKEN }}
+          server-password: ${{ secrets.MAVEN_TOKEN }}
       - name: run Maven
         run: mvn -B deploy --file pom.xml
       - run: mkdir staging && cp target/*.jar staging
