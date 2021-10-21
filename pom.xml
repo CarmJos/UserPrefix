@@ -6,20 +6,20 @@
 
     <groupId>cc.carm.plugin</groupId>
     <artifactId>userprefix</artifactId>
-    <version>2.1.5</version>
+    <version>2.1.6</version>
 
-    <name>用户前缀系统</name>
+    <name>UserPrefix</name>
     <description>轻便、高效、实时的用户前缀系统。</description>
     <url>https://github.com/CarmJos/UserPrefix</url>
 
     <issueManagement>
         <system>GitHub Issues</system>
-        <url>https://github.com/CarmJos/UserPrefix/issues</url>
+        <url>${project.url}/issues</url>
     </issueManagement>
 
     <ciManagement>
         <system>GitHub Actions</system>
-        <url>https://github.com/CarmJos/UserPrefix/actions/workflows/maven.yml</url>
+        <url>${project.url}/actions/workflows/maven.yml</url>
     </ciManagement>
 
     <developers>
@@ -27,12 +27,17 @@
             <id>CarmJos</id>
             <name>Carm Jos</name>
             <email>carm@carm.cc</email>
+            <url>https://work.carm.cc</url>
             <roles>
                 <role>Main Developer</role>
             </roles>
-            <url>https://work.carm.cc</url>
         </developer>
     </developers>
+
+    <organization>
+        <name>YourCraft你的世界</name>
+        <url>https://www.ycraft.cn/</url>
+    </organization>
 
     <licenses>
         <license>
@@ -60,11 +65,6 @@
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
 
-<!--        <repository>-->
-<!--            <id>lss233-repo</id>-->
-<!--            <url>https://crystal.app.lss233.com/repositories/minecraft</url>-->
-<!--        </repository>-->
-
         <repository>
             <id>oss-repo</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
@@ -83,7 +83,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/CarmJos/UserPrefix</url>
+            <url>https://maven.pkg.github.com/CarmJos/${project.name}</url>
         </repository>
     </repositories>
 
@@ -91,7 +91,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/CarmJos/UserPrefix</url>
+            <url>https://maven.pkg.github.com/CarmJos/${project.name}</url>
         </repository>
     </distributionManagement>
 

@@ -29,5 +29,5 @@ jobs:
       - name: "Deploy"
         run: mvn -B deploy --file pom.xml
         env:
-          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
+          MAVEN_USERNAME: ${{ github.repository_owner }}
           MAVEN_TOKEN: ${{secrets.GITHUB_TOKEN}}

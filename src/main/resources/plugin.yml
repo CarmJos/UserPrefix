@@ -1,11 +1,13 @@
 main: cc.carm.plugin.userprefix.Main
-name: UserPrefix
+name: ${project.name}
 version: ${project.version}
 authors:
   - Carm
-  - YourCraft
+  - ${project.organization.name}
   - SakuraGame
-website: "https://github.com/CarmJos/UserPrefix"
+website: ${project.url}
+description: ${project.description}
+
 depend:
   - LuckPerms
 softdepend:
