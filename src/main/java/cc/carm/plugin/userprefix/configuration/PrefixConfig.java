@@ -11,6 +11,14 @@ public class PrefixConfig {
 
     public static ConfigValue<Boolean> DEBUG = new ConfigValue<>("debug", Boolean.class, false);
 
+    public static class CustomStorage {
+
+        public static ConfigValue<Boolean> ENABLE = new ConfigValue<>("custom-storage.enable", Boolean.class, false);
+
+        public static ConfigValue<String> PATH = new ConfigValue<>("custom-storage.path", String.class, "prefixes/");
+
+    }
+
     public static class Functions {
 
         public static ConfigValue<Boolean> NAME_PREFIX = new ConfigValue<>("functions.OnNamePrefix", Boolean.class, true);

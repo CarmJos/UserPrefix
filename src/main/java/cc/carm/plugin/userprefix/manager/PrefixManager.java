@@ -1,6 +1,7 @@
 package cc.carm.plugin.userprefix.manager;
 
 import cc.carm.plugin.userprefix.Main;
+import cc.carm.plugin.userprefix.configuration.PrefixConfig;
 import cc.carm.plugin.userprefix.model.ConfiguredPrefix;
 import cc.carm.plugin.userprefix.util.ItemStackFactory;
 import org.bukkit.Material;
@@ -37,7 +38,7 @@ public class PrefixManager {
 
     public static void loadConfiguredPrefixes() {
 
-        File prefixDataFolder = new File(Main.getInstance().getDataFolder() + File.separator + FOLDER_NAME);
+        File prefixDataFolder = getStorageFolder();
         if (!prefixDataFolder.isDirectory() || !prefixDataFolder.exists()) {
             prefixDataFolder.mkdir();
         }
@@ -147,6 +148,19 @@ public class PrefixManager {
             return getDefaultPrefix();
         } else {
             return getPrefixes().get(identifier);
+        }
+    }
+
+    private static File getStorageFolder() {
+        if (PrefixConfig.CustomStorage.ENABLE.get()) {
+            String path = PrefixConfig.CustomStorage.PATH.get();
+            if (path.startsWith(File.separator)) {
+                return new File(path);
+            } else {
+                return new File(Main.getInstance().getDataFolder() + File.separator + path);
+            }
+        } else {
+            return new File(Main.getInstance().getDataFolder() + File.separator + FOLDER_NAME);
         }
     }
 

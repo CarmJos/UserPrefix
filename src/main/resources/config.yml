@@ -2,6 +2,14 @@ version: ${project.version}
 
 debug: false
 
+custom-storage:
+  # 自定义存储位置
+  # 默认存储位置为 “插件文件夹”/prefixes
+  # 可以规定到远程文件夹中去寻找前缀相关的设定
+  # 支持绝对文件路径，如 "/etc/minecraft/configurations/prefixes/"
+  enable: false # 是否启用
+  path: "prefixes/" # 一定要指向一个文件夹！
+
 functions:
   OnNamePrefix: true # 是否给头顶上添加前缀，该方法用到了头顶的那个计分板，如有冲突请关掉哦~
   autoUsePrefix: true # 自动前缀显示 当玩家没有自己选择一个前缀的时候，会自动使用所拥有的的前缀中权重最高的那一个
