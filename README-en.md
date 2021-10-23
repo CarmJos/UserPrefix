@@ -114,6 +114,13 @@ version: ${project.version} # DO NOT EDIT IT
 
 debug: false #DEBUG OUT PUT
 
+custom-storage:
+  # Custom storage location
+  # default location is "./prefixes"
+  # Support absolute file path , such as "/etc/minecraft/configurations/prefixes/"
+  enable: false
+  path: "prefixes/" # Must be a folder!
+  
 GUI:
   title: "&f&lMy Prefixes List" # Title of the GUI
   items:
