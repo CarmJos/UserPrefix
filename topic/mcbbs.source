@@ -67,13 +67,10 @@
 [hr]
 [size=4][b]基础配置文件 [/b][/size][color=#24292f][font=Tahoma][size=4](config.yml)[/size][/font][/color]
 [spoiler]
-[code] version: 1.0.0-SNAPSHOT # 配置文件版本，一般不会动。
+[code]
+version: 1.0.0-SNAPSHOT # 配置文件版本，一般不会动。
 
-debug: false #debug输出，开发者用的
-
-functions:
-  OnNamePrefix: true # 是否给头顶上添加前缀，该方法用到了头顶的那个计分板，如有冲突请关掉哦~
-  autoUsePrefix: true # 自动前缀显示 当玩家没有自己选择一个前缀的时候，会自动使用所拥有的的前缀中权重最高的那一个[/code][/spoiler]
+debug: false #debug输出，开发者用的[/code][/spoiler]
 
 [b][size=4][backcolor=transparent]消息配置文件[/backcolor][/size] [/b][size=4](messages.yml)[/size]
 [spoiler][code]selected:
@@ -96,7 +93,7 @@ list-value:
   - "&8- &7显示名 &r%(name) &7权限 &r%(permission)"
   - "&8- &7内容示例&r %(content) %(sender_name)"[/code][/spoiler]
 
-[size=4][backcolor=transparent][b]前缀配置文件[/b][/backcolor] (prefixes/*.yml)[/size]
+[size=4][backcolor=transparent][b]前缀配置文件[/b][/backcolor] (prefixes/*.yml) [自2.1.7可自定义目录][/size]
 [align=left][font=-apple-system, BlinkMacSystemFont, &quot;][size=3][color=#000000]所有前缀均为单独的配置文件，存放于 [u]插件配置目录/prefixes[/u] 下，便于管理。[/color][/size][/font][/align][align=left][font=-apple-system, BlinkMacSystemFont, &quot;][size=3][color=#000000]文件名理论上可以随便取，推荐使用英文，部分符号可能会影响正常读取，请避免使用。[/color][/size][/font][/align][align=left][spoiler][/align][code]# 唯一标识 [必须]
 # 将用于记录玩家所选的前缀，以及用于数据的缓存。
 # 必须 必须 必须 保持唯一！
@@ -177,11 +174,11 @@ itemNoPermission:
 
 [size=5][b]下载地址[/b][/size]
 [hr]
-[size=3][b]最新版本 2.1.0 [/b][/size][attach]1909962[/attach][quote][b][size=3]更新内容[/size][/b]
+[size=3][b]最新版本 [/b][/size][size=3][b]2.1.7 [/b][/size][attach]1919669[/attach][quote][b][size=3]更新内容[/size][/b]
+1. 提供自定义配置文件存储位置的功能，便于多子服共享配置。(custome-storage)[indent]2. 添加控制台打开玩家菜单时的反馈(来自 @Yuri南城 )。[/indent][indent]3. 支持由控制台为其他玩家打开GUI。[/indent]4. 若出现新配置文件条目，将自动写入默认值，便于配置。[/quote]
+[spoiler][size=3][b]2.1.2 [/b][/size][attach]1912028[/attach][quote][b][size=3]更新内容[/size][/b]
+1. 修复不开启插件自带的头顶前缀功能时出现的报错。[/quote][size=3][b]2.1.0 [/b][/size][attach]1909962[/attach][quote][b][size=3]更新内容[/size][/b]
 1. 添加聊天相关设定，支持聊天前缀。(但不推荐使用哦~)[/quote]
-
-[spoiler]
-
 [size=3][b] 2.0.0 [/b][/size][attach]1905700[/attach]
 [quote][b][size=3]更新内容[/size][/b]
 1. 修复低版本可能无法读取物品的bug。
@@ -230,6 +227,7 @@ itemNoPermission:
 
 [hr]
 [align=center][b][size=4][color=#ff0000]本插件所用所有代码均为原创,不存在借用/抄袭等行为[/color][/size][/b][/align]
+
 
 
 
