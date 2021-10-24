@@ -1,5 +1,6 @@
 package cc.carm.plugin.userprefix.command;
 
+import cc.carm.plugin.userprefix.Main;
 import cc.carm.plugin.userprefix.ui.PrefixSelectGUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,6 +15,8 @@ public class UserPrefixCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (sender instanceof Player) {
             PrefixSelectGUI.open((Player) sender);
+        } else {
+            Main.log("控制台无法使用此命令！");
         }
         return true;
     }
