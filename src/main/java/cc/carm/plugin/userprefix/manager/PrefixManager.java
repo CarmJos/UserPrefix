@@ -45,10 +45,12 @@ public class PrefixManager {
 
         String[] filesList = prefixDataFolder.list();
         if (filesList == null || filesList.length < 1) {
-            Main.log("配置文件中暂无任何前缀配置，请检查。");
+            Main.log("配置文件夹中暂无任何前缀配置问，请检查。");
             Main.log("There's no configured prefix.");
+            Main.log("Path: " + prefixDataFolder.getAbsolutePath());
             return;
         }
+
         List<File> files = Arrays.stream(filesList)
                 .map(s -> new File(prefixDataFolder, s))
                 .filter(File::isFile)
@@ -75,7 +77,8 @@ public class PrefixManager {
 
     public static void loadDefaultPrefix() {
         PrefixManager.defaultPrefix = null;
-        ConfigurationSection defaultPrefixSection = ConfigManager.getPluginConfig().getConfig().getConfigurationSection("defaultPrefix");
+        ConfigurationSection defaultPrefixSection = ConfigManager.getPluginConfig()
+                .getConfig().getConfigurationSection("defaultPrefix");
         if (defaultPrefixSection != null) {
             try {
                 String name = defaultPrefixSection.getString("name", "默认前缀");
@@ -153,12 +156,7 @@ public class PrefixManager {
 
     private static File getStorageFolder() {
         if (PrefixConfig.CustomStorage.ENABLE.get()) {
-            String path = PrefixConfig.CustomStorage.PATH.get();
-            if (path.startsWith(File.separator)) {
-                return new File(path);
-            } else {
-                return new File(Main.getInstance().getDataFolder() + File.separator + path);
-            }
+            return new File(PrefixConfig.CustomStorage.PATH.get());
         } else {
             return new File(Main.getInstance().getDataFolder() + File.separator + FOLDER_NAME);
         }

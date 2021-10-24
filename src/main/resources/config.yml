@@ -1,4 +1,4 @@
-version: ${project.version}
+version: ${project.version} #配置文件版本，若与插件版本不同请记得检查配置文件内容
 
 debug: false
 
