@@ -1,7 +1,7 @@
 package cc.carm.plugin.userprefix.command;
 
-import cc.carm.plugin.userprefix.Main;
 import cc.carm.plugin.userprefix.ui.PrefixSelectGUI;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,7 +16,14 @@ public class UserPrefixCommand implements CommandExecutor {
         if (sender instanceof Player) {
             PrefixSelectGUI.open((Player) sender);
         } else {
-            Main.log("控制台无法使用此命令！");
+            if (strings.length != 1) {
+                sender.sendMessage("输入 /prefix <ID> 为玩家打开前缀GUI。");
+            } else {
+                Player player = Bukkit.getPlayer(strings[0]);
+                if (player != null) {
+                    PrefixSelectGUI.open(player);
+                }
+            }
         }
         return true;
     }
