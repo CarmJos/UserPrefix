@@ -90,9 +90,16 @@ After installed the [URL='https://github.com/PlaceholderAPI/PlaceholderAPI']Plac
 Notice: The default configuration is based on Chinese. You can find the English Version [URL='https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/en_US/config.yml']here[/URL].
 
 [code=YAML]
-version: ${project.version} # DO NOT EDIT IT
+version: ${project.version}
 
 debug: false #DEBUG OUT PUT
+
+custom-storage:
+  # Custom storage location
+  # default location is "./prefixes"
+  # Support absolute file path , such as "/etc/minecraft/configurations/prefixes/"
+  enable: false
+  path: "prefixes/" # Must be a folder!
 
 GUI:
   title: "&f&lMy Prefixes List" # Title of the GUI
