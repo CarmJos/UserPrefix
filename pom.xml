@@ -88,6 +88,7 @@
     </repositories>
 
     <distributionManagement>
+        <downloadUrl>${project.url}/releases</downloadUrl>
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>

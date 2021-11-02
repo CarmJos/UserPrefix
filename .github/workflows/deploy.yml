@@ -27,7 +27,7 @@ jobs:
           server-username: MAVEN_USERNAME
           server-password: MAVEN_TOKEN
       - name: "Deploy"
-        run: mvn -B deploy --file pom.xml
+        run: mvn -B deploy --file pom.xml -DskipTests
         env:
           MAVEN_USERNAME: ${{ github.repository_owner }}
           MAVEN_TOKEN: ${{secrets.GITHUB_TOKEN}}
