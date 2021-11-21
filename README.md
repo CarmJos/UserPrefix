@@ -301,7 +301,7 @@ itemNoPermission:
 
 感谢您成为开源项目的支持者！
 
-<img height=25% width=25% src="https://raw.githubusercontent.com/CarmJos/CarmJos/main/img/donate-code.jpg" />
+<img height=25% width=25% src="https://raw.githubusercontent.com/CarmJos/CarmJos/main/img/donate-code.jpg"  alt=""/>
 
 ## 开源协议
 
@@ -321,3 +321,13 @@ itemNoPermission:
 > 需要注意的是，分发的时候，需要明确提供源代码和二进制文件，另外，用于某些程序的某些协议有一些问题和限制，你可以看一下 @PierreJoye 写的 Practical Guide to GPL Compliance 一文。使用 GPL 协议，你必须在源代码代码中包含相应信息，以及协议本身。
 > 
 > *以上文字来自 [五种开源协议GPL,LGPL,BSD,MIT,Apache](https://www.oschina.net/question/54100_9455) 。*
+
+```text
+ _    _                   _____              __  _       
+| |  | |                 |  __ \            / _|(_)      
+| |  | | ___   ___  _ __ | |__) |_ __  ___ | |_  _ __  __
+| |  | |/ __| / _ \| '__||  ___/| '__|/ _ \|  _|| |\ \/ /
+| |__| |\__ \|  __/| |   | |    | |  |  __/| |  | | >  < 
+ \____/ |___/ \___||_|   |_|    |_|   \___||_|  |_|/_/\_\
+                                                         
+```
