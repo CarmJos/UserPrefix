@@ -77,5 +77,6 @@ jobs:
           git commit -m "API Document generated."
       - name: Push javadocs
         run: |
+          cd docs
           git push origin HEAD:gh-pages --force
 
