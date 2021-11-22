@@ -29,7 +29,8 @@ jobs:
       - name: Copy to Location
         run: |
           rm -rf docs
-          cp -vrf target/apidocs/. docs
+          mkdir -vp docs
+          cp -vrf target/apidocs/* docs/
           cp -vrf JAVADOC-README.md docs/README.md
 
 #      - name: Tidy up
