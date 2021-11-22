@@ -24,7 +24,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Generate docs
-        run: mvn javadoc:javadoc
+        run: mvn package -DskipTests
 
       - name: Copy to Location
         run: |
