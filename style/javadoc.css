@@ -172,7 +172,7 @@ sup {
     height: 2.8em;
     overflow: hidden;
     padding-top: 10px;
-    padding: 0;
+    /*padding: 0;*/
     width: 100%;
 }
 
@@ -190,7 +190,7 @@ sup {
     margin-top: 10px;
     overflow: hidden;
     padding-top: 10px;
-    padding: 0;
+    /*padding: 0;*/
     width: 100%;
 }
 
@@ -216,7 +216,7 @@ sup {
 ul.navList {
     float: left;
     margin: 0 25px 0;
-    padding: 0;
+    /*padding: 0;*/
 }
 
 ul.navList li {
@@ -229,7 +229,7 @@ ul.navList li {
 ul.subNavList {
     float: left;
     margin: 0 25px 0;
-    padding: 0;
+    /*padding: 0;*/
 }
 
 ul.subNavList li {
@@ -265,7 +265,7 @@ ul.subNavList li {
 
 .header ul {
     margin: 0 0 25px;
-    padding: 0;
+    /*padding: 0;*/
 }
 
 .header ul li {
@@ -324,7 +324,7 @@ div.details ul.blocklist ul.blocklist ul.blockListLast li.blocklist h4 {
 
 ul.blockList {
     margin: 10px 0 10px;
-    padding: 0;
+    /*padding: 0;*/
 }
 
 ul.blockList ul.blocklist ul.blocklist li.blocklist {
@@ -364,7 +364,7 @@ ul.blockList ul.blocklist li.blockList {
 
 ul.blockList ul.blocklist li.blockList h3 {
     margin: 15px 0;
-    padding: 0;
+    /*padding: 0;*/
 }
 
 ul.blockList ul.blocklist li.blockList table {
@@ -494,7 +494,7 @@ ul.horizontal li {
 
 ul.inheritance {
     margin: 0;
-    padding: 0;
+    /*padding: 0;*/
 }
 
 ul.inheritance li {
@@ -510,7 +510,7 @@ ul.inheritance li ul.inheritance {
 
 ul.blockListLast {
     margin: 10px 0 10px;
-    padding: 0;
+    /*padding: 0;*/
 }
 
 ul.blockListLast li.blocklist {
@@ -575,7 +575,7 @@ ul.blockListLast li.blocklist {
     font-weight: bold;
     margin: 0;
     overflow: hidden;
-    padding: 0;
+    /*padding: 0;*/
     position: relative;
     text-align: left;
 }
@@ -700,7 +700,7 @@ th.colOne {
 
 table.overviewSummary {
     margin-left: 0;
-    padding: 0;
+    /*padding: 0;*/
 }
 
 table.overviewSummary th.colfirst {
@@ -731,7 +731,7 @@ table.packageSummary td.colfirst {
 }
 
 .docSummary {
-    padding: 0;
+    /*padding: 0;*/
 }
 
 .sourceLineNo {
