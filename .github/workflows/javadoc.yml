@@ -55,13 +55,23 @@ jobs:
           echo "url-count = ${{ steps.sitemap.outputs.url-count }}"
           echo "excluded-count = ${{ steps.sitemap.outputs.excluded-count }}"
 
+      - name: Configure Git
+        env:
+          DEPLOY_PRI: ${{secrets.DEPLOY_PRI}}
+        run: |
+          sudo timedatectl set-timezone "Asia/Shanghai"
+          mkdir -p ~/.ssh/
+          echo "$HEXO_DEPLOY_PRI" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.name 'CarmJos'
+          git config --global user.email 'carm@carm.cc'
+
       - name: Commit documentation changes
         run: |
           cd docs
-          git config --global user.name '${{ github.repository_owner }}'
-          git config --global user.email '${{ github.repository_owner }}@users.noreply.github.com'
           git init
-          git remote add origin https://${{ github.repository_owner }}@github.com/CarmJos/UserPrefix.git
+          git remote add origin git@github.com:CarmJos/UserPrefix.git
           git checkout -b gh-pages
           git add -A
           git commit -m "API Document generated."
