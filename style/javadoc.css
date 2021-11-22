@@ -113,7 +113,7 @@ sup {
 
 .clear {
     clear: both;
-    height: 0px;
+    height: 0;
     overflow: hidden;
 }
 
@@ -121,7 +121,7 @@ sup {
     float: right;
     font-size: .8em;
     margin-top: -7px;
-    padding: 0px 21px;
+    padding: 0 21px;
     z-index: 200;
 }
 
@@ -359,7 +359,7 @@ ul.blockList ul.blocklist ul.blocklist ul.blockList li.blockListLast {
 ul.blockList ul.blocklist li.blockList {
     background-color: rgba(44, 69, 87, 0.44);
     border: 1px solid rgba(161, 161, 161, 0.19);
-    padding: 0px 20px 5px 10px;
+    padding: 0 20px 5px 10px;
 }
 
 ul.blockList ul.blocklist li.blockList h3 {
@@ -368,13 +368,12 @@ ul.blockList ul.blocklist li.blockList h3 {
 }
 
 ul.blockList ul.blocklist li.blockList table {
-    margin: 0 0 12px 0px;
+    margin: 0 0 12px 0;
     width: 100%;
 }
 
 ul.blockList ul.blocklist ul.blockListLast li.blocklist {
     background-color: #fbfbfb;
-    border-top: none;
     border: 1px solid rgba(161, 161, 161, 0.19);
     padding: 0 0 5px 8px;
 }
@@ -385,13 +384,13 @@ ul.blockList li.blockList {
 }
 
 ul.blockList li.blockList h2 {
-    padding: 0px 0 20px 0;
+    padding: 0 0 20px;
 }
 
 ul.blockList ul.blockListLast li.blocklist {
     background-color: rgba(44, 69, 87, 0.44);
     border: 1px solid rgba(161, 161, 161, 0.19);
-    padding: 0px 20px 5px 10px;
+    padding: 0 20px 5px 10px;
 }
 
 .contentContainer,
@@ -429,7 +428,7 @@ ul.blockList ul.blockListLast li.blocklist {
     color: rgba(139, 101, 139, 0.86);
     font-size: 1.1em;
     font-weight: bold;
-    margin: 10px 0 0 0;
+    margin: 10px 0 0;
 }
 
 .contentContainer .description dl dd {
@@ -444,7 +443,7 @@ ul.blockList ul.blockListLast li.blocklist {
     color: rgba(139, 101, 139, 0.86);
     font-size: 1.1em;
     font-weight: bold;
-    margin: 10px 0 0 0;
+    margin: 10px 0 0;
 }
 
 .contentContainer .details dl dd {
@@ -468,7 +467,7 @@ ul.blockList ul.blockListLast li.blocklist {
     color: rgba(139, 101, 139, 0.86);
     font-size: 1.1em;
     font-weight: bold;
-    margin: 10px 0 0 0;
+    margin: 10px 0 0;
 }
 
 .serializedFormContainer dl dd {
@@ -574,9 +573,9 @@ ul.blockListLast li.blocklist {
     clear: none;
     color: #fbfbfb;
     font-weight: bold;
-    margin: 0px;
+    margin: 0;
     overflow: hidden;
-    padding: 0px;
+    padding: 0;
     position: relative;
     text-align: left;
 }
@@ -700,8 +699,8 @@ th.colOne {
 }
 
 table.overviewSummary {
-    margin-left: 0px;
-    padding: 0px;
+    margin-left: 0;
+    padding: 0;
 }
 
 table.overviewSummary th.colfirst {
