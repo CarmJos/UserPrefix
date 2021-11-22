@@ -64,6 +64,8 @@ jobs:
           git checkout -b gh-pages
           git log --decorate  -- oneline
           git add -A
+          git remote add origin https://github.com/CarmJos/UserPrefix.git
           git commit -m "API Document generated."
+          git push origin gh-pages
 
 
