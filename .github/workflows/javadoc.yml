@@ -61,9 +61,8 @@ jobs:
           git config --global user.name '${{ github.repository_owner }}'
           git config --global user.email '${{ github.repository_owner }}@users.noreply.github.com'
           git init
-          git branch gh-pages
-          git checkout gh-pages
-          git  log --decorate  -- oneline
+          git checkout -b gh-pages
+          git log --decorate  -- oneline
           git add -A
           git commit -m "API Document generated."
 
