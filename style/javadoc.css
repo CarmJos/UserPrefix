@@ -596,7 +596,7 @@ caption a:visited {
     float: left;
     height: 24px;
     padding-left: 24px;
-    /*padding-top: 8px;*/
+    padding-top: 8px;
     white-space: nowrap;
 }
 
