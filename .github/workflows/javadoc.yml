@@ -38,7 +38,7 @@ jobs:
 #        uses: cicirello/javadoc-cleanup@v1
 #        with:
 #          base-url-path: https://carmjos.github.io/userprefix
-#          path-to-root: doc
+#          path-to-root: docs
 #
 #      - name: Log output
 #        run: |
@@ -49,7 +49,7 @@ jobs:
         uses: cicirello/generate-sitemap@v1
         with:
           base-url-path: https://carmjos.github.io/userprefix
-          path-to-root: doc
+          path-to-root: docs
 
       - name: Output stats
         run: |
