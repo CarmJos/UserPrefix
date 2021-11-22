@@ -29,7 +29,7 @@ jobs:
       - name: Copy to Location
         run: |
           rm -rf docs
-          cp -rf target/site/apidocs/. docs
+          cp -vrf target/site/apidocs/. docs
 
       - name: Tidy up
         id: tidy
@@ -42,19 +42,29 @@ jobs:
         run: |
           echo "modified-count = ${{ steps.tidy.outputs.modified-count }}"
 
-      - name: Commit documentation changes
-        run: |
-          if [[ `git status --porcelain` ]]; then
-            git config --global user.name '${{ github.repository_owner }}'
-            git config --global user.email '${{ github.repository_owner }}@users.noreply.github.com'
-            git add -A
-            git commit -m "Automated API website updates."
-            git push
-          fi
+      - name: Generate the sitemap
+        id: sitemap
+        uses: cicirello/generate-sitemap@v1
+        with:
+          base-url-path: https://carmjos.github.io/userprefix
+          path-to-root: docs
 
       - name: Output stats
         run: |
           echo "sitemap-path = ${{ steps.sitemap.outputs.sitemap-path }}"
           echo "url-count = ${{ steps.sitemap.outputs.url-count }}"
           echo "excluded-count = ${{ steps.sitemap.outputs.excluded-count }}"
+
+      - name: Commit documentation changes
+        run: |
+          cd docs
+          git config --global user.name '${{ github.repository_owner }}'
+          git config --global user.email '${{ github.repository_owner }}@users.noreply.github.com'
+          git init
+          git branch gh-pages
+          git checkout gh-pages
+          git  log --decorate  -- oneline
+          git add -A
+          git commit -m "API Document generated."
+
 
