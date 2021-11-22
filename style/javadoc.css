@@ -215,7 +215,7 @@ sup {
 
 ul.navList {
     float: left;
-    margin: 0 25px 0;
+    margin: 0 25px;
     /*padding: 0;*/
 }
 
@@ -228,7 +228,7 @@ ul.navList li {
 
 ul.subNavList {
     float: left;
-    margin: 0 25px 0;
+    margin: 0 25px;
     /*padding: 0;*/
 }
 
@@ -260,7 +260,7 @@ ul.subNavList li {
 .header {
     clear: both;
     margin: 0 20px;
-    padding: 5px 0 0;
+    padding: 5px;
 }
 
 .header ul {
@@ -276,7 +276,7 @@ ul.subNavList li {
 .footer {
     clear: both;
     margin: 0 20px;
-    padding: 5px 0 0;
+    padding: 5px;
 }
 
 .footer ul {
@@ -299,11 +299,11 @@ ul.subNavList li {
 
 .title {
     color: #2c4557;
-    margin: 10px 0;
+    margin: 10px;
 }
 
 .subTitle {
-    margin: 5px 0 0;
+    margin: 5px;
 }
 
 div.details ul.blocklist ul.blocklist ul.blocklist li.blocklist h4 {
@@ -363,7 +363,7 @@ ul.blockList ul.blocklist li.blockList {
 }
 
 ul.blockList ul.blocklist li.blockList h3 {
-    margin: 15px 0;
+    margin: 15px;
     /*padding: 0;*/
 }
 
@@ -428,7 +428,7 @@ ul.blockList ul.blockListLast li.blocklist {
     color: rgba(139, 101, 139, 0.86);
     font-size: 1.1em;
     font-weight: bold;
-    margin: 10px 0 0;
+    margin: 10px;
 }
 
 .contentContainer .description dl dd {
@@ -443,7 +443,7 @@ ul.blockList ul.blockListLast li.blocklist {
     color: rgba(139, 101, 139, 0.86);
     font-size: 1.1em;
     font-weight: bold;
-    margin: 10px 0 0;
+    margin: 10px;
 }
 
 .contentContainer .details dl dd {
@@ -467,7 +467,7 @@ ul.blockList ul.blockListLast li.blocklist {
     color: rgba(139, 101, 139, 0.86);
     font-size: 1.1em;
     font-weight: bold;
-    margin: 10px 0 0;
+    margin: 10px;
 }
 
 .serializedFormContainer dl dd {
@@ -727,7 +727,7 @@ table.packageSummary td.colfirst {
 
 .deprecatedContent {
     margin: 0;
-    padding: 10px 0;
+    padding: 10px;
 }
 
 .docSummary {
@@ -736,7 +736,7 @@ table.packageSummary td.colfirst {
 
 .sourceLineNo {
     color: green;
-    padding: 0 30px 0;
+    padding: 0 30px;
 }
 
 h1.hidden {
@@ -747,7 +747,7 @@ h1.hidden {
 
 .block {
     display: block;
-    margin: 3px 0 0;
+    margin: 3px;
 }
 
 .strong {
