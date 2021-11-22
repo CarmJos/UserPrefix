@@ -142,7 +142,6 @@ sup {
     color: #fbfbfb;
     font-size: 1em;
     height: 1.8em;
-    height: auto;
     margin: 0;
     padding: .8em .5em .4em .8em;
 }
@@ -323,13 +322,12 @@ div.details ul.blocklist ul.blocklist ul.blockListLast li.blocklist h4 {
 }
 
 ul.blockList {
-    margin: 10px 0 10px;
+    margin: 10px;
     /*padding: 0;*/
 }
 
 ul.blockList ul.blocklist ul.blocklist li.blocklist {
     background-color: #fbfbfb;
-    border-top: none;
     border: 1px solid rgba(161, 161, 161, 0.19);
     padding: 0 0 5px 8px;
 }
@@ -343,7 +341,7 @@ ul.blockList ul.blocklist ul.blocklist li.blocklist h3 {
 }
 
 ul.blockList ul.blocklist ul.blocklist ul.blockList li.blocklist {
-    border-bottom: 1px solid rgba(161, 161, 161, 0.19);
+    /*border-bottom: 1px solid rgba(161, 161, 161, 0.19);*/
     border: none;
     margin-left: 0;
     padding-bottom: 15px;
@@ -509,7 +507,7 @@ ul.inheritance li ul.inheritance {
 }
 
 ul.blockListLast {
-    margin: 10px 0 10px;
+    margin: 10px;
     /*padding: 0;*/
 }
 
