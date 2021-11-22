@@ -141,6 +141,7 @@
                     </links>
                     <detectJavaApiLink>true</detectJavaApiLink>
                     <encoding>UTF-8</encoding>
+                    <stylesheetfile>${project.basedir}/style/javadoc.css</stylesheetfile>
                 </configuration>
                 <executions>
                     <execution>
