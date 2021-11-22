@@ -30,6 +30,7 @@ jobs:
         run: |
           rm -rf docs
           cp -vrf target/site/apidocs/. docs
+          cp -vrf JAVADOC-README.md docs/README.md
 
       - name: Tidy up
         id: tidy
