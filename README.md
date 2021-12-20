@@ -33,31 +33,19 @@ The **English version** of the introduction is [here](https://github.com/CarmJos
 
 - 理论上全版本支持！
 - 游戏内重载配置文件并实时更新到玩家！
--
-
-当玩家权限变更时会实时监测前缀，若权限不足则自动更换前缀并提示！[✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/listener/processor/UserNodeUpdateProcessor.java)
-
+- 当玩家权限变更时会实时监测前缀，若权限不足则自动更换前缀并提示！[✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/listener/processor/UserNodeUpdateProcessor.java)
 - 可配置的声音、消息！
 - 前缀图标可配置“选中”、“有权限”与“无权限”三种状态的物品
     - 物品的配置通过ItemStack原生配置，支持MC所有的设定！
     - 具体的设定请参考其他文档哦~
 - TabList自动按照前缀的权重排序 (如有冲突可关掉)
-- 玩家头顶前缀显示 (
-  如有冲突可关掉) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/nametag/UserNameTag.java)
-- 简单的聊天变量修改功能！(
-  不推荐使用) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/listener/ChatListener.java)
--
-
-自动排序，且可翻页的GUI！[✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/ui/PrefixSelectGUI.java)
-
-- 支持PlaceholderAPI变量！(
-  凡支持的都可以使用，如BungeeTabListPlus) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/hooker/UserPrefixExpansion.java)
--
-
-支持[Hex颜色](https://www.hexcolortool.com/)！(1.16以上版本)   [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/util/ColorParser.java)
-
-- 格式： `&(#颜色代码)`
-- 示例： LightSlateBlue `&(#8470FF)` 、 DarkSlateBlue `&(#483D8B)`
+- 玩家头顶前缀显示 (如有冲突可关掉) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/nametag/UserNameTag.java)
+- 简单的聊天变量修改功能！(不推荐使用) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/listener/ChatListener.java)
+- 自动排序，且可翻页的GUI！[✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/ui/PrefixSelectGUI.java)
+- 支持PlaceholderAPI变量！(凡支持的都可以使用，如BungeeTabListPlus) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/hooker/UserPrefixExpansion.java)
+- 支持[Hex颜色](https://www.hexcolortool.com/)！(1.16以上版本)   [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/util/ColorParser.java)
+  - 格式： `&(#颜色代码)`
+  - 示例： LightSlateBlue `&(#8470FF)` 、 DarkSlateBlue `&(#483D8B)`
 
 ## 注意事项
 
@@ -354,6 +342,8 @@ itemNoPermission:
 >
 > *以上文字来自 [五种开源协议GPL,LGPL,BSD,MIT,Apache](https://www.oschina.net/question/54100_9455) 。*
 </details>
+
+---
 
 ```text
  _    _                   _____              __  _       
