@@ -109,6 +109,10 @@ type `/papi info UserPrefix` to see all the placeholders.
 Notice: The default configuration is based on Chinese. You can find
 the [English Version here](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/en_US/config.yml).
 
+<details>
+  <summary>Click to see plugin configuration</summary>
+
+
 ```yaml
 version: ${project.version} # DO NOT EDIT IT
 
@@ -195,7 +199,12 @@ defaultPrefix:
         - "§a✔ Selected"
 ```
 
+</details>
+
 ### [Messages Configuration](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/en_US/messages.yml)  (messages.yml)
+
+<details>
+  <summary>Click to see messages configuration</summary>
 
 ```yaml
 selected:
@@ -220,11 +229,16 @@ list-value:
 
 ```
 
+</details>
+
 ### [Prefixes Configuration](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/en_US/example-prefix.yml) (/prefixes/*.yml)
 
 All prefixes are separate configuration files, stored in the `<Data Folder>/prefixes/` for easy management.
 
 Some symbols in file name may affect reading, please avoid using them.
+
+<details>
+  <summary>Example prefix configuration.</summary>
 
 ```yaml
 # identifier [Necessary]
@@ -298,6 +312,8 @@ itemNoPermission:
         - ""
         - "§e✯ Buy the VIP to use it!"
 ```
+
+</details>
 
 ## Support and Donation
 

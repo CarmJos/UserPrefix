@@ -33,19 +33,31 @@ The **English version** of the introduction is [here](https://github.com/CarmJos
 
 - 理论上全版本支持！
 - 游戏内重载配置文件并实时更新到玩家！
-- 当玩家权限变更时会实时监测前缀，若权限不足则自动更换前缀并提示！[✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/listener/processor/UserNodeUpdateProcessor.java)
+-
+
+当玩家权限变更时会实时监测前缀，若权限不足则自动更换前缀并提示！[✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/listener/processor/UserNodeUpdateProcessor.java)
+
 - 可配置的声音、消息！
 - 前缀图标可配置“选中”、“有权限”与“无权限”三种状态的物品
-  - 物品的配置通过ItemStack原生配置，支持MC所有的设定！
-  - 具体的设定请参考其他文档哦~
+    - 物品的配置通过ItemStack原生配置，支持MC所有的设定！
+    - 具体的设定请参考其他文档哦~
 - TabList自动按照前缀的权重排序 (如有冲突可关掉)
-- 玩家头顶前缀显示 (如有冲突可关掉) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/nametag/UserNameTag.java)
-- 简单的聊天变量修改功能！(不推荐使用) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/listener/ChatListener.java)
-- 自动排序，且可翻页的GUI！[✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/ui/PrefixSelectGUI.java)
-- 支持PlaceholderAPI变量！(凡支持的都可以使用，如BungeeTabListPlus) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/hooker/UserPrefixExpansion.java)
-- 支持[Hex颜色](https://www.hexcolortool.com/)！(1.16以上版本)   [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/util/ColorParser.java)
-  - 格式： `&(#颜色代码)`
-  - 示例： LightSlateBlue `&(#8470FF)` 、 DarkSlateBlue `&(#483D8B)`
+- 玩家头顶前缀显示 (
+  如有冲突可关掉) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/nametag/UserNameTag.java)
+- 简单的聊天变量修改功能！(
+  不推荐使用) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/listener/ChatListener.java)
+-
+
+自动排序，且可翻页的GUI！[✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/ui/PrefixSelectGUI.java)
+
+- 支持PlaceholderAPI变量！(
+  凡支持的都可以使用，如BungeeTabListPlus) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/hooker/UserPrefixExpansion.java)
+-
+
+支持[Hex颜色](https://www.hexcolortool.com/)！(1.16以上版本)   [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/util/ColorParser.java)
+
+- 格式： `&(#颜色代码)`
+- 示例： LightSlateBlue `&(#8470FF)` 、 DarkSlateBlue `&(#483D8B)`
 
 ## 注意事项
 
@@ -99,8 +111,11 @@ The **English version** of the introduction is [here](https://github.com/CarmJos
 
 ### [基础配置文件](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/config.yml) (config.yml)
 
+<details>
+  <summary>展开查看详细基础配置文件</summary>
+
 ```yaml
-version: 1.0.0-SNAPSHOT # 配置文件版本，一般不会动。
+version: 2.1.9 # 配置文件版本，一般不会动。
 
 debug: false #debug输出，开发者用的
 
@@ -183,7 +198,13 @@ defaultPrefix:
         - "§a✔ 您正在使用该前缀"
 ```
 
+</details>
+
 ### [消息配置文件](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/messages.yml) (messages.yml)
+
+<details>
+  <summary>展开查看详细消息配置文件</summary>
+
 ```yaml
 selected:
   - "&7您选择了 &f%(name) &7作为当前显示的前缀。"
@@ -206,10 +227,17 @@ list-value:
   - "&8- &7内容示例&r %(content) %(sender_name)"
 ```
 
+</details>
+
 ### [前缀配置文件](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/prefixes/example-prefix.yml) (prefixes/*.yml)
+
 所有前缀均为单独的配置文件，存放于 `插件配置目录/prefixes` 下，便于管理。
 
 文件名理论上可以随便取，推荐使用英文，部分符号可能会影响正常读取，请避免使用。
+
+
+<details>
+  <summary>展开查看示例前缀配置文件</summary>
 
 ```yaml
 # 唯一标识 [必须]
@@ -291,6 +319,7 @@ itemNoPermission:
       - "§e✯ 加入Pro+会员以使用该前缀！"
 ```
 
+</details>
 
 ## 支持与捐赠
 
@@ -319,7 +348,7 @@ itemNoPermission:
 > 如果你想添加或删除某个功能，没问题，如果你想在别的项目中使用部分代码，也没问题，唯一的要求是，使用了这段代码的项目也必须使用 GPL 协议。
 >
 > 需要注意的是，分发的时候，需要明确提供源代码和二进制文件，另外，用于某些程序的某些协议有一些问题和限制，你可以看一下 @PierreJoye 写的 Practical Guide to GPL Compliance 一文。使用 GPL 协议，你必须在源代码代码中包含相应信息，以及协议本身。
-> 
+>
 > *以上文字来自 [五种开源协议GPL,LGPL,BSD,MIT,Apache](https://www.oschina.net/question/54100_9455) 。*
 
 ```text
