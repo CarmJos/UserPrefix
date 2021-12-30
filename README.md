@@ -309,6 +309,10 @@ itemNoPermission:
 
 </details>
 
+## 使用统计
+
+![bStats](https://bstats.org/signatures/bukkit/UserPrefix.svg)
+
 ## 支持与捐赠
 
 本项目由 [YourCraft(你的世界)](https://www.ycraft.cn) 团队提供长期支持与维护。
