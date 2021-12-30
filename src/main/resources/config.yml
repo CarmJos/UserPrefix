@@ -2,6 +2,11 @@ version: ${project.version} #配置文件版本，若与插件版本不同请记
 
 debug: false
 
+# 统计数据设定
+# 改选项用于帮助开发者统计插件版本与使用情况，且绝不会影响性能与使用体验。
+# 当然，您也可以选择在这里关闭，或在plugins/bStats下的配置文件中关闭。
+metrics: true
+
 custom-storage:
   # 自定义存储位置
   # 默认存储位置为 “插件文件夹”/prefixes

@@ -14,6 +14,8 @@ import cc.carm.plugin.userprefix.manager.UserManager;
 import cc.carm.plugin.userprefix.util.ColorParser;
 import cc.carm.plugin.userprefix.util.MessageUtil;
 import net.luckperms.api.event.user.UserDataRecalculateEvent;
+import org.bstats.bukkit.Metrics;
+import org.bstats.charts.SingleLineChart;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
@@ -26,6 +28,7 @@ import org.jetbrains.annotations.Nullable;
 public class Main extends JavaPlugin {
 
 	private static Main instance;
+	private static Metrics metrics;
 
 	@Override
 	public void onEnable() {
@@ -55,6 +58,11 @@ public class Main extends JavaPlugin {
 			log("若您想使用变量进行前缀的显示，请安装PlaceholderAPI！");
 		}
 
+		if (PrefixConfig.METRICS.get()) {
+			log("启用统计数据...");
+			metrics = new Metrics(this, 13776);
+			metrics.addCustomChart(new SingleLineChart("active_prefixes", () -> PrefixManager.getPrefixes().size()));
+		}
 
 		log("加载完成 ，共耗时 " + (System.currentTimeMillis() - startTime) + " ms 。");
 
@@ -63,6 +71,7 @@ public class Main extends JavaPlugin {
 		if (Bukkit.getOnlinePlayers().size() > 0) {
 			Bukkit.getOnlinePlayers().forEach(UserManager::initPlayer);  // 适配热重载
 		}
+
 
 	}
 

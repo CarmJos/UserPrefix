@@ -6,7 +6,7 @@
 
     <groupId>cc.carm.plugin</groupId>
     <artifactId>userprefix</artifactId>
-    <version>2.2.0</version>
+    <version>2.2.1</version>
 
     <name>UserPrefix</name>
     <description>轻便、高效、实时的用户前缀系统。</description>
@@ -121,6 +121,13 @@
         </dependency>
 
         <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>2.2.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
@@ -199,6 +206,13 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <relocations>
+                        <relocation>
+                            <pattern>org.bstats</pattern>
+                            <!-- Replace this with your package! -->
+                            <shadedPattern>cc.carm.plugin.userprefix.bstats</shadedPattern>
+                        </relocation>
+                    </relocations>
                     <filters>
                         <filter>
                             <artifact>*:*</artifact>
