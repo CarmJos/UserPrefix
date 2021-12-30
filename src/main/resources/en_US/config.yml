@@ -2,6 +2,8 @@ version: ${project.version} # DO NOT EDIT IT
 
 debug: false #DEBUG OUT PUT
 
+metrics: true #Metrics stats (to help developer know the stats)
+
 custom-storage:
   # Custom storage location
   # default location is "./prefixes"
