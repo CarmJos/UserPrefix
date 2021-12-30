@@ -100,6 +100,11 @@ public class Main extends JavaPlugin {
 		}
 	}
 
+	public static void error(String message) {
+		log("&c[ERROR] &r" + message);
+	}
+
+
 	public static JavaPlugin getInstance() {
 		return instance;
 	}

@@ -10,23 +10,23 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public class ChatListener implements Listener {
 
-    @EventHandler
-    public void onChat(AsyncPlayerChatEvent event) {
-        if (!PrefixConfig.Functions.Chat.ENABLE.get()) return;
-        String format = PrefixConfig.Functions.Chat.FORMAT.get();
-        if (format == null || format.length() < 1) return;
+	@EventHandler
+	public void onChat(AsyncPlayerChatEvent event) {
+		if (!PrefixConfig.Functions.Chat.ENABLE.get()) return;
+		String format = PrefixConfig.Functions.Chat.FORMAT.get();
+		if (format == null || format.length() < 1) return;
 
-        if (!MessageUtil.hasPlaceholderAPI()) return;
+		if (!MessageUtil.hasPlaceholderAPI()) return;
 
-        try {
-            event.setFormat(PlaceholderAPI.setPlaceholders(event.getPlayer(), format));
-        } catch (Exception exception) {
-            Main.log("Please check the chat configuration.");
-            Main.log("请检查配置文件中聊天相关是否配置正确。");
-            exception.printStackTrace();
-        }
+		try {
+			event.setFormat(PlaceholderAPI.setPlaceholders(event.getPlayer(), format));
+		} catch (Exception exception) {
+			Main.error("请检查配置文件中聊天相关是否配置正确。");
+			Main.error("Please check the chat configuration.");
+			exception.printStackTrace();
+		}
 
-    }
+	}
 
 
 }
