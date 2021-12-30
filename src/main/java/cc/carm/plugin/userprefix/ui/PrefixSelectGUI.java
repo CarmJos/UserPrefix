@@ -44,9 +44,9 @@ public class PrefixSelectGUI extends AutoPagedGUI {
 
         for (ConfiguredPrefix prefix : prefixList) {
             if (prefix.getIdentifier().equals(usingPrefix.getIdentifier())) {
-                addItem(new GUIItem(prefix.getItemWhenUsing() != null ? prefix.getItemWhenUsing() : prefix.getItemHasPermission()));
+                addItem(new GUIItem(prefix.getItemWhenUsing(player) != null ? prefix.getItemWhenUsing(player) : prefix.getItemHasPermission(player)));
             } else if (UserManager.isPrefixUsable(player, prefix)) {
-                addItem(new GUIItem(prefix.getItemHasPermission()) {
+                addItem(new GUIItem(prefix.getItemHasPermission(player)) {
                     @Override
                     public void onClick(ClickType type) {
                         //再次检查，防止打开GUI后、选择前的时间段内权限消失
@@ -63,7 +63,7 @@ public class PrefixSelectGUI extends AutoPagedGUI {
                     }
                 });
             } else {
-                addItem(new GUIItem(prefix.getItemNoPermission()));
+                addItem(new GUIItem(prefix.getItemNoPermission(player)));
             }
         }
 
