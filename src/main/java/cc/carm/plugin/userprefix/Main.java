@@ -15,12 +15,14 @@ import cc.carm.plugin.userprefix.util.ColorParser;
 import cc.carm.plugin.userprefix.util.MessageUtil;
 import net.luckperms.api.event.user.UserDataRecalculateEvent;
 import org.bstats.bukkit.Metrics;
+import org.bstats.charts.SimplePie;
 import org.bstats.charts.SingleLineChart;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -62,6 +64,13 @@ public class Main extends JavaPlugin {
 			log("启用统计数据...");
 			metrics = new Metrics(this, 13776);
 			metrics.addCustomChart(new SingleLineChart("active_prefixes", () -> PrefixManager.getPrefixes().size()));
+			metrics.addCustomChart(new SimplePie("custom_storage", () -> PrefixConfig.CustomStorage.ENABLE.get() ? "ENABLE" : "DISABLE"));
+			metrics.addCustomChart(new SimplePie("lp_version", () -> ServiceManager.getService().getPluginMetadata().getVersion()));
+			metrics.addCustomChart(new SimplePie("papi_version", () -> {
+				Plugin plugin = Bukkit.getPluginManager().getPlugin("PlaceholderAPI");
+				if (plugin == null) return "Not installed";
+				else return plugin.getDescription().getVersion();
+			}));
 		}
 
 		log("加载完成 ，共耗时 " + (System.currentTimeMillis() - startTime) + " ms 。");
