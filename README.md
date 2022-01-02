@@ -311,7 +311,7 @@ itemNoPermission:
 
 ## 使用统计
 
-![bStats](https://bstats.org/signatures/bukkit/UserPrefix.svg)
+[![bStats](https://bstats.org/signatures/bukkit/UserPrefix.svg)](https://bstats.org/plugin/bukkit/UserPrefix/13776)
 
 ## 支持与捐赠
 
