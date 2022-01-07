@@ -3,6 +3,8 @@ selected:
 expired:
   - "&7您先前使用的前缀 &f%(oldName) &7已到期。"
   - "&7现在已为您重新调整为 &f%(newName) &7。"
+removed:
+  - "&7您先前使用的前缀已被移除，现在已为您重新调整为 &f%(newName) &7。"
 reload:
   - "&a&l重载完成！&7共耗时 &f%(time)ms&7。"
 help:

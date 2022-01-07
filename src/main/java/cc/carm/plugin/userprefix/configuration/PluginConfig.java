@@ -7,7 +7,7 @@ import cc.carm.plugin.userprefix.util.ItemStackFactory;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class PrefixConfig {
+public class PluginConfig {
 
 	public static ConfigValue<Boolean> DEBUG = new ConfigValue<>("debug", Boolean.class, false);
 
@@ -62,12 +62,14 @@ public class PrefixConfig {
 
 		public static ConfigMessageList SELECTED = new ConfigMessageList("selected");
 		public static ConfigMessageList EXPIRED = new ConfigMessageList("expired");
+		public static ConfigMessageList REMOVED = new ConfigMessageList("removed");
 
 		public static ConfigMessageList RELOAD = new ConfigMessageList("reload");
 		public static ConfigMessageList HELP = new ConfigMessageList("help");
 
 		public static ConfigMessageList LIST_TITLE = new ConfigMessageList("list-title");
 		public static ConfigMessageList LIST_VALUE = new ConfigMessageList("list-value");
+
 	}
 
 	public static class Sounds {

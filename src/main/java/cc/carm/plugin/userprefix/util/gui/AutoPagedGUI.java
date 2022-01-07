@@ -1,6 +1,6 @@
 package cc.carm.plugin.userprefix.util.gui;
 
-import cc.carm.plugin.userprefix.configuration.PrefixConfig;
+import cc.carm.plugin.userprefix.configuration.PluginConfig;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
@@ -51,7 +51,7 @@ public class AutoPagedGUI extends CommonPagedGUI {
     public void openGUI(Player user) {
         if (previousPageSlot >= 0)
             if (hasPreviousPage()) {
-                setItem(previousPageSlot, new GUIItem(previousPageUI == null ? PrefixConfig.GUI.Items.PREVIOUS_PAGE.get() : previousPageUI) {
+                setItem(previousPageSlot, new GUIItem(previousPageUI == null ? PluginConfig.GUI.Items.PREVIOUS_PAGE.get() : previousPageUI) {
                     @Override
                     public void onClick(ClickType type) {
                         if (type == ClickType.RIGHT) {
@@ -59,7 +59,7 @@ public class AutoPagedGUI extends CommonPagedGUI {
                         } else {
                             goPreviousPage();
                         }
-                        PrefixConfig.Sounds.GUI_CLICK.play(user);
+                        PluginConfig.Sounds.GUI_CLICK.play(user);
                         openGUI(user);
                     }
                 });
@@ -67,7 +67,7 @@ public class AutoPagedGUI extends CommonPagedGUI {
 
         if (nextPageSlot >= 0)
             if (hasNextPage()) {
-                setItem(nextPageSlot, new GUIItem(nextPageUI == null ? PrefixConfig.GUI.Items.NEXT_PAGE.get() : nextPageUI) {
+                setItem(nextPageSlot, new GUIItem(nextPageUI == null ? PluginConfig.GUI.Items.NEXT_PAGE.get() : nextPageUI) {
                     @Override
                     public void onClick(ClickType type) {
                         if (type == ClickType.RIGHT) {
@@ -75,7 +75,7 @@ public class AutoPagedGUI extends CommonPagedGUI {
                         } else {
                             goNextPage();
                         }
-                        PrefixConfig.Sounds.GUI_CLICK.play(user);
+                        PluginConfig.Sounds.GUI_CLICK.play(user);
                         openGUI(user);
                     }
                 });

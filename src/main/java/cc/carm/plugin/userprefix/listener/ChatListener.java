@@ -1,7 +1,7 @@
 package cc.carm.plugin.userprefix.listener;
 
 import cc.carm.plugin.userprefix.Main;
-import cc.carm.plugin.userprefix.configuration.PrefixConfig;
+import cc.carm.plugin.userprefix.configuration.PluginConfig;
 import cc.carm.plugin.userprefix.util.MessageUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.event.EventHandler;
@@ -12,8 +12,8 @@ public class ChatListener implements Listener {
 
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent event) {
-		if (!PrefixConfig.Functions.Chat.ENABLE.get()) return;
-		String format = PrefixConfig.Functions.Chat.FORMAT.get();
+		if (!PluginConfig.Functions.Chat.ENABLE.get()) return;
+		String format = PluginConfig.Functions.Chat.FORMAT.get();
 		if (format == null || format.length() < 1) return;
 
 		if (!MessageUtil.hasPlaceholderAPI()) return;

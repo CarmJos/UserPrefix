@@ -3,6 +3,8 @@ selected:
 expired:
   - "&7Your prefix &f%(oldName) &7has expired,"
   - "&7Now the prefix is changed to &f%(newName) &7."
+removed:
+  - "&7Your using prefix has been removed, now the prefix is changed to &f%(newName) &7."
 reload:
   - "&a&lReload completed！&7costs &f%(time)ms&7."
 help:

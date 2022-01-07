@@ -1,6 +1,6 @@
 package cc.carm.plugin.userprefix.command;
 
-import cc.carm.plugin.userprefix.configuration.PrefixConfig;
+import cc.carm.plugin.userprefix.configuration.PluginConfig;
 import cc.carm.plugin.userprefix.manager.ConfigManager;
 import cc.carm.plugin.userprefix.manager.PrefixManager;
 import cc.carm.plugin.userprefix.manager.UserManager;
@@ -22,10 +22,10 @@ public class UserPrefixAdminCommand implements CommandExecutor {
         if (args.length == 1) {
             String aim = args[0];
             if (aim.equalsIgnoreCase("list")) {
-                MessageUtil.sendWithPlaceholders(sender, PrefixConfig.Messages.LIST_TITLE.get());
+                MessageUtil.sendWithPlaceholders(sender, PluginConfig.Messages.LIST_TITLE.get());
                 for (ConfiguredPrefix value : PrefixManager.getPrefixes().values()) {
                     MessageUtil.sendWithPlaceholders(
-                            sender, PrefixConfig.Messages.LIST_VALUE.get(),
+                            sender, PluginConfig.Messages.LIST_VALUE.get(),
                             new String[]{
                                     "%(weight)", "%(identifier)",
                                     "%(name)", "%(permission)",
@@ -54,7 +54,7 @@ public class UserPrefixAdminCommand implements CommandExecutor {
                     UserManager.updatePrefixView(onlinePlayer, false);
                 }
                 MessageUtil.sendWithPlaceholders(
-                        sender, PrefixConfig.Messages.RELOAD.get(),
+                        sender, PluginConfig.Messages.RELOAD.get(),
                         new String[]{"%(time)"}, new Object[]{(System.currentTimeMillis() - s1)}
                 );
                 return true;
@@ -65,7 +65,7 @@ public class UserPrefixAdminCommand implements CommandExecutor {
     }
 
     public static boolean help(CommandSender sender) {
-        MessageUtil.send(sender, PrefixConfig.Messages.HELP.get());
+        MessageUtil.send(sender, PluginConfig.Messages.HELP.get());
         return true;
     }
 

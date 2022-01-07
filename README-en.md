@@ -37,16 +37,22 @@ For development dependencies, please see  [Dependencies](https://github.com/Carm
 
 - **Theoretically** support ALL MineCraft Versions.
 - Reloading the configuration will automatically refresh the prefix of all players.
-- Real-time judgment and feedback to the player when permissions are changed. [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/listener/processor/UserNodeUpdateProcessor.java)
+- Real-time judgment and feedback to the player when permissions are
+  changed. [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/listener/processor/UserNodeUpdateProcessor.java)
 - Configurable sounds and messages.
 - The prefix icon can be configured as "Selected", "Has Permission" and “No Permission”.
     - Item configuration is natively configured through ItemStack, which supports all MC settings!
 - TabList is automatically sorted according to the weight of the prefix (if there is a conflict, it can be turned off)
-- The prefix display on the player name (can be turned off if there is a conflict) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/nametag/UserNameTag.java)
-- Simple Chat Format Placeholder support. (Not Recommended) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/listener/ChatListener.java)
-- GUI with automatic sorting and page turning! [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/ui/PrefixSelectGUI.java)
-- Support PlaceholderAPI variables! [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/hooker/UserPrefixExpansion.java)
-- Support [Hex Color](https://www.hexcolortool.com/)! (Version 1.16 and above)  `&(#Color)` [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/util/ColorParser.java)
+- The prefix display on the player name (can be turned off if there is a
+  conflict) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/nametag/UserNameTag.java)
+- Simple Chat Format Placeholder support. (Not
+  Recommended) [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/listener/ChatListener.java)
+- GUI with automatic sorting and page
+  turning! [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/ui/PrefixSelectGUI.java)
+- Support PlaceholderAPI
+  variables! [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/hooker/UserPrefixExpansion.java)
+- Support [Hex Color](https://www.hexcolortool.com/)! (Version 1.16 and
+  above)  `&(#Color)` [✈](https://github.com/CarmJos/UserPrefix/blob/master/src/main/java/cc/carm/plugin/userprefix/util/ColorParser.java)
     - Example: LightSlateBlue `&(#8470FF)` 、 DarkSlateBlue `&(#483D8B)`
 
 ## Notice
@@ -112,7 +118,6 @@ the [English Version here](https://github.com/CarmJos/UserPrefix/blob/master/src
 <details>
   <summary>Click to see plugin configuration</summary>
 
-
 ```yaml
 version: ${project.version} # DO NOT EDIT IT
 
@@ -124,7 +129,7 @@ custom-storage:
   # Support absolute file path , such as "/etc/minecraft/configurations/prefixes/"
   enable: false
   path: "prefixes/" # Must be a folder!
-  
+
 GUI:
   title: "&f&lMy Prefixes List" # Title of the GUI
   items:
@@ -212,6 +217,8 @@ selected:
 expired:
   - "&7Your prefix &f%(oldName) &7has expired,"
   - "&7Now the prefix is changed to &f%(newName) &7."
+removed:
+  - "&7Your using prefix has been removed, now the prefix is changed to &f%(newName) &7."
 reload:
   - "&a&lReload completed！&7costs &f%(time)ms&7."
 help:

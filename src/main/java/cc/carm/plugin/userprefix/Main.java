@@ -2,7 +2,7 @@ package cc.carm.plugin.userprefix;
 
 import cc.carm.plugin.userprefix.command.UserPrefixAdminCommand;
 import cc.carm.plugin.userprefix.command.UserPrefixCommand;
-import cc.carm.plugin.userprefix.configuration.PrefixConfig;
+import cc.carm.plugin.userprefix.configuration.PluginConfig;
 import cc.carm.plugin.userprefix.hooker.UserPrefixExpansion;
 import cc.carm.plugin.userprefix.listener.ChatListener;
 import cc.carm.plugin.userprefix.listener.UserListener;
@@ -30,7 +30,6 @@ import org.jetbrains.annotations.Nullable;
 public class Main extends JavaPlugin {
 
 	private static Main instance;
-	private static Metrics metrics;
 
 	@Override
 	public void onEnable() {
@@ -60,11 +59,11 @@ public class Main extends JavaPlugin {
 			log("若您想使用变量进行前缀的显示，请安装PlaceholderAPI！");
 		}
 
-		if (PrefixConfig.METRICS.get()) {
+		if (PluginConfig.METRICS.get()) {
 			log("启用统计数据...");
-			metrics = new Metrics(this, 13776);
+			Metrics metrics = new Metrics(this, 13776);
 			metrics.addCustomChart(new SingleLineChart("active_prefixes", () -> PrefixManager.getPrefixes().size()));
-			metrics.addCustomChart(new SimplePie("custom_storage", () -> PrefixConfig.CustomStorage.ENABLE.get() ? "ENABLE" : "DISABLE"));
+			metrics.addCustomChart(new SimplePie("custom_storage", () -> PluginConfig.CustomStorage.ENABLE.get() ? "ENABLE" : "DISABLE"));
 			metrics.addCustomChart(new SimplePie("lp_version", () -> ServiceManager.getService().getPluginMetadata().getVersion()));
 			metrics.addCustomChart(new SimplePie("papi_version", () -> {
 				Plugin plugin = Bukkit.getPluginManager().getPlugin("PlaceholderAPI");
@@ -113,7 +112,7 @@ public class Main extends JavaPlugin {
 	}
 
 	public static void debug(String message) {
-		if (PrefixConfig.DEBUG.get()) {
+		if (PluginConfig.DEBUG.get()) {
 			log("[DEBUG] " + message);
 		}
 	}
