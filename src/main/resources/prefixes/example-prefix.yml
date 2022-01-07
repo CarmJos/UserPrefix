@@ -9,7 +9,7 @@ name: "&b&lPro&b"
 
 # 内容 [必须]
 # 显示在名字前面的内容
-content: "§b§lPro §b"
+content: "&b&lPro &b"
 
 # 权重 [必须]
 # 用于GUI、TabList的排序和自动前缀显示
@@ -30,14 +30,14 @@ itemHasPermission: #
   meta:
     ==: ItemMeta
     meta-type: UNSPECIFIC
-    display-name: "§b§lPro §b会员前缀"
+    display-name: "&b&lPro &b会员前缀"
     lore:
-      - "§7Pro会员专属称号"
+      - "&7Pro会员专属称号"
       - ""
-      - "§f尊贵的Pro会员专属称号。"
-      - "§f您将获得多种特权与更好的游戏体验。"
+      - "&f尊贵的Pro会员专属称号。"
+      - "&f您将获得多种特权与更好的游戏体验。"
       - ""
-      - "§a➥ 点击切换到该前缀"
+      - "&a➥ 点击切换到该前缀"
 
 # 正在使用时显示的物品 [非必需]
 # 当用户正在使用时会显示这个物品，不配置即自动加载“itemHasPermission”
@@ -47,16 +47,16 @@ itemUsing:
   meta:
     ==: ItemMeta
     meta-type: UNSPECIFIC
-    display-name: "§b§lPro §b会员前缀"
+    display-name: "&b&lPro &b会员前缀"
     enchants:
       PROTECTION_ENVIRONMENTAL: 1 #加一个附魔这样看上去就像是选中了的
     lore:
-      - "§7Pro会员专属称号"
+      - "&7Pro会员专属称号"
       - ""
-      - "§f尊贵的Pro会员专属称号。"
-      - "§f您将获得多种特权与更好的游戏体验。"
+      - "&f尊贵的Pro会员专属称号。"
+      - "&f您将获得多种特权与更好的游戏体验。"
       - ""
-      - "§a✔ 您正在使用该前缀"
+      - "&a✔ 您正在使用该前缀"
 
 # 没有权限时显示的物品 [非必需]
 # 如果没有权限就会显示这个item。如果不配置该物品，则玩家没有使用权限时不会显示在GUI里面。
@@ -67,12 +67,12 @@ itemNoPermission:
   meta:
     ==: ItemMeta
     meta-type: UNSPECIFIC
-    display-name: "§b§lPro+ §b会员前缀 §c(未拥有)"
+    display-name: "&b&lPro+ &b会员前缀 &c(未拥有)"
     lore:
-      - "§7Pro+会员专属称号"
+      - "&7Pro+会员专属称号"
       - ""
-      - "§f尊贵的Pro会员专属称号。"
-      - "§f您将获得多种特权与更好的游戏体验。"
-      - "§f您可以输入 §b/vip §f指令查看详细特权！"
+      - "&f尊贵的Pro会员专属称号。"
+      - "&f您将获得多种特权与更好的游戏体验。"
+      - "&f您可以输入 &b/vip &f指令查看详细特权！"
       - ""
-      - "§e✯ 加入Pro+会员以使用该前缀！"
+      - "&e✯ 加入Pro+会员以使用该前缀！"

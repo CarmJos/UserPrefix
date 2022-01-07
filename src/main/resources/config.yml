@@ -37,20 +37,20 @@ GUI:
       meta:
         ==: ItemMeta
         meta-type: UNSPECIFIC
-        display-name: "§f下一页"
+        display-name: "&f下一页"
         lore:
           - ""
-          - "§f右键可前往最后一页哦~"
+          - "&f右键可前往最后一页哦~"
     previous-page: # 上一页物品，如果没有上一页则不显示
       ==: org.bukkit.inventory.ItemStack
       type: ARROW
       meta:
         ==: ItemMeta
         meta-type: UNSPECIFIC
-        display-name: "§f上一页"
+        display-name: "&f上一页"
         lore:
           - ""
-          - "§f右键可前往第一页哦~"
+          - "&f右键可前往第一页哦~"
 
 Sounds: #相关的声音，注释掉则不播放声音 格式为 【声音名:音量:音调】 或 【声音名:音量】 或 【声音名】
   openGUI: "BLOCK_NOTE_BLOCK_PLING:1:1"
@@ -69,17 +69,17 @@ defaultPrefix:
     meta:
       ==: ItemMeta
       meta-type: UNSPECIFIC
-      display-name: "§f默认玩家前缀 §f(点击切换)"
+      display-name: "&f默认玩家前缀 &f(点击切换)"
       lore:
         - ""
-        - "§a➥ 点击切换到该前缀"
+        - "&a➥ 点击切换到该前缀"
   itemUsing:
     ==: org.bukkit.inventory.ItemStack
     type: NAME_TAG
     meta:
       ==: ItemMeta
       meta-type: UNSPECIFIC
-      display-name: "§f默认玩家前缀"
+      display-name: "&f默认玩家前缀"
       lore:
         - ""
-        - "§a✔ 您正在使用该前缀"
+        - "&a✔ 您正在使用该前缀"

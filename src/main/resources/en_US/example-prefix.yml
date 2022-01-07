@@ -9,7 +9,7 @@ name: "&b&lPro&b"
 
 # Content [Necessary]
 # Use in Placeholders
-content: "§b§lPro §b"
+content: "&b&lPro &b"
 
 # Weight [Necessary]
 # used for sorting in the GUI and TabList
@@ -31,10 +31,10 @@ itemHasPermission:
   meta:
     ==: ItemMeta
     meta-type: UNSPECIFIC
-    display-name: "§b§lVIP Prefix"
+    display-name: "&b&lVIP Prefix"
     lore:
       - ""
-      - "§a➥ Click to  use"
+      - "&a➥ Click to  use"
 
 # itemUsing [Unnecessary]
 # This Item will be displayed when the prefix is selected.
@@ -45,12 +45,12 @@ itemUsing:
   meta:
     ==: ItemMeta
     meta-type: UNSPECIFIC
-    display-name: "§b§lVIP Prefix"
+    display-name: "&b&lVIP Prefix"
     enchants:
       PROTECTION_ENVIRONMENTAL: 1 #Add an enchantment so it looks like it’s selected
     lore:
       - ""
-      - "§a✔ Selected"
+      - "&a✔ Selected"
 
 # itemNoPermission [Unnecessary]
 # If player doesn't have the permission,this item will be displayed.
@@ -62,7 +62,7 @@ itemNoPermission:
   meta:
     ==: ItemMeta
     meta-type: UNSPECIFIC
-    display-name: "§b§lVIP §c(Buy it!)"
+    display-name: "&b&lVIP &c(Buy it!)"
     lore:
       - ""
-      - "§e✯ Buy the VIP to use it!"
+      - "&e✯ Buy the VIP to use it!"

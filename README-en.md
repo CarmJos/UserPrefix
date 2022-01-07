@@ -1,4 +1,4 @@
-![BANNER](https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/banner.png)
+![BANNER](.documentation/images/banner.png)
 
 # UserPrefix Plugin
 
@@ -22,7 +22,7 @@ development.
 
 ## Examples
 
-![example](https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/using-example.png)
+![example](.documentation/images/using-example.png)
 
 ## Dependencies
 
@@ -325,7 +325,7 @@ itemNoPermission:
 ## Support and Donation
 
 This project is support by the  [YourCraft(你的世界)](https://www.ycraft.cn) .
-![TeamLogo](https://raw.githubusercontent.com/CarmJos/UserPrefix/master/img/team-logo.png)
+![TeamLogo](.documentation/images/team-logo.png)
 
 ## Open source agreement
 

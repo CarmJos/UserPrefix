@@ -31,19 +31,8 @@ jobs:
           rm -rf docs
           mkdir -vp docs
           cp -vrf target/apidocs/* docs/
-          cp -vrf JAVADOC-README.md docs/README.md
-
-#      - name: Tidy up
-#        id: tidy
-#        uses: cicirello/javadoc-cleanup@v1
-#        with:
-#          base-url-path: https://carmjos.github.io/userprefix
-#          path-to-root: docs
-#
-#      - name: Log output
-#        run: |
-#          echo "modified-count = ${{ steps.tidy.outputs.modified-count }}"
-
+          cp -vrf .documentation/JAVADOC-README.md docs/README.md
+      
       - name: Generate the sitemap
         id: sitemap
         uses: cicirello/generate-sitemap@v1
