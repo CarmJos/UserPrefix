@@ -13,7 +13,7 @@
 
 本插件基于Spigot实现，**理论上支持全版本**。
 
-The **English version** of the introduction is [here](https://github.com/CarmJos/UserPrefix/blob/master/README-en.md).
+The **English version** of the introduction is [here](README-en.md).
 
 > 本插件已在 [MCBBS](https://www.mcbbs.net/forum.php?mod=viewthread&tid=1261503) 与 [SpigotMC](https://www.spigotmc.org/resources/userprefix-hex-color-support-all-version.96277/) 上发布。
 
@@ -97,219 +97,21 @@ The **English version** of the introduction is [here](https://github.com/CarmJos
 
 ## 配置文件示例
 
-### [基础配置文件](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/config.yml) (config.yml)
+### 基础配置文件 ([`config.yml`](src/main/resources/config.yml))
 
-<details>
-  <summary>展开查看详细基础配置文件</summary>
+详见 [源文件](src/main/resources/messages.yml) 。
 
-```yaml
-version: 2.1.9 # 配置文件版本，一般不会动。
+### 消息配置文件 ([`messages.yml`](src/main/resources/messages.yml))
 
-debug: false #debug输出，开发者用的
+详见 [源文件](src/main/resources/messages.yml) 。
 
-custom-storage:
-  # 自定义存储位置
-  # 默认存储位置为 “插件文件夹”/prefixes
-  # 可以规定到远程文件夹中去寻找前缀相关的设定
-  # 支持绝对文件路径，如 "/etc/minecraft/configurations/prefixes/"
-  enable: false # 是否启用
-  path: "prefixes/" # 一定要指向一个文件夹！
-
-functions:
-  OnNamePrefix: true # 是否给头顶上添加前缀，该方法用到了头顶的那个计分板，如有冲突请关掉哦~
-  autoUsePrefix: true # 自动前缀显示 当玩家没有自己选择一个前缀的时候，会自动使用所拥有的的前缀中权重最高的那一个
-  chat:
-    # 聊天功能
-    # - 我不推荐使用本插件的聊天功能，而是建议使用其他的聊天插件。
-    # - 本插件仅仅提供了**最基本**的格式变量支持，不包含其他任何功能。
-    # - 注意聊天格式需要遵守Bukkit原格式，即不得缺失 “%1$s” 和 “%2$s” 。
-    # - 本插件的聊天功能不影响其他插件对聊天事件的操作。
-    enable: false # 是否启用
-    format: "<%UserPrefix_prefix%%1$s> %2$s" #聊天的格式，注意 “%1$s” 和 “%2$s” 不可缺少，分别代表 玩家名 与 消息内容 。
-
-GUI:
-  title: "&f&l我的前缀 &8| 列表"
-  items:
-    # 【必须】 GUI中可能存在的其他物品
-    next-page: # 下一页物品，如果没有下一页则不显示
-      ==: org.bukkit.inventory.ItemStack
-      type: ARROW
-      meta:
-        ==: ItemMeta
-        meta-type: UNSPECIFIC
-        display-name: "§f下一页"
-        lore:
-          - ""
-          - "§f右键可前往最后一页哦~"
-    previous-page: # 上一页物品，如果没有上一页则不显示
-      ==: org.bukkit.inventory.ItemStack
-      type: ARROW
-      meta:
-        ==: ItemMeta
-        meta-type: UNSPECIFIC
-        display-name: "§f上一页"
-        lore:
-          - ""
-          - "§f右键可前往第一页哦~"
-
-Sounds: #相关的声音，注释掉则不播放声音 
-  # 格式为 【声音名:音量:音调】 或 【声音名:音量】 或 【声音名】
-  openGUI: "BLOCK_NOTE_BLOCK_PLING:1:1"
-  guiClick: "UI_BUTTON_CLICK"
-  prefixChange: "ENTITY_VILLAGER_YES"
-  prefixExpired: "ENTITY_VILLAGER_NO"
-
-# 默认前缀的配置
-# 默认前缀的权重为0哦
-defaultPrefix:
-  name: "默认前缀"
-  content: "&b"
-  itemNotUsing:
-    ==: org.bukkit.inventory.ItemStack
-    type: NAME_TAG
-    meta:
-      ==: ItemMeta
-      meta-type: UNSPECIFIC
-      display-name: "§f默认玩家前缀 §f(点击切换)"
-      lore:
-        - ""
-        - "§a➥ 点击切换到该前缀"
-  itemUsing:
-    ==: org.bukkit.inventory.ItemStack
-    type: NAME_TAG
-    meta:
-      ==: ItemMeta
-      meta-type: UNSPECIFIC
-      display-name: "§f默认玩家前缀"
-      lore:
-        - ""
-        - "§a✔ 您正在使用该前缀"
-```
-
-</details>
-
-### [消息配置文件](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/messages.yml) (messages.yml)
-
-<details>
-  <summary>展开查看详细消息配置文件</summary>
-
-```yaml
-selected:
-  - "&7您选择了 &f%(name) &7作为当前显示的前缀。"
-expired:
-  - "&7您先前使用的前缀 &f%(oldName) &7已到期。"
-  - "&7现在已为您重新调整为 &f%(newName) &7。"
-removed:
-  - "&7您先前使用的前缀已被移除，现在已为您重新调整为 &f%(newName) &7。"
-reload:
-  - "&a&l重载完成！&7共耗时 &f%(time)ms&7。"
-help:
-  - "&3&l用户前缀系统 &f帮助"
-  - "&8#/upa&f list"
-  - "&8- &7查看当前前缀列表。"
-  - "&8#/upa&f reload"
-  - "&8- &7重载前缀配置。"
-list-title:
-  - "&3&l用户前缀系统 &f前缀列表"
-list-value:
-  - "&8#%(weight) &f%(identifier)"
-  - "&8- &7显示名 &r%(name) &7权限 &r%(permission)"
-  - "&8- &7内容示例&r %(content) %(sender_name)"
-```
-
-</details>
-
-### [前缀配置文件](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/prefixes/example-prefix.yml) (prefixes/*.yml)
+### 前缀配置文件 ([`prefixes/*.yml`](src/main/resources/prefixes/example-prefix.yml))
 
 所有前缀均为单独的配置文件，存放于 `插件配置目录/prefixes` 下，便于管理。
 
 文件名理论上可以随便取，推荐使用英文，部分符号可能会影响正常读取，请避免使用。
 
-
-<details>
-  <summary>展开查看示例前缀配置文件</summary>
-
-```yaml
-# 唯一标识 [必须]
-# 将用于记录玩家所选的前缀，以及用于数据的缓存。
-# 必须 必须 必须 保持唯一！
-identifier: "pro"
-
-# 名字 [必须]
-# 切换的时候左下角会弹提示 用的就是这个名字
-name: "&b&lPro&b"
-
-# 内容 [必须]
-# 显示在名字前面的内容
-content: "§b§lPro §b"
-
-# 权重 [必须]
-# 用于GUI、TabList的排序和自动前缀显示
-# 在GUI中，权重越高的会显示在越后面
-# 在TabList中，权重越高的会显示在越上面
-weight: 1
-
-# 检测的权限 [非必须]
-# 如果没有就是人人都能用，也代表不用配置“itemNoPermission”了(因为压根不可能显示没权限时候的物品)
-permission: "yc.pro"
-
-# 有权限时显示的物品  [必须]
-# 当用户有权限且未选中时，会显示该物品
-itemHasPermission: #
-  ==: org.bukkit.inventory.ItemStack
-  type: DIAMOND
-  meta:
-    ==: ItemMeta
-    meta-type: UNSPECIFIC
-    display-name: "§b§lPro §b会员前缀"
-    lore:
-      - "§7Pro会员专属称号"
-      - ""
-      - "§f尊贵的Pro会员专属称号。"
-      - "§f您将获得多种特权与更好的游戏体验。"
-      - ""
-      - "§a➥ 点击切换到该前缀"
-
-# 正在使用时显示的物品 [非必需]
-# 当用户正在使用时会显示这个物品，不配置即自动加载“itemHasPermission”
-itemUsing:
-  ==: org.bukkit.inventory.ItemStack
-  type: DIAMOND
-  meta:
-    ==: ItemMeta
-    meta-type: UNSPECIFIC
-    display-name: "§b§lPro §b会员前缀"
-    enchants:
-      PROTECTION_ENVIRONMENTAL: 1 #加一个附魔这样看上去就像是选中了的
-    lore:
-      - "§7Pro会员专属称号"
-      - ""
-      - "§f尊贵的Pro会员专属称号。"
-      - "§f您将获得多种特权与更好的游戏体验。"
-      - ""
-      - "§a✔ 您正在使用该前缀"
-
-# 没有权限时显示的物品 [非必需]
-# 如果没有权限就会显示这个item。如果不配置该物品，则玩家没有使用权限时不会显示在GUI里面。
-itemNoPermission:
-  ==: org.bukkit.inventory.ItemStack
-  type: INK_SACK
-  damage: 8
-  meta:
-    ==: ItemMeta
-    meta-type: UNSPECIFIC
-    display-name: "§b§lPro+ §b会员前缀 §c(未拥有)"
-    lore:
-      - "§7Pro+会员专属称号"
-      - ""
-      - "§f尊贵的Pro会员专属称号。"
-      - "§f您将获得多种特权与更好的游戏体验。"
-      - "§f您可以输入 §b/vip §f指令查看详细特权！"
-      - ""
-      - "§e✯ 加入Pro+会员以使用该前缀！"
-```
-
-</details>
+您可以 [点击这里](src/main/resources/prefixes/example-prefix.yml) 查看示例前缀配置文件。
 
 ## 使用统计
 

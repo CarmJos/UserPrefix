@@ -26,7 +26,8 @@ development.
 
 ## Dependencies
 
-- **[Necessary]** Plugin developed based on [Spigot-API](https://hub.spigotmc.org/stash/projects/SPIGOT) and [BukkitAPI](http://bukkit.org/).
+- **[Necessary]** Plugin developed based on [Spigot-API](https://hub.spigotmc.org/stash/projects/SPIGOT)
+  and [BukkitAPI](http://bukkit.org/).
 - **[Necessary]** Plugin data storage base on  [LuckPerms](https://www.spigotmc.org/resources/luckperms.28140/).
 - **[Recommend]** Placeholders based on [PlaceholderAPI](https://www.spigotmc.org/resources/6245/) .
 
@@ -43,9 +44,9 @@ For development dependencies, please see  [Dependencies](https://github.com/Carm
 - TabList is automatically sorted according to the weight of the prefix (if there is a conflict, it can be turned off)
 - The prefix display on the player name (can be turned off if there has any conflict)
 - Simple Chat Format Placeholder support. (Not Recommended)
-- GUI with automatic sorting and page turning! 
+- GUI with automatic sorting and page turning!
 - Support PlaceholderAPI variables!
-- Support [Hex Color](https://www.hexcolortool.com/)! (Version 1.16 and above)  `&(#Color)` 
+- Support [Hex Color](https://www.hexcolortool.com/)! (Version 1.16 and above)  `&(#Color)`
     - Example: LightSlateBlue `&(#8470FF)` 、 DarkSlateBlue `&(#483D8B)`
 
 ## Notice
@@ -103,217 +104,20 @@ type `/papi info UserPrefix` to see all the placeholders.
 
 ## Configuration files
 
-### [Plugin Configuration](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/en_US/config.yml) (config.yml)
+### Plugin Configuration ([`config.yml`](src/main/resources/en_US/config.yml) .
 
 Notice: The default configuration is based on Chinese. You can find
-the [English Version here](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/en_US/config.yml).
+the [English Version here](src/main/resources/en_US/config.yml).
 
-<details>
-  <summary>Click to see plugin configuration</summary>
+### Messages Configuration ([`messages.yml`](src/main/resources/en_US/messages.yml))
 
-```yaml
-version: ${project.version} # DO NOT EDIT IT
+Please see the [Source File](src/main/resources/en_US/messages.yml) .
 
-debug: false #DEBUG OUT PUT
-
-custom-storage:
-  # Custom storage location
-  # default location is "./prefixes"
-  # Support absolute file path , such as "/etc/minecraft/configurations/prefixes/"
-  enable: false
-  path: "prefixes/" # Must be a folder!
-
-GUI:
-  title: "&f&lMy Prefixes List" # Title of the GUI
-  items:
-    next-page: # only show has next page
-      ==: org.bukkit.inventory.ItemStack
-      type: ARROW
-      meta:
-        ==: ItemMeta
-        meta-type: UNSPECIFIC
-        display-name: "§fNext Page"
-        lore:
-          - ""
-          - "§fRight-Click to the last page"
-    previous-page: # only show has previous page
-      ==: org.bukkit.inventory.ItemStack
-      type: ARROW
-      meta:
-        ==: ItemMeta
-        meta-type: UNSPECIFIC
-        display-name: "§fPrevious Page"
-        lore:
-          - ""
-          - "§fRight-Click to the first page"
-
-functions:
-  # Whether to add a prefix to the top of the head,
-  # this method uses the scoreboard above the head,
-  # please turn it off if there is a conflict.
-  OnNamePrefix: true
-  # Automatic prefix select.
-  # When the player does not choose a prefix by himself,
-  # the prefix with the highest weight will be used~~~~ automatically
-  autoUsePrefix: true
-  chat:
-    # Chat Function
-    # - I recommend using other chat plugins instead of using this plugin,
-    # - this plugin only provides very basic chat format placeholders.
-    # - Notice that: format must has “%1$s” and “%2$s” for PlayerName and Message (Bukkit Chat Event)
-    enable: false
-    format: "<%UserPrefix_prefix%%1$s> %2$s"
-
-Sounds:
-  # Format is [SOUND_NAME:Volume:Pitch] or [SOUND_NAME:Volume] or [SOUND_NAME]
-  openGUI: "BLOCK_NOTE_BLOCK_PLING:1:1"
-  guiClick: "UI_BUTTON_CLICK"
-  prefixChange: "ENTITY_VILLAGER_YES"
-  prefixExpired: "ENTITY_VILLAGER_NO"
-
-# The default prefix's weight is 0.
-defaultPrefix:
-  name: "Default prefix"
-  content: "&b"
-  itemNotUsing:
-    ==: org.bukkit.inventory.ItemStack
-    type: NAME_TAG
-    meta:
-      ==: ItemMeta
-      meta-type: UNSPECIFIC
-      display-name: "§fThe default prefix §f(Click to select)"
-      lore:
-        - ""
-        - "§a➥ Click to use"
-  itemUsing:
-    ==: org.bukkit.inventory.ItemStack
-    type: NAME_TAG
-    meta:
-      ==: ItemMeta
-      meta-type: UNSPECIFIC
-      display-name: "§fThe default prefix"
-      lore:
-        - ""
-        - "§a✔ Selected"
-```
-
-</details>
-
-### [Messages Configuration](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/en_US/messages.yml)  (messages.yml)
-
-<details>
-  <summary>Click to see messages configuration</summary>
-
-```yaml
-selected:
-  - "&7You have selected the  &f%(name) &7as current prefix."
-expired:
-  - "&7Your prefix &f%(oldName) &7has expired,"
-  - "&7Now the prefix is changed to &f%(newName) &7."
-removed:
-  - "&7Your using prefix has been removed, now the prefix is changed to &f%(newName) &7."
-reload:
-  - "&a&lReload completed！&7costs &f%(time)ms&7."
-help:
-  - "&3&lUserPrefixAdmin &fHelp"
-  - "&8#/upa&f list"
-  - "&8- &7Show configured prefixes."
-  - "&8#/upa&f reload"
-  - "&8- &7Reload configuration."
-list-title:
-  - "&3&lUserPrefixAdmin &fList"
-list-value:
-  - "&8#%(weight) &f%(identifier)"
-  - "&8- &7Name &r%(name) &7Perm &r%(permission)"
-  - "&8- &7Example&r %(content) %(sender_name)"
-
-```
-
-</details>
-
-### [Prefixes Configuration](https://github.com/CarmJos/UserPrefix/blob/master/src/main/resources/en_US/example-prefix.yml) (/prefixes/*.yml)
+### Prefixes Configuration ([`prefixes/*.yml`](src/main/resources/en_US/example-prefix.yml))
 
 All prefixes are separate configuration files, stored in the `<Data Folder>/prefixes/` for easy management.
 
 Some symbols in file name may affect reading, please avoid using them.
-
-<details>
-  <summary>Example prefix configuration.</summary>
-
-```yaml
-# identifier [Necessary]
-# This will be used for data-storage.
-identifier: "pro"
-
-# Name [Necessary]
-# Use in messages.
-name: "&b&lPro&b"
-
-# Content [Necessary]
-# Use in Placeholders
-content: "§b§lPro §b"
-
-# Weight [Necessary]
-# used for sorting in the GUI and TabList
-# In GUI : the larger is displayed at the back
-# At TabList : the larger is displayed at the top
-weight: 1
-
-# Permission [Unnecessary]
-# If there is no permission for detection, everyone can use it,
-# which means there is no need to configure "itemNoPermission"
-# (because it is impossible to display items without permission at all)
-permission: "yc.vip"
-
-# itemHasPermission  [Necessary]
-# This Item will be displayed when player has permission
-itemHasPermission:
-  ==: org.bukkit.inventory.ItemStack
-  type: DIAMOND
-  meta:
-    ==: org.bukkit.inventory.ItemStack
-      type: DIAMOND
-      meta:
-        ==: ItemMeta
-        meta-type: UNSPECIFIC
-        display-name: "§b§lVIP Prefix"
-        lore:
-          - ""
-          - "§a➥ Click to  use"
-
-# itemUsing [Unnecessary]
-# This Item will be displayed when the prefix is selected.
-# If there is no such configuration, it will automatically display "itemHasPermission".
-itemUsing:
-  ==: org.bukkit.inventory.ItemStack
-    type: DIAMOND
-    meta:
-      ==: ItemMeta
-      meta-type: UNSPECIFIC
-      display-name: "§b§lVIP Prefix"
-      enchants:
-        PROTECTION_ENVIRONMENTAL: 1 #Add an enchantment so it looks like it’s selected
-      lore:
-        - ""
-        - "§a✔ Selected"
-
-# itemNoPermission [Unnecessary]
-# If player doesn't have the permission,this item will be displayed.
-# If this item is not configured, it will not be displayed in the GUI when the player does not have permission to use it.
-itemNoPermission:
-  ==: org.bukkit.inventory.ItemStack
-    type: INK_SACK
-    damage: 8
-    meta:
-      ==: ItemMeta
-      meta-type: UNSPECIFIC
-      display-name: "§b§lVIP §c(Buy it!)"
-      lore:
-        - ""
-        - "§e✯ Buy the VIP to use it!"
-```
-
-</details>
 
 ## Support and Donation
 
