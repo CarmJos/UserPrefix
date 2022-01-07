@@ -81,7 +81,7 @@ This plugin's Commands are based on Chinese!
 /UserPrefix or /prefix #Open prefix GUI
 /UserPrefixAdmin # View Admin Command Help
 /UserPrefixAdmin reload # Reload Config
-/UserPrefixAdmin list # List all configured prefixes.~~~~
+/UserPrefixAdmin list # List all configured prefixes.
 ```
 
 ## Placeholders (PlaceholderAPI)
