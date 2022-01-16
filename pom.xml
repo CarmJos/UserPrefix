@@ -200,14 +200,12 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
-                        <configuration>
-                            <finalName>${project.name}-${project.version}</finalName>
-                            <outputDirectory>${project.basedir}/asset/</outputDirectory>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
+                    <finalName>${project.name}-${project.version}</finalName>
+                    <outputDirectory>${project.basedir}/asset/</outputDirectory>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
