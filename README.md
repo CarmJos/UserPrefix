@@ -1,5 +1,7 @@
 ![BANNER](.documentation/images/banner.png)
 
+README LANGUAGES [ [**中文**](README.md) | [English](README-en.md)  ]
+
 # 用户前缀系统插件
 
 [![CodeFactor](https://www.codefactor.io/repository/github/carmjos/userprefix/badge?s=b76fec1f64726b5f19989aace6adb5f85fdab840)](https://www.codefactor.io/repository/github/carmjos/userprefix)
@@ -12,8 +14,6 @@
 轻便、高效、实时的用户前缀系统。
 
 本插件基于Spigot实现，**理论上支持全版本**。
-
-The **English version** of the introduction is [here](README-en.md).
 
 > 本插件已在 [MCBBS](https://www.mcbbs.net/forum.php?mod=viewthread&tid=1261503) 与 [SpigotMC](https://www.spigotmc.org/resources/userprefix-hex-color-support-all-version.96277/) 上发布。
 

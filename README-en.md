@@ -1,5 +1,7 @@
 ![BANNER](.documentation/images/banner.png)
 
+README LANGUAGES [ [中文](README.md) | [**English**](README-en.md)  ]
+
 # UserPrefix Plugin
 
 [![CodeFactor](https://www.codefactor.io/repository/github/carmjos/userprefix/badge?s=b76fec1f64726b5f19989aace6adb5f85fdab840)](https://www.codefactor.io/repository/github/carmjos/userprefix)

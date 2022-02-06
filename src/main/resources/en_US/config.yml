@@ -4,6 +4,9 @@ debug: false #DEBUG OUT PUT
 
 metrics: true #Metrics stats (to help developer know the stats)
 
+# Auto check the updates.
+check-update: true
+
 custom-storage:
   # Custom storage location
   # default location is "./prefixes"

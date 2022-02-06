@@ -7,6 +7,11 @@ debug: false
 # 当然，您也可以选择在这里关闭，或在plugins/bStats下的配置文件中关闭。
 metrics: true
 
+# 检查更新设定
+# 该选项用于插件判断是否要检查更新，若您不希望插件检查更新并提示您，可以选择关闭。
+# 检查更新为异步操作，绝不会影响性能与使用体验。
+check-update: true
+
 custom-storage:
   # 自定义存储位置
   # 默认存储位置为 “插件文件夹”/prefixes
