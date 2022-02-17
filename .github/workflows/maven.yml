@@ -32,10 +32,10 @@ jobs:
 
       - name: "Target Staging"
         run: |
-          - mkdir artifacts
-          - cp -vrf target/ artifacts/target/
-          - cp -vrf asset/*.jar artifacts
-          
+          mkdir artifacts
+          cp -vrf target/ artifacts/target/
+          cp -vrf asset/*.jar artifacts
+
       - name: "Upload artifact"
         uses: actions/upload-artifact@v2
         with:
