@@ -31,9 +31,13 @@ jobs:
           MAVEN_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: "Target Staging"
-        run: mkdir staging && cp target/*.jar staging
+        run: |
+          - mkdir artifacts
+          - cp -vrf target/ artifacts/target/
+          - cp -vrf asset/*.jar artifacts
+          
       - name: "Upload artifact"
         uses: actions/upload-artifact@v2
         with:
           name: Artifact
-          path: staging
+          path: artifacts
