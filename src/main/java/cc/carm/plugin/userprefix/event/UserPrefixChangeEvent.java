@@ -1,11 +1,16 @@
 package cc.carm.plugin.userprefix.event;
 
+import cc.carm.plugin.userprefix.Main;
 import cc.carm.plugin.userprefix.model.ConfiguredPrefix;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Consumer;
 
 public class UserPrefixChangeEvent extends UserPrefixEvent implements Cancellable {
 
@@ -52,4 +57,19 @@ public class UserPrefixChangeEvent extends UserPrefixEvent implements Cancellabl
 	public HandlerList getHandlers() {
 		return handler;
 	}
+
+	public static void call(@NotNull Player who,
+							@Nullable ConfiguredPrefix before,
+							@NotNull ConfiguredPrefix after,
+							@Nullable Consumer<@Nullable ConfiguredPrefix> finish) {
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				UserPrefixChangeEvent event = new UserPrefixChangeEvent(who, before, after);
+				Bukkit.getPluginManager().callEvent(event);
+				if (finish != null) finish.accept(event.isCancelled() ? null : event.getAfter());
+			}
+		}.runTask(Main.getInstance());
+	}
+
 }

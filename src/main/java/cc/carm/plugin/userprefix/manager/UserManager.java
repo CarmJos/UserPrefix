@@ -121,7 +121,7 @@ public class UserManager {
 
 			if (currentPrefix != null) {
 				//当前前缀不为空，则代表属于前缀过期的情况
-				Bukkit.getPluginManager().callEvent(new UserPrefixExpireEvent(player, currentPrefix));
+				UserPrefixExpireEvent.call(player, currentPrefix);
 
 				// 发送消息
 				PluginConfig.Messages.EXPIRED.sendWithPlaceholders(player,
@@ -139,17 +139,16 @@ public class UserManager {
 				);
 			}
 
-			UserPrefixChangeEvent event = new UserPrefixChangeEvent(player, currentPrefix, newPrefix);
-			Bukkit.getPluginManager().callEvent(event);
-
-			if (!event.isCancelled()) {
-				// 更新前缀
-				UserManager.setPrefix(player, event.getAfter(), updateView);
-			}
-
+			UserPrefixChangeEvent.call(player, currentPrefix, newPrefix, (after) -> {
+				if (after != null) {
+					UserManager.setPrefix(player, after, updateView);
+				}
+				checkingPlayers.remove(player.getUniqueId());
+			});
+			
+		} else {
+			checkingPlayers.remove(player.getUniqueId());
 		}
-
-		checkingPlayers.remove(player.getUniqueId());
 	}
 
 	public static void unloadNameTag(UUID uuid) {
