@@ -8,6 +8,8 @@ authors:
 website: ${project.url}
 description: ${project.description}
 
+api-version: 1.17
+
 depend:
   - LuckPerms
 softdepend:
