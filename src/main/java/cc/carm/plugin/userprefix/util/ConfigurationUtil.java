@@ -32,7 +32,7 @@ public class ConfigurationUtil {
         return conf;
     }
 
-    public static String dong(YamlConfiguration conf) {
+    public static String dong(FileConfiguration conf) {
         return conf.saveToString().replace("==: "+ ItemStackWrapper.class.getName(),"==: "+ ItemStack.class.getName());
     }
 }
