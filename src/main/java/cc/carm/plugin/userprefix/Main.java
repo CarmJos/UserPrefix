@@ -14,6 +14,7 @@ import cc.carm.plugin.userprefix.manager.ServiceManager;
 import cc.carm.plugin.userprefix.manager.UserManager;
 import cc.carm.plugin.userprefix.util.ColorParser;
 import cc.carm.plugin.userprefix.util.MessageUtil;
+import cc.carm.plugin.userprefix.wrapper.ItemStackWrapper;
 import net.luckperms.api.event.user.UserDataRecalculateEvent;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
@@ -22,6 +23,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -38,6 +40,9 @@ public class Main extends JavaPlugin {
         showPluginName();
         log(getName() + " " + getDescription().getVersion() + " &7开始加载...");
         long startTime = System.currentTimeMillis();
+
+        log("注入序列化处理工具...");
+        ConfigurationSerialization.registerClass(ItemStackWrapper.class);
 
         log("加载配置文件...");
         ConfigManager.initConfig();
