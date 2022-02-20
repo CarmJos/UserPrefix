@@ -1,8 +1,8 @@
 package cc.carm.plugin.userprefix.configuration.file;
 
 
+import cc.carm.plugin.userprefix.util.ConfigurationUtil;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -35,7 +35,7 @@ public class FileConfig {
             }
             plugin.saveResource(fileName, true);
         }
-        this.config = YamlConfiguration.loadConfiguration(this.file);
+        this.config = ConfigurationUtil.bang(this.file);
     }
 
     public File getFile() {
@@ -56,7 +56,7 @@ public class FileConfig {
 
     public void reload() {
         if (getFile().exists()) {
-            this.config = YamlConfiguration.loadConfiguration(getFile());
+            this.config =  ConfigurationUtil.bang(getFile());
         } else {
             initFile();
         }

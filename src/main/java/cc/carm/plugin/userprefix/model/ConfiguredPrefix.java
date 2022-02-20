@@ -1,11 +1,11 @@
 package cc.carm.plugin.userprefix.model;
 
 import cc.carm.plugin.userprefix.util.ColorParser;
+import cc.carm.plugin.userprefix.util.ConfigurationUtil;
 import cc.carm.plugin.userprefix.util.ItemStackFactory;
 import cc.carm.plugin.userprefix.util.MessageUtil;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -38,7 +38,11 @@ public class ConfiguredPrefix {
 
 	public ConfiguredPrefix(@NotNull File dataFile) {
 		this.dataFile = dataFile;
-		this.configuration = YamlConfiguration.loadConfiguration(dataFile);
+		try {
+			this.configuration = ConfigurationUtil.bang(dataFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if (getConfiguration() != null) {
 			this.identifier = getConfiguration().getString("identifier", "ERROR");
 			this.name = getConfiguration().getString("name", "ERROR");
