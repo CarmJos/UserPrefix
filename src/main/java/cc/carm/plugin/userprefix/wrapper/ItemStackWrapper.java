@@ -1,6 +1,5 @@
 package cc.carm.plugin.userprefix.wrapper;
 
-import cc.carm.plugin.userprefix.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
@@ -36,11 +35,9 @@ public class ItemStackWrapper implements ConfigurationSerializable {
                 if (material == null) {
                     throw new IllegalArgumentException("物品 "+args.get("type")+" 不存在");
                 }
-                Main.getInstance().getLogger().info("Patched ItemStack with number" + Bukkit.getServer().getUnsafe().getDataVersion() + "!");
                 args.put("v", Bukkit.getServer().getUnsafe().getDataVersion());
             }
         }
-        args.forEach((key, value) -> Main.log(key + ": " + value));
         return ItemStack.deserialize(args);
     }
 }
