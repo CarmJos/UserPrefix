@@ -35,7 +35,7 @@ public class UserNameTag {
     /**
      * 设置自己的前缀
      *
-     * @param prefix
+     * @param prefix 前缀内容
      */
     public void setPrefix(String prefix) {
         team.setPrefix(prefix);
@@ -45,8 +45,8 @@ public class UserNameTag {
     /**
      * 设置某个玩家的前缀
      *
-     * @param target
-     * @param prefix
+     * @param target 目标
+     * @param prefix 前缀内容
      */
     public void setPrefix(Player target, String prefix) {
         if (target == viewer) {
@@ -63,7 +63,7 @@ public class UserNameTag {
     /**
      * 设置名字在TabList中的顺序
      *
-     * @param order
+     * @param order 顺序 (0~99999)
      */
     public void setOrder(int order) {
         if (order < 0 || order > 99999)
@@ -79,15 +79,14 @@ public class UserNameTag {
      * @param order 顺序
      */
     public void setOrder(Player target, int order) {
-        if (order < 0 || order > 99999)
-            throw new IllegalArgumentException("order must be in 0~99999");
+        if (order < 0 || order > 99999) throw new IllegalArgumentException("order must be in 0~99999");
+
         Team targetTeam = checkTeam(target);
         String teamName = order + UUID.randomUUID().toString().substring(0, 10);
         targetTeam.setDisplayName(teamName);
         targetOrders.put(target.getUniqueId(), order);
         update(viewer);
-        if (viewer != target)
-            update(target);
+        if (viewer != target) update(target);
     }
 
     public void update(Player target) {

@@ -25,8 +25,10 @@ public class PluginConfig {
 
     public static class Functions {
 
-        public static ConfigValue<Boolean> NAME_PREFIX = new ConfigValue<>("functions.OnNamePrefix", Boolean.class, true);
-        public static ConfigValue<Boolean> AUTO_USE = new ConfigValue<>("functions.autoUsePrefix", Boolean.class, true);
+        public static ConfigValue<Boolean> NAME_PREFIX = new ConfigValue<>("functions.auto-prefix-use.enable", Boolean.class, true);
+        public static ConfigValue<Boolean> NAME_ORDER_DESC = new ConfigValue<>("functions.auto-prefix-use.order", Boolean.class, true);
+
+        public static ConfigValue<Boolean> AUTO_USE = new ConfigValue<>("functions.auto-prefix-use", Boolean.class, true);
 
         public static class Chat {
 

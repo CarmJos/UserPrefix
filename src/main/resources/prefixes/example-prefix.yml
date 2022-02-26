@@ -14,7 +14,7 @@ content: "&b&lPro &b"
 # 权重 [必须]
 # 用于GUI、TabList的排序和自动前缀显示
 # 在GUI中，权重越高的会显示在越后面
-# 在TabList中，权重越高的会显示在越上面
+# 在TabList中，显示顺序可以在 config.yml 中自定义
 weight: 1
 
 

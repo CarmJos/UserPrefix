@@ -21,8 +21,11 @@ custom-storage:
   path: "prefixes/" # 一定要指向一个文件夹！
 
 functions:
-  OnNamePrefix: true # 是否给头顶上添加前缀，该方法用到了头顶的那个计分板，如有冲突请关掉哦~
-  autoUsePrefix: true # 自动前缀显示 当玩家没有自己选择一个前缀的时候，会自动使用所拥有的的前缀中权重最高的那一个
+  # 头顶与TabList前缀功能，该方法用到了玩家名计分板接口，如有冲突请关掉哦~
+  on-name-prefix:
+    enable: true # 是否开启本功能
+    order-desc: true # 是否按降序排列，即权重越高的前缀显示在越上面；若为false则按升序排列。
+  auto-prefix-use: true # 自动使用前缀，即当玩家没有自己选择一个前缀的时候，会自动使用所拥有的的前缀中权重最高的那一个
   chat:
     # 聊天功能
     # - 我不推荐使用本插件的聊天功能，而是建议使用其他的聊天插件。
