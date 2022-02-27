@@ -85,7 +85,7 @@ public class UserManager {
             boolean descOrder = PluginConfig.Functions.NAME_ORDER_DESC.get();
             if (onlinePlayerTag != null) {
                 onlinePlayerTag.setPrefix(player, playerPrefix.getContent());
-                onlinePlayerTag.setOrder(player, descOrder ? 99999 - playerPrefix.getWeight() : playerPrefix.getWeight());
+                onlinePlayerTag.setOrder(player, descOrder ? 999 - playerPrefix.getWeight() : playerPrefix.getWeight());
                 Main.debug("为玩家 " + onlinePlayer.getName() + " 设置了 " + player.getName() + "的前缀为 #" + playerPrefix.getWeight() + " " + playerPrefix.getName());
 
             }
@@ -93,7 +93,7 @@ public class UserManager {
             if (loadOthers) {
                 ConfiguredPrefix onlinePlayerPrefix = UserManager.getPrefix(onlinePlayer);
                 tag.setPrefix(onlinePlayer, onlinePlayerPrefix.getContent());
-                tag.setOrder(onlinePlayer, descOrder ? 99999 - onlinePlayerPrefix.getWeight() : onlinePlayerPrefix.getWeight());
+                tag.setOrder(onlinePlayer, descOrder ? 999 - onlinePlayerPrefix.getWeight() : onlinePlayerPrefix.getWeight());
                 Main.debug("为玩家 " + player.getName() + " 设置了 " + onlinePlayer.getName() + "的前缀为 #" + onlinePlayerPrefix.getWeight() + " " + onlinePlayerPrefix.getName());
             }
         }

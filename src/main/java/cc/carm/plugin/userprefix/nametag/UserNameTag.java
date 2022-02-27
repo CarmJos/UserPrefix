@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
+import org.jetbrains.annotations.Range;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,10 +13,12 @@ import java.util.UUID;
 
 public class UserNameTag {
 
+    public static final int MAX_ORDER = 999;
+
     private final Player viewer;
     private Team team;
     private final Scoreboard sb;
-    private int order = 99999;
+    private int order = MAX_ORDER;
     private final Map<UUID, Integer> targetOrders = new HashMap<>();
     private final Map<UUID, String> previousTeamNames = new HashMap<>();
 
@@ -63,11 +66,9 @@ public class UserNameTag {
     /**
      * 设置名字在TabList中的顺序
      *
-     * @param order 顺序 (0~99999)
+     * @param order 顺序 (0~999)
      */
-    public void setOrder(int order) {
-        if (order < 0 || order > 99999)
-            throw new IllegalArgumentException("order must be in 0~99999");
+    public void setOrder(@Range(from = 0, to = 999) int order) {
         this.order = order;
         targetOrders.put(viewer.getUniqueId(), order);
         update(viewer);
@@ -78,9 +79,7 @@ public class UserNameTag {
      *
      * @param order 顺序
      */
-    public void setOrder(Player target, int order) {
-        if (order < 0 || order > 99999) throw new IllegalArgumentException("order must be in 0~99999");
-
+    public void setOrder(Player target, @Range(from = 0, to = 999) int order) {
         Team targetTeam = checkTeam(target);
         String teamName = order + UUID.randomUUID().toString().substring(0, 10);
         targetTeam.setDisplayName(teamName);
@@ -109,7 +108,7 @@ public class UserNameTag {
                 team = newTeam;
             }
         } else {
-            int order = targetOrders.getOrDefault(target.getUniqueId(), 99999);
+            int order = targetOrders.getOrDefault(target.getUniqueId(), 999);
             String previousTeamName = previousTeamNames.get(target.getUniqueId());
             if (previousTeamName == null) {
                 return;
@@ -137,7 +136,7 @@ public class UserNameTag {
     }
 
     private Team checkTeam(Player target) {
-        int order = targetOrders.getOrDefault(target.getUniqueId(), 99999);
+        int order = targetOrders.getOrDefault(target.getUniqueId(), 999);
         String name = order + target.getUniqueId().toString().substring(0, 10);
         Team targetTeam = this.sb.getTeam(name);
         if (targetTeam == null) {
