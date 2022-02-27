@@ -73,16 +73,17 @@ public class UserManager {
         if (tag == null) return;  //未启用的情况下，不需要进行任何操作。
 
         ConfiguredPrefix playerPrefix = UserManager.getPrefix(player);
+        boolean descOrder = PluginConfig.Functions.NAME_ORDER_DESC.get();
 
         tag.setPrefix(playerPrefix.getContent());
-        tag.setOrder(playerPrefix.getWeight());
+        tag.setOrder(descOrder ? 999 - playerPrefix.getWeight() : playerPrefix.getWeight());
 
         Main.debug("为玩家 " + player.getName() + " 设置了 " + player.getName() + "的前缀为 #" + playerPrefix.getWeight() + " " + playerPrefix.getName());
 
         for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
             if (onlinePlayer.equals(player)) continue;
             UserNameTag onlinePlayerTag = getNameTag(onlinePlayer);
-            boolean descOrder = PluginConfig.Functions.NAME_ORDER_DESC.get();
+
             if (onlinePlayerTag != null) {
                 onlinePlayerTag.setPrefix(player, playerPrefix.getContent());
                 onlinePlayerTag.setOrder(player, descOrder ? 999 - playerPrefix.getWeight() : playerPrefix.getWeight());
