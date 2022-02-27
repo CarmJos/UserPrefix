@@ -39,14 +39,16 @@ GUI:
           - "§fRight-Click to the first page"
 
 functions:
-  # Whether to add a prefix to the top of the head,
+  # Add a prefix to the top of the head,
   # this method uses the scoreboard above the head,
   # please turn it off if there is a conflict.
-  OnNamePrefix: true
+  on-name-prefix:
+    enable: true # enable or disable
+    order-desc: true # using desc ( higher weight for higher display in TabList)
   # Automatic prefix select.
   # When the player does not choose a prefix by himself,
   # the prefix with the highest weight will be used automatically
-  autoUsePrefix: true
+  auto-prefix-use: true
   chat:
     # Chat Function
     # - I recommend using other chat plugins instead of using this plugin,
