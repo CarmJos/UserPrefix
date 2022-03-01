@@ -12,10 +12,12 @@ public class ItemStackWrapper implements ConfigurationSerializable {
     private static boolean unsafeAvailable;
 
     static {
+        // 用于判断是否支持unsafe
         try {
             Class.forName("org.bukkit.UnsafeValues");
+            int dataVersion = Bukkit.getServer().getUnsafe().getDataVersion();
             unsafeAvailable = true;
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             unsafeAvailable = false;
         }
     }
@@ -31,11 +33,15 @@ public class ItemStackWrapper implements ConfigurationSerializable {
         // static define will cause problem, lazy load it
         if (unsafeAvailable) {
             if (!args.containsKey("v")) {
-                Material material = Material.matchMaterial(args.get("type").toString());
-                if (material == null) {
-                    throw new IllegalArgumentException("物品 "+args.get("type")+" 不存在");
+                String itemName = args.get("type").toString();
+                Material legacyMaterial = Material.matchMaterial(itemName, true);
+                if (legacyMaterial == null) {
+                    Material material = Material.matchMaterial(args.get("type").toString());
+                    if (material == null) {
+                        throw new IllegalArgumentException("物品 " + args.get("type") + " 不存在");
+                    }
+                    args.put("v", Bukkit.getServer().getUnsafe().getDataVersion());
                 }
-                args.put("v", Bukkit.getServer().getUnsafe().getDataVersion());
             }
         }
         return ItemStack.deserialize(args);
