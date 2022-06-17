@@ -42,4 +42,8 @@ public class ServiceManager {
         return user.getCachedData().getPermissionData().checkPermission(permission).asBoolean();
     }
 
+    public static boolean hasPermission(Player player, String permission) {
+        return hasPermission(getUser(player), permission);
+    }
+
 }

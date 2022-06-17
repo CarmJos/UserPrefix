@@ -1,171 +1,155 @@
 package cc.carm.plugin.userprefix.manager;
 
+import cc.carm.lib.mineconfiguration.bukkit.data.ItemConfig;
+import cc.carm.lib.mineconfiguration.bukkit.source.CraftSectionWrapper;
 import cc.carm.plugin.userprefix.Main;
 import cc.carm.plugin.userprefix.configuration.PluginConfig;
-import cc.carm.plugin.userprefix.model.ConfiguredPrefix;
-import cc.carm.plugin.userprefix.util.ItemStackFactory;
+import cc.carm.plugin.userprefix.configuration.prefix.PrefixConfig;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class PrefixManager {
 
-	public static ConfiguredPrefix defaultPrefix;
-	public static HashMap<String, ConfiguredPrefix> prefixes = new HashMap<>();
+    protected static final String FOLDER_NAME = "prefixes";
 
-	private static final String FOLDER_NAME = "prefixes";
+    protected @NotNull Map<String, PrefixConfig> prefixes = new HashMap<>();
+    protected PrefixConfig defaultPrefix;
 
-	public static void init() {
-		loadPrefixes();
-		Main.log("共加载了 " + prefixes.size() + " 个前缀。");
-	}
+    public int loadPrefixes() {
+        loadDefaultPrefix();
+        loadConfiguredPrefixes();
+        return prefixes.size();
+    }
 
-	public static void loadPrefixes() {
-		loadDefaultPrefix();
-		loadConfiguredPrefixes();
-	}
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public void loadConfiguredPrefixes() {
 
-	@SuppressWarnings("ResultOfMethodCallIgnored")
-	public static void loadConfiguredPrefixes() {
+        File prefixDataFolder = getStorageFolder();
+        if (!prefixDataFolder.isDirectory() || !prefixDataFolder.exists()) {
+            prefixDataFolder.mkdir();
+        }
 
-		File prefixDataFolder = getStorageFolder();
-		if (!prefixDataFolder.isDirectory() || !prefixDataFolder.exists()) {
-			prefixDataFolder.mkdir();
-		}
+        String[] filesList = prefixDataFolder.list();
+        if (filesList == null || filesList.length < 1) {
+            Main.serve("配置文件夹中暂无任何前缀配置问，请检查。");
+            Main.serve("There's no configured prefix.");
+            Main.serve("Path: " + prefixDataFolder.getAbsolutePath());
+            return;
+        }
 
-		String[] filesList = prefixDataFolder.list();
-		if (filesList == null || filesList.length < 1) {
-			Main.error("配置文件夹中暂无任何前缀配置问，请检查。");
-			Main.error("There's no configured prefix.");
-			Main.error("Path: " + prefixDataFolder.getAbsolutePath());
-			return;
-		}
+        List<File> files = Arrays.stream(filesList)
+                .map(s -> new File(prefixDataFolder, s))
+                .filter(File::isFile)
+                .collect(Collectors.toList());
 
-		List<File> files = Arrays.stream(filesList)
-				.map(s -> new File(prefixDataFolder, s))
-				.filter(File::isFile)
-				.collect(Collectors.toList());
+        HashMap<String, PrefixConfig> loaded = new HashMap<>();
 
-		HashMap<String, ConfiguredPrefix> dataPrefixes = new HashMap<>();
+        if (files.size() > 0) {
+            for (File file : files) {
+                try {
+                    PrefixConfig prefix = adPrefix(file);
+                    Main.debugging("完成前缀加载 " + prefix.getIdentifier() + " : " + prefix.getName());
+                    loaded.put(prefix.getIdentifier(), prefix);
+                } catch (Exception ex) {
+                    Main.serve("在加载前缀 " + file.getAbsolutePath() + " 时出错，请检查配置！");
+                    Main.serve("Error occurred when loading prefix #" + file.getAbsolutePath() + " !");
+                    ex.printStackTrace();
+                }
+            }
+        }
 
-		if (files.size() > 0) {
-			for (File file : files) {
-				try {
-					ConfiguredPrefix prefix = new ConfiguredPrefix(file);
-					Main.log("完成前缀加载 " + prefix.getIdentifier() + " : " + prefix.getName());
-					Main.log("Successfully loaded " + prefix.getIdentifier() + " : " + prefix.getName());
-					dataPrefixes.put(prefix.getIdentifier(), prefix);
-				} catch (Exception ex) {
-					Main.error("在加载前缀 " + file.getAbsolutePath() + " 时出错，请检查配置！");
-					Main.error("Error occurred when loading prefix #" + file.getAbsolutePath() + " !");
-					ex.printStackTrace();
-				}
-			}
-		}
+        this.prefixes = loaded;
+    }
 
-		PrefixManager.prefixes.clear();
-		PrefixManager.prefixes = dataPrefixes;
-	}
+    public void loadDefaultPrefix() {
+        this.defaultPrefix = new PrefixConfig(
+                "default",
+                PluginConfig.DEFAULT_PREFIX.NAME.getNotNull(),
+                PluginConfig.DEFAULT_PREFIX.CONTENT.getNotNull(),
+                PluginConfig.DEFAULT_PREFIX.WEIGHT.getNotNull(),
+                null,
+                PluginConfig.DEFAULT_PREFIX.ITEM_NOT_USING.getNotNull(),
+                null,
+                PluginConfig.DEFAULT_PREFIX.ITEM_USING.get()
+        );
+        Main.debugging("  完成默认前缀加载 " + defaultPrefix.getName());
+    }
 
-	public static void loadDefaultPrefix() {
-		PrefixManager.defaultPrefix = null;
-		ConfigurationSection defaultPrefixSection = ConfigManager.getPluginConfig()
-				.getConfig().getConfigurationSection("defaultPrefix");
-		if (defaultPrefixSection != null) {
-			try {
-				String name = defaultPrefixSection.getString("name", "默认前缀");
-				String content = defaultPrefixSection.getString("content", "&r");
-				ItemStack itemNotUsing = defaultPrefixSection.getItemStack(
-						"itemNotUsing",
-						new ItemStackFactory(Material.NAME_TAG)
-								.setDisplayName("&f默认前缀")
-								.addLore(" ")
-								.addLore("§a➥ 点击切换到该前缀")
-								.toItemStack()
-				);
-				ItemStack itemUsing = defaultPrefixSection.getItemStack("itemUsing",
-						new ItemStackFactory(Material.NAME_TAG)
-								.setDisplayName("&f默认前缀")
-								.addLore(" ")
-								.addLore("§a✔ 您正在使用该前缀")
-								.addEnchant(Enchantment.DURABILITY, 1, false)
-								.addFlag(ItemFlag.HIDE_ENCHANTS)
-								.toItemStack()
-				);
-				PrefixManager.defaultPrefix = new ConfiguredPrefix("default", name, content, 0, null, itemNotUsing, null, itemUsing);
-			} catch (Exception ex) {
-				Main.error("在加载默认前缀时出错，请检查配置！");
-				Main.error("Error occurred when loading default prefix, please check the configuration.");
-				ex.printStackTrace();
-			}
-		} else {
-			PrefixManager.defaultPrefix = new ConfiguredPrefix("default", "默认前缀", "&r", 0, null,
-					new ItemStackFactory(Material.NAME_TAG)
-							.setDisplayName("&f默认前缀")
-							.addLore(" ")
-							.addLore("§a➥ 点击切换到该前缀")
-							.toItemStack(),
-					null,
-					new ItemStackFactory(Material.NAME_TAG)
-							.setDisplayName("&f默认前缀")
-							.addLore(" ")
-							.addLore("§a✔ 您正在使用该前缀")
-							.addEnchant(Enchantment.DURABILITY, 1, false)
-							.addFlag(ItemFlag.HIDE_ENCHANTS)
-							.toItemStack()
-			);
-		}
+    public List<PrefixConfig> getVisiblePrefix(Player player) {
+        return getPrefixes().values().stream()
+                .filter(c -> c.isVisible(player))
+                .sorted(Comparator.comparingInt(PrefixConfig::getWeight))
+                .collect(Collectors.toList());
+    }
 
-		Main.log("完成默认前缀加载 " + defaultPrefix.getName());
-		Main.log("Successfully loaded default prefix " + defaultPrefix.getName());
-	}
+    @NotNull
+    public PrefixConfig getDefaultPrefix() {
+        return defaultPrefix;
+    }
 
-	public static List<ConfiguredPrefix> getVisiblePrefix() {
-		return PrefixManager.getPrefixes().values().stream()
-				.filter(ConfiguredPrefix::isVisibleNoPermission)
-				.sorted(Comparator.comparingInt(ConfiguredPrefix::getWeight))
-				.collect(Collectors.toList());
-	}
+    @NotNull
+    public Map<String, PrefixConfig> getPrefixes() {
+        return prefixes;
+    }
 
-	@NotNull
-	public static ConfiguredPrefix getDefaultPrefix() {
-		return defaultPrefix;
-	}
+    @Nullable
+    public PrefixConfig getPrefix(String identifier) {
+        if (identifier == null) {
+            return null;
+        } else if (identifier.equalsIgnoreCase("default")) {
+            return getDefaultPrefix();
+        } else {
+            return getPrefixes().get(identifier);
+        }
+    }
 
-	@NotNull
-	public static HashMap<String, ConfiguredPrefix> getPrefixes() {
-		return prefixes;
-	}
 
-	@Nullable
-	public static ConfiguredPrefix getPrefix(String identifier) {
-		if (identifier == null) {
-			return null;
-		} else if (identifier.equalsIgnoreCase("default")) {
-			return getDefaultPrefix();
-		} else {
-			return getPrefixes().get(identifier);
-		}
-	}
+    protected File getStorageFolder() {
+        if (PluginConfig.CUSTOM_STORAGE.ENABLE.getNotNull()) {
+            return new File(PluginConfig.CUSTOM_STORAGE.PATH.getNotNull());
+        } else {
+            return new File(Main.getInstance().getDataFolder() + File.separator + FOLDER_NAME);
+        }
+    }
 
-	private static File getStorageFolder() {
-		if (PluginConfig.CustomStorage.ENABLE.get()) {
-			return new File(PluginConfig.CustomStorage.PATH.get());
-		} else {
-			return new File(Main.getInstance().getDataFolder() + File.separator + FOLDER_NAME);
-		}
-	}
+    public static @NotNull PrefixConfig adPrefix(@NotNull File file) throws Exception {
+        FileConfiguration configuration = YamlConfiguration.loadConfiguration(file);
+        String identifier = configuration.getString("identifier");
+        if (identifier == null) throw new Exception("配置文件 " + file.getAbsolutePath() + " 中没有配置前缀的唯一标识。");
+
+        String name = configuration.getString("name");
+        if (name == null) throw new Exception("配置文件 " + file.getAbsolutePath() + " 中没有配置前缀的显示名称。");
+
+        return new PrefixConfig(
+                identifier, name,
+                configuration.getString("content", "&r"),
+                configuration.getInt("weight", 1),
+                configuration.getString("permission"),
+                readItem(
+                        configuration.getConfigurationSection("itemHasPermission"),
+                        new ItemConfig(Material.STONE, (short) 0, name, Arrays.asList(" ", "§a➥ 点击切换到该前缀"))
+                ),
+                readItem(configuration.getConfigurationSection("itemNoPermission"), null),
+                readItem(configuration.getConfigurationSection("itemUsing"), null)
+        );
+    }
+
+
+    @Contract("_,!null->!null")
+    protected static ItemConfig readItem(@Nullable ConfigurationSection section, @Nullable ItemConfig defaultValue) throws Exception {
+        if (section == null) return defaultValue;
+        else return ItemConfig.deserialize(CraftSectionWrapper.of(section));
+    }
 
 
 }

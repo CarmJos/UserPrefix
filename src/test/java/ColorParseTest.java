@@ -1,4 +1,4 @@
-import cc.carm.plugin.userprefix.util.ColorParser;
+import cc.carm.lib.easyplugin.utils.ColorParser;
 import org.junit.Test;
 
 public class ColorParseTest {

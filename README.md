@@ -15,7 +15,8 @@ README LANGUAGES [ [**中文**](README.md) | [English](README-en.md)  ]
 
 本插件基于Spigot实现，**理论上支持全版本**。
 
-> 本插件已在 [MCBBS](https://www.mcbbs.net/forum.php?mod=viewthread&tid=1261503) 与 [SpigotMC](https://www.spigotmc.org/resources/userprefix-hex-color-support-all-version.96277/) 上发布。
+> 本插件已在 [MCBBS](https://www.mcbbs.net/forum.php?mod=viewthread&tid=1261503)
+> 与 [SpigotMC](https://www.spigotmc.org/resources/userprefix-hex-color-support-all-version.96277/) 上发布。
 
 ## 示例
 
@@ -63,7 +64,8 @@ README LANGUAGES [ [**中文**](README.md) | [English](README-en.md)  ]
 
 ### 3. 物品图标配置问题
 
-物品相关均通过Bukkit提供的ItemStack序列化方法读取，相关配置方式请参考[ItemStack Serialization(物品序列化)](https://www.spigotmc.org/wiki/itemstack-serialization/)。
+物品相关均通过Bukkit提供的ItemStack序列化方法读取，相关配置方式请参考[ItemStack Serialization(物品序列化)](https://www.spigotmc.org/wiki/itemstack-serialization/)
+。
 
 ## 指令
 
@@ -99,11 +101,11 @@ README LANGUAGES [ [**中文**](README.md) | [English](README-en.md)  ]
 
 ### 基础配置文件 ([`config.yml`](src/main/resources/config.yml))
 
-详见 [源文件](src/main/resources/messages.yml) 。
+将会在服务器首次启动时生成，如果您想要修改配置，请在服务器启动后打开配置文件，详见 [示例文件](src/main/resources/config.yml) 。
 
 ### 消息配置文件 ([`messages.yml`](src/main/resources/messages.yml))
 
-详见 [源文件](src/main/resources/messages.yml) 。
+将会在服务器首次启动时生成，如果您想要修改配置，请在服务器启动后打开配置文件, 详见 [示例文件](src/main/resources/messages.yml) 。
 
 ### 前缀配置文件 ([`prefixes/*.yml`](src/main/resources/prefixes/example-prefix.yml))
 
@@ -146,18 +148,8 @@ README LANGUAGES [ [**中文**](README.md) | [English](README-en.md)  ]
 > #### 可自由修改
 > 如果你想添加或删除某个功能，没问题，如果你想在别的项目中使用部分代码，也没问题，唯一的要求是，使用了这段代码的项目也必须使用 GPL 协议。
 >
-> 需要注意的是，分发的时候，需要明确提供源代码和二进制文件，另外，用于某些程序的某些协议有一些问题和限制，你可以看一下 @PierreJoye 写的 Practical Guide to GPL Compliance 一文。使用 GPL 协议，你必须在源代码代码中包含相应信息，以及协议本身。
+> 需要注意的是，分发的时候，需要明确提供源代码和二进制文件，另外，用于某些程序的某些协议有一些问题和限制，你可以看一下 @PierreJoye 写的 Practical Guide to GPL Compliance 一文。使用 GPL
+> 协议，你必须在源代码代码中包含相应信息，以及协议本身。
 >
 > *以上文字来自 [五种开源协议GPL,LGPL,BSD,MIT,Apache](https://www.oschina.net/question/54100_9455) 。*
 </details>
-
----
-
-```text
- _    _                   _____              __  _       
-| |  | |                 |  __ \            / _|(_)      
-| |  | | ___   ___  _ __ | |__) |_ __  ___ | |_  _ __  __
-| |  | |/ __| / _ \| '__||  ___/| '__|/ _ \|  _|| |\ \/ /
-| |__| |\__ \|  __/| |   | |    | |  |  __/| |  | | >  < 
- \____/ |___/ \___||_|   |_|    |_|   \___||_|  |_|/_/\_\
-```

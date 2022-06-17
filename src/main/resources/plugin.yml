@@ -1,4 +1,4 @@
-main: cc.carm.plugin.userprefix.Main
+main: ${project.package}.Main
 name: ${project.name}
 version: ${project.version}
 authors:
@@ -13,6 +13,12 @@ depend:
   - LuckPerms
 softdepend:
   - PlaceholderAPI
+
+permissions:
+  "UserPrefix.admin":
+    description: "用户前缀系统的管理命令权限。"
+    default: op
+
 commands:
   UserPrefix:
     aliases:
@@ -21,6 +27,5 @@ commands:
   UserPrefixAdmin:
     aliases:
       - upa
-      - prefixAdmin
     permission: "UserPrefix.admin"
     description: "用户前缀系统管理指令，可以查看前缀列表与重载配置文件。"

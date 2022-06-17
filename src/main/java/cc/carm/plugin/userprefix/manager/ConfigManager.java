@@ -1,48 +1,51 @@
 package cc.carm.plugin.userprefix.manager;
 
-import cc.carm.plugin.userprefix.Main;
-import cc.carm.plugin.userprefix.configuration.file.FileConfig;
+import cc.carm.lib.configuration.core.source.ConfigurationProvider;
+import cc.carm.lib.easyplugin.utils.JarResourceUtils;
+import cc.carm.lib.mineconfiguration.bukkit.MineConfiguration;
+import cc.carm.plugin.userprefix.configuration.PluginConfig;
+import cc.carm.plugin.userprefix.configuration.PluginMessages;
 
 import java.io.File;
+import java.io.IOException;
 
 public class ConfigManager {
 
-    private static FileConfig config;
-    private static FileConfig messageConfig;
+    private final ConfigurationProvider<?> configProvider;
+    private final ConfigurationProvider<?> messageProvider;
 
+    public ConfigManager(File dataFolder) {
+        firstInitialize(dataFolder);
+        this.configProvider = MineConfiguration.from(new File(dataFolder, "config.yml"));
+        this.messageProvider = MineConfiguration.from(new File(dataFolder, "messages.yml"));
+        this.configProvider.initialize(PluginConfig.class);
+        this.messageProvider.initialize(PluginMessages.class);
+    }
 
-    public static void initConfig() {
-        File configFile = new File(Main.getInstance().getDataFolder(), "config.yml");
+    protected void firstInitialize(File dataFolder) {
+        File configFile = new File(dataFolder, "config.yml");
         if (!configFile.exists()) {
-            //没找到配置文件，可能是第一次加载此插件
-            //把一些英文版的东西复制出来，方便英文用户使用。
-            Main.getInstance().saveResource("prefixes/example-prefix.yml", false);
-            Main.getInstance().saveResource("en_US/config.yml", false);
-            Main.getInstance().saveResource("en_US/messages.yml", false);
-            Main.getInstance().saveResource("en_US/example-prefix.yml", false);
+            try {
+                JarResourceUtils.copyFolderFromJar("en_US", dataFolder, JarResourceUtils.CopyOption.COPY_IF_NOT_EXIST);
+                JarResourceUtils.copyFolderFromJar("prefixes", dataFolder, JarResourceUtils.CopyOption.COPY_IF_NOT_EXIST);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-        ConfigManager.config = new FileConfig(Main.getInstance(), "config.yml");
-        ConfigManager.messageConfig = new FileConfig(Main.getInstance(), "messages.yml");
     }
 
-    public static FileConfig getPluginConfig() {
-        return config;
+    public ConfigurationProvider<?> getConfigProvider() {
+        return configProvider;
     }
 
-    public static FileConfig getMessageConfig() {
-        return messageConfig;
+    public ConfigurationProvider<?> getMessageProvider() {
+        return messageProvider;
     }
 
-    public static void reload() {
-        getPluginConfig().reload();
-        getMessageConfig().reload();
+    public void reload() throws Exception {
+        getConfigProvider().reload();
+        getMessageProvider().reload();
     }
-
-    public static void saveConfig() {
-        getPluginConfig().save();
-        getMessageConfig().save();
-    }
-
 
 }
