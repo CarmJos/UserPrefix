@@ -82,6 +82,11 @@
         </repository>
 
         <repository>
+            <id>EasyPlugin</id>
+            <url>https://raw.githubusercontent.com/CarmJos/EasyPlugin/repo/</url>
+        </repository>
+
+        <repository>
             <id>carm-repo</id>
             <name>Carm's Repo</name>
             <url>https://repo.carm.cc/repository/maven-public/</url>
