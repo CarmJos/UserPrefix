@@ -154,21 +154,27 @@ public class PluginConfig extends ConfigurationRoot {
         @HeaderComment({"默认前缀的内容，即用于显示的实际前缀"})
         public static final ConfigValue<String> CONTENT = ConfiguredValue.of(String.class, "&r");
 
-        @HeaderComment({"当未选择默认前缀时显示的物品"})
-        public static final ConfiguredItem ITEM_NOT_USING = ConfiguredItem.create()
-                .defaultType(Material.NAME_TAG)
-                .defaultName("&f默认玩家前缀 &f(点击切换)")
-                .defaultLore("", "&a➥ 点击切换到该前缀")
-                .build();
+        @HeaderComment({"默认前缀的显示物品"})
+        public static final class ITEM {
 
-        @HeaderComment({"当选择了默认前缀时显示的物品"})
-        public static final ConfiguredItem ITEM_USING = ConfiguredItem.create()
-                .defaultType(Material.NAME_TAG)
-                .defaultEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1)
-                .defaultFlags(ItemFlag.HIDE_ENCHANTS)
-                .defaultName("&f默认玩家前缀")
-                .defaultLore("", "&a✔ 您正在使用该前缀")
-                .build();
+            @HeaderComment({"当未选择默认前缀时显示的物品"})
+            public static final ConfiguredItem NOT_USING = ConfiguredItem.create()
+                    .defaultType(Material.NAME_TAG)
+                    .defaultName("&f默认玩家前缀 &f(点击切换)")
+                    .defaultLore("", "&a➥ 点击切换到该前缀")
+                    .build();
+
+            @HeaderComment({"当选择了默认前缀时显示的物品"})
+            public static final ConfiguredItem USING = ConfiguredItem.create()
+                    .defaultType(Material.NAME_TAG)
+                    .defaultEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1)
+                    .defaultFlags(ItemFlag.HIDE_ENCHANTS)
+                    .defaultName("&f默认玩家前缀")
+                    .defaultLore("", "&a✔ 您正在使用该前缀")
+                    .build();
+
+        }
+
 
     }
 

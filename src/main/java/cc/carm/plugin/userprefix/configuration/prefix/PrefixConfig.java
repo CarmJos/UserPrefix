@@ -33,8 +33,8 @@ public class PrefixConfig {
     public PrefixConfig(@NotNull String identifier, @NotNull String name,
                         @NotNull String content, int weight, @Nullable String permission,
                         @NotNull ItemConfig itemHasPermission,
-                        @Nullable ItemConfig itemNoPermission,
-                        @Nullable ItemConfig itemWhenUsing) {
+                        @Nullable ItemConfig itemWhenUsing,
+                        @Nullable ItemConfig itemNoPermission) {
         this.identifier = identifier;
         this.name = name;
         this.content = content;
@@ -97,7 +97,7 @@ public class PrefixConfig {
     /**
      * 判断某玩家是否有权限使用该前缀
      *
-     * @param player           玩家
+     * @param player 玩家
      * @return 若前缀标识不存在，则返回false；若前缀为默认前缀，或该前缀无权限，或玩家有该前缀的权限，则返回true。
      */
     public boolean checkPermission(Player player) {

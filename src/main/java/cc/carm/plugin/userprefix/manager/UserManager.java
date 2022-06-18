@@ -2,13 +2,13 @@ package cc.carm.plugin.userprefix.manager;
 
 import cc.carm.lib.easyplugin.gui.GUI;
 import cc.carm.plugin.userprefix.Main;
-import cc.carm.plugin.userprefix.UserPrefix;
+import cc.carm.plugin.userprefix.UserPrefixAPI;
 import cc.carm.plugin.userprefix.configuration.PluginConfig;
 import cc.carm.plugin.userprefix.configuration.PluginMessages;
 import cc.carm.plugin.userprefix.configuration.prefix.PrefixConfig;
 import cc.carm.plugin.userprefix.event.UserPrefixChangeEvent;
 import cc.carm.plugin.userprefix.event.UserPrefixExpireEvent;
-import cc.carm.plugin.userprefix.nametag.UserNameTag;
+import cc.carm.plugin.userprefix.hooker.UserNameTag;
 import cc.carm.plugin.userprefix.ui.PrefixSelectGUI;
 import net.luckperms.api.model.user.User;
 import net.luckperms.api.node.NodeType;
@@ -123,7 +123,7 @@ public class UserManager {
         String currentPrefixData = getPrefixData(player);
 
         if (!isPrefixUsable(player, currentPrefixData)) {
-            PrefixConfig currentPrefix = UserPrefix.getPrefixManager().getPrefix(currentPrefixData);
+            PrefixConfig currentPrefix = UserPrefixAPI.getPrefixManager().getPrefix(currentPrefixData);
             PrefixConfig newPrefix = getHighestPrefix(player);
 
             if (currentPrefix != null) {
@@ -169,8 +169,8 @@ public class UserManager {
         if (identifier == null || !isPrefixUsable(player, identifier)) {
             return getHighestPrefix(player);
         } else {
-            PrefixConfig prefix = UserPrefix.getPrefixManager().getPrefix(identifier);
-            return prefix == null ? UserPrefix.getDefaultPrefix() : prefix;
+            PrefixConfig prefix = UserPrefixAPI.getPrefixManager().getPrefix(identifier);
+            return prefix == null ? UserPrefixAPI.getDefaultPrefix() : prefix;
         }
     }
 
@@ -194,7 +194,7 @@ public class UserManager {
      */
     @NotNull
     public List<PrefixConfig> getUsablePrefixes(Player player) {
-        return UserPrefix.getPrefixManager().getPrefixes().values().stream()
+        return UserPrefixAPI.getPrefixManager().getPrefixes().values().stream()
                 .filter(prefix -> prefix.checkPermission(player)) //过滤出玩家可用的前缀
                 .sorted(Comparator.comparingInt(PrefixConfig::getWeight)) // 以前缀排序
                 .collect(Collectors.toList()); // 返回集合
@@ -212,11 +212,11 @@ public class UserManager {
     public PrefixConfig getHighestPrefix(Player player) {
         if (PluginConfig.FUNCTIONS.AUTO_USE.getNotNull()) {
             // 关闭了自动选择，就直接给默认的前缀，让玩家自己去设置吧~
-            return UserPrefix.getDefaultPrefix();
+            return UserPrefixAPI.getDefaultPrefix();
         }
         return getUsablePrefixes(player).stream()
                 .max(Comparator.comparingInt(PrefixConfig::getWeight)) // 取权重最大
-                .orElseGet(UserPrefix::getDefaultPrefix); // 啥都没有？ 返回默认前缀。
+                .orElseGet(UserPrefixAPI::getDefaultPrefix); // 啥都没有？ 返回默认前缀。
     }
 
     /**
@@ -229,7 +229,7 @@ public class UserManager {
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isPrefixUsable(Player player, String prefixIdentifier) {
         if (prefixIdentifier == null || prefixIdentifier.equalsIgnoreCase("default")) return true;
-        PrefixConfig prefix = UserPrefix.getPrefixManager().getPrefix(prefixIdentifier);
+        PrefixConfig prefix = UserPrefixAPI.getPrefixManager().getPrefix(prefixIdentifier);
         return prefix != null && prefix.checkPermission(player);
     }
 

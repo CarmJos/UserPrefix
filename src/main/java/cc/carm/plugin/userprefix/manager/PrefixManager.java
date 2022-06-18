@@ -78,9 +78,9 @@ public class PrefixManager {
                 PluginConfig.DEFAULT_PREFIX.CONTENT.getNotNull(),
                 PluginConfig.DEFAULT_PREFIX.WEIGHT.getNotNull(),
                 null,
-                PluginConfig.DEFAULT_PREFIX.ITEM_NOT_USING.getNotNull(),
-                null,
-                PluginConfig.DEFAULT_PREFIX.ITEM_USING.get()
+                PluginConfig.DEFAULT_PREFIX.ITEM.NOT_USING.getNotNull(),
+                PluginConfig.DEFAULT_PREFIX.ITEM.USING.get(),
+                null
         );
         Main.debugging("  完成默认前缀加载 " + defaultPrefix.getName());
     }
@@ -136,11 +136,11 @@ public class PrefixManager {
                 configuration.getInt("weight", 1),
                 configuration.getString("permission"),
                 readItem(
-                        configuration.getConfigurationSection("itemHasPermission"),
-                        new ItemConfig(Material.STONE, (short) 0, name, Arrays.asList(" ", "§a➥ 点击切换到该前缀"))
+                        configuration.getConfigurationSection("item.has-perm"),
+                        new ItemConfig(Material.STONE, name, Arrays.asList(" ", "§a➥ 点击切换到该前缀"))
                 ),
-                readItem(configuration.getConfigurationSection("itemNoPermission"), null),
-                readItem(configuration.getConfigurationSection("itemUsing"), null)
+                readItem(configuration.getConfigurationSection("item.using"), null),
+                readItem(configuration.getConfigurationSection("item.no-perm"), null)
         );
     }
 

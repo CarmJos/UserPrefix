@@ -22,34 +22,35 @@ weight: 1
 # (because it is impossible to display items without permission at all)
 permission: "yc.vip"
 
-# itemHasPermission  [Necessary]
-# This Item will be displayed when player has permission
-itemHasPermission:
-  type: DIAMOND
-  name: "&b&lVIP Prefix"
-  lore:
-    - ""
-    - "&a➥ Click to use"
+item:
+  # itemHasPermission  [Necessary]
+  # This Item will be displayed when player has permission
+  has-perm:
+    type: DIAMOND
+    name: "&b&lVIP Prefix"
+    lore:
+      - ""
+      - "&a➥ Click to use"
 
-# itemUsing [Unnecessary]
-# This Item will be displayed when the prefix is selected.
-# If there is no such configuration, it will automatically display "itemHasPermission".
-itemUsing:
-  type: DIAMOND
-  name: "&b&lVIP Prefix"
-  enchants:
-    PROTECTION_ENVIRONMENTAL: 1 #Add an enchantment so it looks like it’s selected
-  lore:
-    - ""
-    - "&a✔ Selected"
+  # itemUsing [Unnecessary]
+  # This Item will be displayed when the prefix is selected.
+  # If there is no such configuration, it will automatically display "itemHasPermission".
+  using:
+    type: DIAMOND
+    name: "&b&lVIP Prefix"
+    enchants:
+      PROTECTION_ENVIRONMENTAL: 1 #Add an enchantment so it looks like it’s selected
+    lore:
+      - ""
+      - "&a✔ Selected"
 
-# itemNoPermission [Unnecessary]
-# If player doesn't have the permission,this item will be displayed.
-# If this item is not configured, it will not be displayed in the GUI when the player does not have permission to use it.
-itemNoPermission:
-  type: INK_SACK
-  data: 8
-  name: "&b&lVIP &c(Buy it!)"
-  lore:
-    - ""
-    - "&e✯ Buy the VIP to use it!"
+  # itemNoPermission [Unnecessary]
+  # If player doesn't have the permission,this item will be displayed.
+  # If this item is not configured, it will not be displayed in the GUI when the player does not have permission to use it.
+  no-perm:
+    type: INK_SACK
+    data: 8
+    name: "&b&lVIP &c(Buy it!)"
+    lore:
+      - ""
+      - "&e✯ Buy the VIP to use it!"

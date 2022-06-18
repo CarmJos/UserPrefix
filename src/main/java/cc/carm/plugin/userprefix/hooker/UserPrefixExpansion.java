@@ -1,7 +1,7 @@
 package cc.carm.plugin.userprefix.hooker;
 
 import cc.carm.plugin.userprefix.Main;
-import cc.carm.plugin.userprefix.UserPrefix;
+import cc.carm.plugin.userprefix.UserPrefixAPI;
 import cc.carm.plugin.userprefix.configuration.prefix.PrefixConfig;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
@@ -60,20 +60,20 @@ public class UserPrefixExpansion extends PlaceholderExpansion {
 
         switch (args[0].toLowerCase()) {
             case "identifier": {
-                return UserPrefix.getUserManager().getPrefix(player).getIdentifier();
+                return UserPrefixAPI.getUserManager().getPrefix(player).getIdentifier();
             }
             case "prefix": {
-                return UserPrefix.getUserManager().getPrefix(player).getContent();
+                return UserPrefixAPI.getUserManager().getPrefix(player).getContent();
             }
             case "name": {
-                return UserPrefix.getUserManager().getPrefix(player).getName();
+                return UserPrefixAPI.getUserManager().getPrefix(player).getName();
             }
             case "weight": {
-                return Integer.toString(UserPrefix.getUserManager().getPrefix(player).getWeight());
+                return Integer.toString(UserPrefixAPI.getUserManager().getPrefix(player).getWeight());
             }
             case "has": {
                 if (args.length < 2) return "参数不足";
-                PrefixConfig prefix = UserPrefix.getPrefixManager().getPrefix(args[1]);
+                PrefixConfig prefix = UserPrefixAPI.getPrefixManager().getPrefix(args[1]);
                 if (prefix == null) return "该前缀不存在";
                 return Boolean.toString(prefix.checkPermission(player));
             }

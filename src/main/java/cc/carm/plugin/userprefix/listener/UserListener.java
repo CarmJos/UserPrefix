@@ -1,6 +1,6 @@
 package cc.carm.plugin.userprefix.listener;
 
-import cc.carm.plugin.userprefix.UserPrefix;
+import cc.carm.plugin.userprefix.UserPrefixAPI;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -10,12 +10,12 @@ public class UserListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        UserPrefix.getUserManager().initPlayer(event.getPlayer());
+        UserPrefixAPI.getUserManager().initPlayer(event.getPlayer());
     }
 
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
-        UserPrefix.getUserManager().unloadPlayer(event.getPlayer());
+        UserPrefixAPI.getUserManager().unloadPlayer(event.getPlayer());
     }
 
 }

@@ -5,7 +5,7 @@ import cc.carm.plugin.userprefix.manager.ConfigManager;
 import cc.carm.plugin.userprefix.manager.PrefixManager;
 import cc.carm.plugin.userprefix.manager.UserManager;
 
-public class UserPrefix {
+public class UserPrefixAPI {
 
     public static PrefixManager getPrefixManager() {
         return Main.getInstance().prefixManager;

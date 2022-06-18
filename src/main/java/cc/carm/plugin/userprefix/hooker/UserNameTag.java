@@ -1,4 +1,4 @@
-package cc.carm.plugin.userprefix.nametag;
+package cc.carm.plugin.userprefix.hooker;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -11,6 +11,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * 用户头顶标签。
+ *
+ * @author LSeng, Tony, Carm
+ */
 public class UserNameTag {
 
     public static final int MAX_ORDER = 999;
