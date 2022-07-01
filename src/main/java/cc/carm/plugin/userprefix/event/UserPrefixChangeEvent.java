@@ -2,13 +2,13 @@ package cc.carm.plugin.userprefix.event;
 
 import cc.carm.plugin.userprefix.Main;
 import cc.carm.plugin.userprefix.configuration.prefix.PrefixConfig;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class UserPrefixChangeEvent extends UserPrefixEvent implements Cancellable {
@@ -61,11 +61,8 @@ public class UserPrefixChangeEvent extends UserPrefixEvent implements Cancellabl
                             @Nullable PrefixConfig before,
                             @NotNull PrefixConfig after,
                             @Nullable Consumer<@Nullable PrefixConfig> finish) {
-        Main.getInstance().getScheduler().run(() -> {
-            UserPrefixChangeEvent event = new UserPrefixChangeEvent(who, before, after);
-            Bukkit.getPluginManager().callEvent(event);
-            if (finish != null) finish.accept(event.isCancelled() ? null : event.getAfter());
-        });
+        Main.getInstance().callSync(new UserPrefixChangeEvent(who, before, after))
+                .thenAccept((e) -> Optional.ofNullable(finish).ifPresent(f -> f.accept(e.getAfter())));
     }
 
 }

@@ -30,7 +30,7 @@ public class UserPrefixExpireEvent extends UserPrefixEvent {
     }
 
     public static void call(@NotNull Player player, @NotNull PrefixConfig currentPrefix) {
-        Main.getInstance().callEventSync(new UserPrefixExpireEvent(player, currentPrefix));
+        Main.getInstance().callSync(new UserPrefixExpireEvent(player, currentPrefix));
     }
 
 }
