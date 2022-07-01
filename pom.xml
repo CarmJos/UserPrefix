@@ -214,6 +214,8 @@
                     <links>
 <!--                        <link>https://javadoc.io/doc/org.jetbrains/annotations/</link>-->
                         <link>https://hub.spigotmc.org/javadocs/bukkit/</link>
+                        <link>https://carmjos.github.io/EasyPlugin/</link>
+                        <link>https://carmjos.github.io/MineConfiguration/</link>
                     </links>
                     <detectJavaApiLink>true</detectJavaApiLink>
                     <encoding>UTF-8</encoding>
