@@ -59,7 +59,7 @@ public class PluginMessages extends ConfigurationRoot {
                 "&8#%(weight) &f%(identifier)",
                 "&8- &7显示名 &r%(name) &7权限 &r%(permission)",
                 "&8- &7内容示例&r %(content) %(sender_name)"
-        ).params("weight", "identifier", "name", "permission", "sender_name").build();
+        ).params("weight", "identifier", "name", "permission", "content", "sender_name").build();
 
     }
 
