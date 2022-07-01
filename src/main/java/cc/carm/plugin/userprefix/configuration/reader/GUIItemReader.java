@@ -18,6 +18,7 @@ public class GUIItemReader {
         String material = Optional.ofNullable(section.getString("type")).orElse("STONE");
         Material type = Optional.ofNullable(Material.matchMaterial(material)).orElse(Material.STONE);
         int data = section.getInt("data", 0);
+        int amount = section.getInt("amount", 1);
         String name = section.getString("name");
         List<String> lore = section.getStringList("lore");
 
@@ -33,7 +34,7 @@ public class GUIItemReader {
         }
 
         return new GUIItemConfiguration(
-                type, data, name, lore, actions,
+                type, amount, data, name, lore, actions,
                 slots.size() > 0 ? slots : Collections.singletonList(slot)
         );
     }

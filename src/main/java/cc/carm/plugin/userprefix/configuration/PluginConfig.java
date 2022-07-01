@@ -122,7 +122,7 @@ public class PluginConfig extends ConfigurationRoot {
                     .serializeValue(GUIItemConfiguration::serialize)
                     .parseValue((v, d) -> GUIItemReader.readFrom(v))
                     .defaults(new GUIItemConfiguration(
-                            Material.BARRIER, 0, "&c&l返回",
+                            Material.BARRIER, 1, 0, "&c&l返回",
                             Collections.singletonList("&f点击即可返回上一菜单"),
                             Collections.singletonList(GUIActionConfiguration.of(GUIActionType.CHAT, "/menu")),
                             Collections.singletonList(49)
