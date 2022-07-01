@@ -42,7 +42,6 @@ For development dependencies, please see  [Dependencies](https://github.com/Carm
 - Real-time judgment and feedback to the player when permissions are changed.
 - Configurable sounds and messages.
 - The prefix icon can be configured as "Selected", "Has Permission" and “No Permission”.
-    - Item configuration is natively configured through ItemStack, which supports all MC settings!
 - TabList is automatically sorted according to the weight of the prefix (if there is a conflict, it can be turned off)
 - The prefix display on the player name (can be turned off if there has any conflict)
 - Simple Chat Format Placeholder support. (Not Recommended)
@@ -67,12 +66,7 @@ becomes "`ENTITY_VILLAGER_YES`" in the higher version.
 
 The display of the prefix on the head and the sorting of the TabList both use the scoreboard API.
 
-Please turn of the `functions.OnNamePrefix` in the configuration if there is a conflict.
-
-### 3. Item icon configuration problem
-
-Items are read through the ItemStack serialization method provided by Bukkit. For related configuration methods, please
-refer to  [ItemStack Serialization](https://www.spigotmc.org/wiki/itemstack-serialization/).
+Please turn of the `functions.on-name-prefix` in the configuration if there is a conflict.
 
 ## Commands
 
@@ -106,14 +100,13 @@ type `/papi info UserPrefix` to see all the placeholders.
 
 ## Configuration files
 
-### Plugin Configuration ([`config.yml`](src/main/resources/en_US/config.yml) .
+### Plugin Configuration ([`config.yml`]() .
 
-Notice: The default configuration is based on Chinese. You can find
-the [English Version here](src/main/resources/en_US/config.yml).
+Will be generated on the first boot up.
 
-### Messages Configuration ([`messages.yml`](src/main/resources/en_US/messages.yml))
+### Messages Configuration ([`messages.yml`]())
 
-Please see the [Source File](src/main/resources/en_US/messages.yml) .
+Will be generated on the first boot up.
 
 ### Prefixes Configuration ([`prefixes/*.yml`](src/main/resources/en_US/example-prefix.yml))
 

@@ -37,8 +37,6 @@ README LANGUAGES [ [**中文**](README.md) | [English](README-en.md)  ]
 - 当玩家权限变更时会实时监测前缀，若权限不足则自动更换前缀并提示
 - 可配置的声音、消息！
 - 前缀图标可配置“选中”、“有权限”与“无权限”三种状态的物品
-    - 物品的配置通过ItemStack原生配置，支持MC所有的设定！
-    - 具体的设定请参考其他文档哦~
 - TabList自动按照前缀的权重排序 (如有冲突可关掉)
 - 玩家头顶前缀显示 (如有冲突可关掉)
 - 简单的聊天变量修改功能！(不推荐使用) `[自 v2.1.0 版本起]`
@@ -60,12 +58,7 @@ README LANGUAGES [ [**中文**](README.md) | [English](README-en.md)  ]
 
 头顶上前缀的显示与TabList的排序均使用到了计分板API。
 
-如有冲突导致其他插件的计分板无法显示，请关掉配置文件中`functions.OnNamePrefix`。
-
-### 3. 物品图标配置问题
-
-物品相关均通过Bukkit提供的ItemStack序列化方法读取，相关配置方式请参考[ItemStack Serialization(物品序列化)](https://www.spigotmc.org/wiki/itemstack-serialization/)
-。
+如有冲突导致其他插件的计分板无法显示，请关掉配置文件中`functions.on-name-prefix`。
 
 ## 指令
 
@@ -99,13 +92,13 @@ README LANGUAGES [ [**中文**](README.md) | [English](README-en.md)  ]
 
 ## 配置文件示例
 
-### 基础配置文件 ([`config.yml`](src/main/resources/config.yml))
+### 基础配置文件 ([`config.yml`](src/main/java/cc/carm/plugin/userprefix/configuration/PluginConfig.java))
 
-将会在服务器首次启动时生成，如果您想要修改配置，请在服务器启动后打开配置文件，详见 [示例文件](src/main/resources/config.yml) 。
+将会在服务器首次启动时生成，如果您想要修改配置，请在服务器启动后打开配置文件。
 
-### 消息配置文件 ([`messages.yml`](src/main/resources/messages.yml))
+### 消息配置文件 ([`messages.yml`](src/main/java/cc/carm/plugin/userprefix/configuration/PluginMessages.java))
 
-将会在服务器首次启动时生成，如果您想要修改配置，请在服务器启动后打开配置文件, 详见 [示例文件](src/main/resources/messages.yml) 。
+将会在服务器首次启动时生成，如果您想要修改配置，请在服务器启动后打开配置文件 。
 
 ### 前缀配置文件 ([`prefixes/*.yml`](src/main/resources/prefixes/example-prefix.yml))
 
