@@ -213,6 +213,7 @@
                     <classifier>javadoc</classifier>
                     <links>
                         <link>https://javadoc.io/doc/org.jetbrains/annotations/</link>
+                        <link>https://hub.spigotmc.org/javadocs/bukkit/</link>
                     </links>
                     <detectJavaApiLink>true</detectJavaApiLink>
                     <encoding>UTF-8</encoding>
