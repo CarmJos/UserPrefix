@@ -48,7 +48,7 @@ public class Main extends EasyPlugin {
 
         log("注册指令...");
         registerCommand("UserPrefix", new UserCommand());
-        registerCommand("UserPrefixAdmin", new AdminCommand());
+        registerCommand("UserPrefixAdmin", new AdminCommand(this));
 
         log("注册监听器...");
         registerListener(new UserListener());

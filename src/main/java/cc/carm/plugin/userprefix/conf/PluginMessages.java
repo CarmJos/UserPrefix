@@ -20,6 +20,11 @@ public class PluginMessages extends ConfigurationRoot {
                 "&8- &7重载前缀配置。"
         ).build();
 
+        public static ConfiguredMessageList<String> NO_PERM = ConfiguredMessageList.asStrings()
+                .defaults("&c&l抱歉！&f但您没有权限使用该指令。")
+                .build();
+
+
     }
 
 
