@@ -1,4 +1,4 @@
-package cc.carm.plugin.userprefix.configuration.reader;
+package cc.carm.plugin.userprefix.conf.reader;
 
 import cc.carm.lib.configuration.core.source.ConfigurationWrapper;
 import cc.carm.lib.easyplugin.gui.configuration.GUIActionConfiguration;

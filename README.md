@@ -92,11 +92,11 @@ README LANGUAGES [ [**中文**](README.md) | [English](README-en.md)  ]
 
 ## 配置文件示例
 
-### 基础配置文件 ([`config.yml`](src/main/java/cc/carm/plugin/userprefix/configuration/PluginConfig.java))
+### 基础配置文件 ([`config.yml`](src/main/java/cc/carm/plugin/userprefix/conf/PluginConfig.java))
 
 将会在服务器首次启动时生成，如果您想要修改配置，请在服务器启动后打开配置文件。
 
-### 消息配置文件 ([`messages.yml`](src/main/java/cc/carm/plugin/userprefix/configuration/PluginMessages.java))
+### 消息配置文件 ([`messages.yml`](src/main/java/cc/carm/plugin/userprefix/conf/PluginMessages.java))
 
 将会在服务器首次启动时生成，如果您想要修改配置，请在服务器启动后打开配置文件 。
 

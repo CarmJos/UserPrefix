@@ -1,8 +1,8 @@
 package cc.carm.plugin.userprefix.command;
 
 import cc.carm.plugin.userprefix.UserPrefixAPI;
-import cc.carm.plugin.userprefix.configuration.PluginMessages;
-import cc.carm.plugin.userprefix.configuration.prefix.PrefixConfig;
+import cc.carm.plugin.userprefix.conf.PluginMessages;
+import cc.carm.plugin.userprefix.conf.prefix.PrefixConfig;
 import cc.carm.plugin.userprefix.ui.PrefixSelectGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

@@ -1,6 +1,6 @@
 package cc.carm.plugin.userprefix;
 
-import cc.carm.plugin.userprefix.configuration.prefix.PrefixConfig;
+import cc.carm.plugin.userprefix.conf.prefix.PrefixConfig;
 import cc.carm.plugin.userprefix.manager.ConfigManager;
 import cc.carm.plugin.userprefix.manager.PrefixManager;
 import cc.carm.plugin.userprefix.manager.UserManager;

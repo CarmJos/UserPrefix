@@ -1,4 +1,4 @@
-package cc.carm.plugin.userprefix.configuration.prefix;
+package cc.carm.plugin.userprefix.conf.prefix;
 
 import cc.carm.lib.easyplugin.utils.ColorParser;
 import cc.carm.lib.mineconfiguration.bukkit.data.ItemConfig;

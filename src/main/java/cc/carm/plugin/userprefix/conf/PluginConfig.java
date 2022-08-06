@@ -1,4 +1,4 @@
-package cc.carm.plugin.userprefix.configuration;
+package cc.carm.plugin.userprefix.conf;
 
 import cc.carm.lib.configuration.core.ConfigurationRoot;
 import cc.carm.lib.configuration.core.annotation.ConfigPath;
@@ -10,7 +10,7 @@ import cc.carm.lib.easyplugin.gui.configuration.GUIActionType;
 import cc.carm.lib.easyplugin.gui.configuration.GUIItemConfiguration;
 import cc.carm.lib.mineconfiguration.bukkit.value.ConfiguredItem;
 import cc.carm.lib.mineconfiguration.bukkit.value.ConfiguredSound;
-import cc.carm.plugin.userprefix.configuration.reader.GUIItemReader;
+import cc.carm.plugin.userprefix.conf.reader.GUIItemReader;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;

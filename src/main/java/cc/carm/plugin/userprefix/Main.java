@@ -2,11 +2,12 @@ package cc.carm.plugin.userprefix;
 
 import cc.carm.lib.easyplugin.EasyPlugin;
 import cc.carm.lib.easyplugin.gui.GUI;
+import cc.carm.lib.easyplugin.gui.paged.AutoPagedGUI;
 import cc.carm.lib.easyplugin.updatechecker.GHUpdateChecker;
 import cc.carm.lib.easyplugin.utils.MessageUtils;
 import cc.carm.plugin.userprefix.command.AdminCommand;
 import cc.carm.plugin.userprefix.command.UserCommand;
-import cc.carm.plugin.userprefix.configuration.PluginConfig;
+import cc.carm.plugin.userprefix.conf.PluginConfig;
 import cc.carm.plugin.userprefix.hooker.UserPrefixExpansion;
 import cc.carm.plugin.userprefix.listener.ChatListener;
 import cc.carm.plugin.userprefix.listener.UserListener;
@@ -50,13 +51,17 @@ public class Main extends EasyPlugin {
         registerCommand("UserPrefixAdmin", new AdminCommand());
 
         log("注册监听器...");
-        GUI.initialize(this);
         registerListener(new UserListener());
         registerListener(new ChatListener());
         ServiceManager.getService().getEventBus().subscribe(
                 this, UserDataRecalculateEvent.class,
                 UserNodeUpdateProcessor::process
         );
+
+        log("初始化GUI管理器...");
+        GUI.initialize(this);
+        AutoPagedGUI.defaultNextPage = (PluginConfig.GUI.ITEMS.NEXT_PAGE::getItem);
+        AutoPagedGUI.defaultPreviousPage = (PluginConfig.GUI.ITEMS.PREV_PAGE::getItem);
 
         if (MessageUtils.hasPlaceholderAPI()) {
             log("注册变量...");

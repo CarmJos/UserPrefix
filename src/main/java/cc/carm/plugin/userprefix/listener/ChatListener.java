@@ -2,8 +2,7 @@ package cc.carm.plugin.userprefix.listener;
 
 import cc.carm.lib.easyplugin.utils.MessageUtils;
 import cc.carm.plugin.userprefix.Main;
-import cc.carm.plugin.userprefix.configuration.PluginConfig;
-import me.clip.placeholderapi.PlaceholderAPI;
+import cc.carm.plugin.userprefix.conf.PluginConfig;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;

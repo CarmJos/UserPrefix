@@ -3,8 +3,8 @@ package cc.carm.plugin.userprefix.manager;
 import cc.carm.lib.configuration.core.source.ConfigurationProvider;
 import cc.carm.lib.easyplugin.utils.JarResourceUtils;
 import cc.carm.lib.mineconfiguration.bukkit.MineConfiguration;
-import cc.carm.plugin.userprefix.configuration.PluginConfig;
-import cc.carm.plugin.userprefix.configuration.PluginMessages;
+import cc.carm.plugin.userprefix.conf.PluginConfig;
+import cc.carm.plugin.userprefix.conf.PluginMessages;
 
 import java.io.File;
 import java.io.IOException;

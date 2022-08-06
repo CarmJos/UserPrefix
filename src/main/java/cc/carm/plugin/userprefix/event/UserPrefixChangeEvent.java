@@ -1,7 +1,7 @@
 package cc.carm.plugin.userprefix.event;
 
 import cc.carm.plugin.userprefix.Main;
-import cc.carm.plugin.userprefix.configuration.prefix.PrefixConfig;
+import cc.carm.plugin.userprefix.conf.prefix.PrefixConfig;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;

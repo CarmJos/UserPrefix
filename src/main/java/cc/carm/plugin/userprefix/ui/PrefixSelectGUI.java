@@ -4,9 +4,9 @@ import cc.carm.lib.easyplugin.gui.GUIItem;
 import cc.carm.lib.easyplugin.gui.GUIType;
 import cc.carm.lib.easyplugin.gui.paged.AutoPagedGUI;
 import cc.carm.plugin.userprefix.UserPrefixAPI;
-import cc.carm.plugin.userprefix.configuration.PluginConfig;
-import cc.carm.plugin.userprefix.configuration.PluginMessages;
-import cc.carm.plugin.userprefix.configuration.prefix.PrefixConfig;
+import cc.carm.plugin.userprefix.conf.PluginConfig;
+import cc.carm.plugin.userprefix.conf.PluginMessages;
+import cc.carm.plugin.userprefix.conf.prefix.PrefixConfig;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 

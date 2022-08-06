@@ -1,4 +1,4 @@
-package cc.carm.plugin.userprefix.configuration;
+package cc.carm.plugin.userprefix.conf;
 
 import cc.carm.lib.configuration.core.ConfigurationRoot;
 import cc.carm.lib.configuration.core.annotation.HeaderComment;
