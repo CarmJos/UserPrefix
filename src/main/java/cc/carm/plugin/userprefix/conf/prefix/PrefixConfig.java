@@ -3,19 +3,12 @@ package cc.carm.plugin.userprefix.conf.prefix;
 import cc.carm.lib.easyplugin.utils.ColorParser;
 import cc.carm.lib.mineconfiguration.bukkit.data.ItemConfig;
 import cc.carm.plugin.userprefix.manager.ServiceManager;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.File;
-
 public class PrefixConfig {
-
-
-    private @Nullable File dataFile;
-    private @Nullable FileConfiguration configuration;
 
     protected final @NotNull String identifier;
 
