@@ -23,11 +23,8 @@ public class ListCommand extends SubCommand {
                     value.getContent(), sender.getName()
             );
         }
-
         return null;
     }
-
-
 
 
 }
