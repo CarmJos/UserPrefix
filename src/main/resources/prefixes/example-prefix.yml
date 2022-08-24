@@ -58,7 +58,7 @@ item:
   # 没有权限时显示的物品 [非必需]
   # 如果没有权限就会显示这个item。如果不配置该物品，则玩家没有使用权限时不会显示在GUI里面。
   no-perm:
-    type: INK_SACK
+    type: INK_SAC
     data: 8
     name: "&b&lPro+ &b会员前缀 &c(未拥有)"
     lore:
