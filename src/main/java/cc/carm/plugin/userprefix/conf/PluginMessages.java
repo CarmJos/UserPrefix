@@ -24,7 +24,6 @@ public class PluginMessages extends ConfigurationRoot {
                 .defaults("&c&l抱歉！&f但您没有权限使用该指令。")
                 .build();
 
-
     }
 
 
