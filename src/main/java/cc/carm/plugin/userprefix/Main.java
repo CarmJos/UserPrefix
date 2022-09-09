@@ -11,11 +11,12 @@ import cc.carm.plugin.userprefix.conf.PluginConfig;
 import cc.carm.plugin.userprefix.hooker.UserPrefixExpansion;
 import cc.carm.plugin.userprefix.listener.ChatListener;
 import cc.carm.plugin.userprefix.listener.UserListener;
-import cc.carm.plugin.userprefix.listener.processor.UserNodeUpdateProcessor;
+import cc.carm.plugin.userprefix.listener.UserPermListener;
 import cc.carm.plugin.userprefix.manager.ConfigManager;
 import cc.carm.plugin.userprefix.manager.PrefixManager;
 import cc.carm.plugin.userprefix.manager.ServiceManager;
 import cc.carm.plugin.userprefix.manager.UserManager;
+import cc.carm.plugin.userprefix.ui.PrefixSelectGUI;
 import net.luckperms.api.event.user.UserDataRecalculateEvent;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
@@ -55,7 +56,7 @@ public class Main extends EasyPlugin {
         registerListener(new ChatListener());
         ServiceManager.getService().getEventBus().subscribe(
                 this, UserDataRecalculateEvent.class,
-                UserNodeUpdateProcessor::process
+                UserPermListener::process
         );
 
         log("初始化GUI管理器...");
@@ -96,6 +97,20 @@ public class Main extends EasyPlugin {
         log("&7感谢您使用 &3&lUserPrefix " + getDescription().getVersion() + "&7!");
         log("&7本插件由 &b&lYourCraft &7提供长期支持与维护。");
         return true;
+    }
+
+    @Override
+    protected void shutdown() {
+
+        log("关闭已被打开的GUI...");
+        Bukkit.getOnlinePlayers().stream().filter(GUI::hasOpenedGUI).forEach(player -> {
+            player.closeInventory();
+            GUI.removeOpenedGUI(player);
+            PrefixSelectGUI.removeOpening(player);
+        });
+
+        log("&7感谢您使用 &3&lUserPrefix " + getDescription().getVersion() + "&7!");
+        log("&7本插件由 &b&lYourCraft &7提供长期支持与维护。");
     }
 
     @Override

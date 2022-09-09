@@ -9,9 +9,9 @@ import cc.carm.lib.configuration.core.value.type.ConfiguredValue;
 import cc.carm.lib.easyplugin.gui.configuration.GUIActionConfiguration;
 import cc.carm.lib.easyplugin.gui.configuration.GUIActionType;
 import cc.carm.lib.easyplugin.gui.configuration.GUIItemConfiguration;
+import cc.carm.lib.mineconfiguration.bukkit.source.CraftSectionWrapper;
 import cc.carm.lib.mineconfiguration.bukkit.value.ConfiguredItem;
 import cc.carm.lib.mineconfiguration.bukkit.value.ConfiguredSound;
-import cc.carm.plugin.userprefix.conf.reader.GUIItemReader;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -121,7 +121,10 @@ public class PluginConfig extends ConfigurationRoot {
             public static final ConfigValue<GUIItemConfiguration> BACK = ConfiguredValue.builder(GUIItemConfiguration.class)
                     .fromSection()
                     .serializeValue(GUIItemConfiguration::serialize)
-                    .parseValue((v, d) -> GUIItemReader.readFrom(v))
+                    .parseValue((v, d) -> {
+                        if (!(v instanceof CraftSectionWrapper)) return null;
+                        return GUIItemConfiguration.readFrom(((CraftSectionWrapper) v).getSource());
+                    })
                     .defaults(new GUIItemConfiguration(
                             Material.BARRIER, 1, 0, "&c&l返回",
                             Collections.singletonList("&f点击即可返回上一菜单"),
@@ -159,6 +162,7 @@ public class PluginConfig extends ConfigurationRoot {
         public static final ConfiguredList<String> ACTIONS = ConfiguredList.builder(String.class).fromString()
                 .defaults("[CONSOLE] " + "say %player_name% 选择了默认前缀")
                 .build();
+
         @HeaderComment({"默认前缀的显示物品"})
         public static final class ITEM {
 

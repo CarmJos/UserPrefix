@@ -2,7 +2,6 @@ package cc.carm.plugin.userprefix.manager;
 
 import cc.carm.lib.easyplugin.gui.configuration.GUIActionConfiguration;
 import cc.carm.lib.mineconfiguration.bukkit.data.ItemConfig;
-import cc.carm.lib.mineconfiguration.bukkit.source.CraftSectionWrapper;
 import cc.carm.plugin.userprefix.Main;
 import cc.carm.plugin.userprefix.conf.PluginConfig;
 import cc.carm.plugin.userprefix.conf.prefix.PrefixConfig;
@@ -152,7 +151,7 @@ public class PrefixManager {
     @Contract("_,!null->!null")
     protected static ItemConfig readItem(@Nullable ConfigurationSection section, @Nullable ItemConfig defaultValue) throws Exception {
         if (section == null) return defaultValue;
-        else return ItemConfig.deserialize(CraftSectionWrapper.of(section));
+        else return ItemConfig.deserialize(section);
     }
 
     protected static List<GUIActionConfiguration> readActions(@NotNull List<String> strings) {
