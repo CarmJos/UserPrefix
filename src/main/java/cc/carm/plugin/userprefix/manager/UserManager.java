@@ -141,9 +141,7 @@ public class UserManager {
             }
 
             UserPrefixChangeEvent.call(player, currentPrefix, newPrefix, (after) -> {
-                if (after != null) {
-                    setPrefix(player, after, updateView);
-                }
+                if (after != null) setPrefix(player, after, updateView);
                 checkingPlayers.remove(player.getUniqueId());
             });
 
@@ -183,6 +181,7 @@ public class UserManager {
      */
     public void setPrefix(Player player, PrefixConfig prefix, boolean updateView) {
         setPrefixData(player, prefix.getIdentifier());
+        prefix.executeActions(player);
         if (updateView) updatePrefixView(player, false);
     }
 

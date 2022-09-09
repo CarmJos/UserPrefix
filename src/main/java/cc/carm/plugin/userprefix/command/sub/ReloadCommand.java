@@ -2,17 +2,19 @@ package cc.carm.plugin.userprefix.command.sub;
 
 import cc.carm.lib.easyplugin.command.SubCommand;
 import cc.carm.plugin.userprefix.UserPrefixAPI;
+import cc.carm.plugin.userprefix.command.AdminCommand;
 import cc.carm.plugin.userprefix.conf.PluginMessages;
 import cc.carm.plugin.userprefix.ui.PrefixSelectGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
-public class ReloadCommand extends SubCommand {
+public class ReloadCommand extends SubCommand<AdminCommand> {
 
-    public ReloadCommand(String name, String... aliases) {
-        super(name, aliases);
+    public ReloadCommand(@NotNull AdminCommand parent, String name, String... aliases) {
+        super(parent, name, aliases);
     }
 
     @Override

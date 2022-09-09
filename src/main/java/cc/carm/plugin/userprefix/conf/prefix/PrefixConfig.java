@@ -1,5 +1,6 @@
 package cc.carm.plugin.userprefix.conf.prefix;
 
+import cc.carm.lib.easyplugin.gui.configuration.GUIActionConfiguration;
 import cc.carm.lib.easyplugin.utils.ColorParser;
 import cc.carm.lib.mineconfiguration.bukkit.data.ItemConfig;
 import cc.carm.plugin.userprefix.manager.ServiceManager;
@@ -7,6 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class PrefixConfig {
 
@@ -19,12 +22,15 @@ public class PrefixConfig {
 
     protected final @Nullable String permission;
 
+    protected final @NotNull List<GUIActionConfiguration> actions;
+
     protected final @NotNull ItemConfig itemHasPermission;
     protected final @Nullable ItemConfig itemNoPermission;
     protected final @Nullable ItemConfig itemWhenUsing;
 
     public PrefixConfig(@NotNull String identifier, @NotNull String name,
                         @NotNull String content, int weight, @Nullable String permission,
+                        @NotNull List<GUIActionConfiguration> actions,
                         @NotNull ItemConfig itemHasPermission,
                         @Nullable ItemConfig itemWhenUsing,
                         @Nullable ItemConfig itemNoPermission) {
@@ -33,6 +39,7 @@ public class PrefixConfig {
         this.content = content;
         this.weight = weight;
         this.permission = permission;
+        this.actions = actions;
         this.itemHasPermission = itemHasPermission;
         this.itemNoPermission = itemNoPermission;
         this.itemWhenUsing = itemWhenUsing;
@@ -81,6 +88,10 @@ public class PrefixConfig {
 
     public boolean isPublic() {
         return getPermission() == null;
+    }
+
+    public void executeActions(@NotNull Player player) {
+        this.actions.forEach(action -> action.executeAction(player));
     }
 
     public boolean isVisible(Player player) {

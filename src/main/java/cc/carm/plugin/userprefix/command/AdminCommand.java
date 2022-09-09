@@ -13,19 +13,20 @@ public class AdminCommand extends CommandHandler {
 
     public AdminCommand(@NotNull JavaPlugin plugin) {
         super(plugin);
-        registerSubCommand(new ListCommand("list", "l"));
-        registerSubCommand(new ReloadCommand("reload"));
+        registerSubCommand(new ListCommand(this, "list", "l"));
+        registerSubCommand(new ReloadCommand(this, "reload"));
 
     }
 
     @Override
-    public void noArgs(CommandSender sender) {
-        help(sender);
+    public Void noArgs(CommandSender sender) {
+        return help(sender);
     }
 
     @Override
-    public void noPermission(CommandSender sender) {
+    public Void noPermission(CommandSender sender) {
         PluginMessages.COMMAND_USAGE.NO_PERM.send(sender);
+        return null;
     }
 
     public static Void help(CommandSender sender) {
