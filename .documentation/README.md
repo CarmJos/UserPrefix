@@ -13,6 +13,7 @@
 
 - 使用示例
     - [前缀配置文件预设示例](../src/main/resources/prefixes/example-prefix.yml)
+- [操作(Actions)配置](ACTIONS.md)
 
 ## [开发文档](JAVADOC-README.md)
 

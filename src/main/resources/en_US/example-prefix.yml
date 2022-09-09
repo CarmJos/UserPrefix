@@ -22,6 +22,14 @@ weight: 1
 # (because it is impossible to display items without permission at all)
 permission: "yc.vip"
 
+# Actions [Unnecessary]
+#  Please check https://github.com/CarmJos/UserPrefix/tree/master/.documentation/ACTIONS.md
+actions:
+  select: # Actions when select
+    - "[CONSOLE] say %player_name% selected PRO ！"
+  cancel: # Actions when cancel
+    - "[CONSOLE] say %player_name% cancelled PRO ！"
+
 item:
   # itemHasPermission  [Necessary]
   # This Item will be displayed when player has permission
