@@ -126,7 +126,7 @@ public class Main extends EasyPlugin {
         getInstance().debug(message);
     }
 
-    public static void serve(String... message) {
+    public static void severe(String... message) {
         getInstance().error(message);
     }
 

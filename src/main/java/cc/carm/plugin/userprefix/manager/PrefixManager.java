@@ -41,9 +41,9 @@ public class PrefixManager {
 
         String[] filesList = prefixDataFolder.list();
         if (filesList == null || filesList.length < 1) {
-            Main.serve("配置文件夹中暂无任何前缀配置问，请检查。");
-            Main.serve("There's no configured prefix.");
-            Main.serve("Path: " + prefixDataFolder.getAbsolutePath());
+            Main.severe("配置文件夹中暂无任何前缀配置问，请检查。");
+            Main.severe("There's no configured prefix.");
+            Main.severe("Path: " + prefixDataFolder.getAbsolutePath());
             return;
         }
 
@@ -61,8 +61,8 @@ public class PrefixManager {
                     Main.debugging("完成前缀加载 " + prefix.getIdentifier() + " : " + prefix.getName());
                     loaded.put(prefix.getIdentifier(), prefix);
                 } catch (Exception ex) {
-                    Main.serve("在加载前缀 " + file.getAbsolutePath() + " 时出错，请检查配置！");
-                    Main.serve("Error occurred when loading prefix #" + file.getAbsolutePath() + " !");
+                    Main.severe("在加载前缀 " + file.getAbsolutePath() + " 时出错，请检查配置！");
+                    Main.severe("Error occurred when loading prefix #" + file.getAbsolutePath() + " !");
                     ex.printStackTrace();
                 }
             }
