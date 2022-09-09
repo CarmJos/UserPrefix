@@ -4,6 +4,7 @@ import cc.carm.lib.configuration.core.ConfigurationRoot;
 import cc.carm.lib.configuration.core.annotation.ConfigPath;
 import cc.carm.lib.configuration.core.annotation.HeaderComment;
 import cc.carm.lib.configuration.core.value.ConfigValue;
+import cc.carm.lib.configuration.core.value.type.ConfiguredList;
 import cc.carm.lib.configuration.core.value.type.ConfiguredValue;
 import cc.carm.lib.easyplugin.gui.configuration.GUIActionConfiguration;
 import cc.carm.lib.easyplugin.gui.configuration.GUIActionType;
@@ -154,6 +155,10 @@ public class PluginConfig extends ConfigurationRoot {
         @HeaderComment({"默认前缀的内容，即用于显示的实际前缀"})
         public static final ConfigValue<String> CONTENT = ConfiguredValue.of(String.class, "&r");
 
+        @HeaderComment({"选择默认前缀时执行的操作"})
+        public static final ConfiguredList<String> ACTIONS = ConfiguredList.builder(String.class).fromString()
+                .defaults("[CONSOLE] " + "say %player_name% 选择了默认前缀")
+                .build();
         @HeaderComment({"默认前缀的显示物品"})
         public static final class ITEM {
 

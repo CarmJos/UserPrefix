@@ -22,6 +22,12 @@ weight: 1
 # 如果没有就是人人都能用，也代表不用配置“itemNoPermission”了(因为压根不可能显示没权限时候的物品)
 permission: "yc.pro"
 
+# 选择这个前缀时执行的操作 [非必须]
+#  用于在玩家选择/取消选择前缀时执行相应动作，以便于实现一些特殊的功能。
+#  具体操作类型详见： https://github.com/CarmJos/UserPrefix/tree/master/.documentation/ACTIONS.md
+actions:
+  - "[CONSOLE] say %player_name% 选择了 Pro会员前缀 ！"
+
 # 该前缀的GUI物品配置
 item:
 

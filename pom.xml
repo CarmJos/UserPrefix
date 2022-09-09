@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
-        <easyplugin.version>1.4.13</easyplugin.version>
+        <easyplugin.version>1.4.14</easyplugin.version>
         <mineconfig.version>2.0.2</mineconfig.version>
     </properties>
 
@@ -162,7 +162,7 @@
         <dependency>
             <groupId>net.luckperms</groupId>
             <artifactId>api</artifactId>
-            <version>5.3</version>
+            <version>5.4</version>
             <scope>provided</scope>
         </dependency>
 
@@ -220,7 +220,7 @@
                 <configuration>
                     <classifier>javadoc</classifier>
                     <links>
-<!--                        <link>https://javadoc.io/doc/org.jetbrains/annotations/</link>-->
+                        <link>https://javadoc.io/doc/org.jetbrains/annotations/</link>
                         <link>https://hub.spigotmc.org/javadocs/bukkit/</link>
                         <link>https://carmjos.github.io/EasyPlugin/</link>
                         <link>https://carmjos.github.io/MineConfiguration/</link>

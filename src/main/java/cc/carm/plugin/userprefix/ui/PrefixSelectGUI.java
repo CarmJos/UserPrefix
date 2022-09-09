@@ -7,6 +7,7 @@ import cc.carm.plugin.userprefix.UserPrefixAPI;
 import cc.carm.plugin.userprefix.conf.PluginConfig;
 import cc.carm.plugin.userprefix.conf.PluginMessages;
 import cc.carm.plugin.userprefix.conf.prefix.PrefixConfig;
+import cc.carm.plugin.userprefix.event.UserPrefixChangeEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 
@@ -51,15 +52,22 @@ public class PrefixSelectGUI extends AutoPagedGUI {
                 addItem(new GUIItem(prefix.getItemWhenUsing(player) != null ? prefix.getItemWhenUsing(player) : prefix.getItemHasPermission(player)));
             } else if (prefix.checkPermission(player)) {
                 addItem(new GUIItem(prefix.getItemHasPermission(player)) {
+
                     @Override
-                    public void onClick(ClickType type) {
+                    public void onClick(Player clicker, ClickType type) {
                         player.closeInventory();
                         //再次检查，防止打开GUI后、选择前的时间段内权限消失
                         if (prefix.checkPermission(player)) {
-                            UserPrefixAPI.getUserManager().setPrefix(player, prefix, true);
 
+                            // 发送消息与提示
                             PluginConfig.SOUNDS.PREFIX_CHANGE.playTo(player);
                             PluginMessages.SELECTED.send(player, prefix.getName());
+
+                            UserPrefixChangeEvent.call(player, usingPrefix, prefix, config -> {
+                                if (config == null) return;
+                                UserPrefixAPI.getUserManager().setPrefix(player, config, true);
+                            });
+
                         } else {
                             PluginConfig.SOUNDS.GUI_CLICK.playTo(player);
                         }
@@ -68,7 +76,7 @@ public class PrefixSelectGUI extends AutoPagedGUI {
             } else {
                 addItem(new GUIItem(prefix.getItemNoPermission(player)) {
                     @Override
-                    public void onClick(ClickType type) {
+                    public void onClick(Player clicker, ClickType type) {
                         PluginConfig.SOUNDS.GUI_CLICK.playTo(player);
                     }
                 });
