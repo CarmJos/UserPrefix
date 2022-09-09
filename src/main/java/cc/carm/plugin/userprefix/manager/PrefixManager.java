@@ -158,9 +158,4 @@ public class PrefixManager {
         return strings.stream().map(GUIActionConfiguration::deserialize).filter(Objects::nonNull).collect(Collectors.toList());
     }
 
-    protected static List<GUIActionConfiguration> readActions(@NotNull List<String> strings) {
-        return strings.stream().map(GUIActionConfiguration::deserialize).filter(Objects::nonNull).collect(Collectors.toList());
-    }
-
-
 }
