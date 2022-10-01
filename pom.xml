@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
-        <easyplugin.version>1.4.14</easyplugin.version>
+        <easyplugin.version>1.4.15</easyplugin.version>
         <mineconfig.version>2.1.0</mineconfig.version>
     </properties>
 
