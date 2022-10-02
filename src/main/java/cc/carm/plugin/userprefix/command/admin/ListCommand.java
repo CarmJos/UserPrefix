@@ -1,4 +1,4 @@
-package cc.carm.plugin.userprefix.command.sub;
+package cc.carm.plugin.userprefix.command.admin;
 
 import cc.carm.lib.easyplugin.command.SubCommand;
 import cc.carm.plugin.userprefix.UserPrefixAPI;
