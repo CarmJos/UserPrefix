@@ -64,7 +64,7 @@ public class UserPrefixExpansion extends PlaceholderExpansion {
                 return UserPrefixAPI.getUserManager().getPrefix(player).getIdentifier();
             }
             case "prefix": {
-                if (args[1] == null)  return UserPrefixAPI.getUserManager().getPrefix(player).getContent();
+                if (args.length < 2) return UserPrefixAPI.getUserManager().getPrefix(player).getContent();
                 else if (args[1].equals("number")) {
                     return String.valueOf(UserPrefixAPI.getPrefixManager().getVisiblePrefix(player).size() + 1);
                 }
