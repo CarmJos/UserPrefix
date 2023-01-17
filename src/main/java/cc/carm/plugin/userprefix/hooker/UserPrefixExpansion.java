@@ -3,6 +3,7 @@ package cc.carm.plugin.userprefix.hooker;
 import cc.carm.plugin.userprefix.Main;
 import cc.carm.plugin.userprefix.UserPrefixAPI;
 import cc.carm.plugin.userprefix.conf.prefix.PrefixConfig;
+import cc.carm.plugin.userprefix.manager.PrefixManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -14,7 +15,7 @@ public class UserPrefixExpansion extends PlaceholderExpansion {
 
     protected final @NotNull Main plugin;
     protected final @NotNull List<String> placeholders = Arrays.asList(
-            "%UserPrefix_prefix%", "%UserPrefix_weight%",
+            "%UserPrefix_prefix%", "%UserPrefix_prefix_number%",  "%UserPrefix_weight%",
             "%UserPrefix_identifier%", "%UserPrefix_name%",
             "%UserPrefix_has_<Identifier>%"
     );
@@ -63,7 +64,10 @@ public class UserPrefixExpansion extends PlaceholderExpansion {
                 return UserPrefixAPI.getUserManager().getPrefix(player).getIdentifier();
             }
             case "prefix": {
-                return UserPrefixAPI.getUserManager().getPrefix(player).getContent();
+                if (args[1] == null)  return UserPrefixAPI.getUserManager().getPrefix(player).getContent();
+                else if (args[2].equals("number")) {
+                    return String.valueOf(UserPrefixAPI.getPrefixManager().getVisiblePrefix(player).size() + 1);
+                }
             }
             case "name": {
                 return UserPrefixAPI.getUserManager().getPrefix(player).getName();
