@@ -13,13 +13,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
-        <easyplugin.version>1.4.13</easyplugin.version>
-        <mineconfig.version>2.0.2</mineconfig.version>
+        <easyplugin.version>1.4.15</easyplugin.version>
+        <mineconfig.version>2.1.0</mineconfig.version>
     </properties>
 
     <groupId>cc.carm.plugin</groupId>
     <artifactId>userprefix</artifactId>
-    <version>3.0.1</version>
+    <version>3.0.3</version>
 
     <name>UserPrefix</name>
     <description>轻便、高效、实时的用户前缀系统。</description>
@@ -62,6 +62,16 @@
     <repositories>
 
         <repository>
+            <id>maven-central</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+
+        <repository>
+            <id>sonatype</id>
+            <url>https://oss.sonatype.org/content/repositories/public/</url>
+        </repository>
+
+        <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
@@ -69,16 +79,6 @@
         <repository>
             <id>luck-repo</id>
             <url>https://repo.lucko.me/</url>
-        </repository>
-
-        <repository>
-            <id>maven-central</id>
-            <url>https://repo1.maven.org/maven2/</url>
-        </repository>
-
-        <repository>
-            <id>sonatype-repo</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
 
         <repository>
@@ -162,7 +162,7 @@
         <dependency>
             <groupId>net.luckperms</groupId>
             <artifactId>api</artifactId>
-            <version>5.3</version>
+            <version>5.4</version>
             <scope>provided</scope>
         </dependency>
 
@@ -212,33 +212,6 @@
                         </fileset>
                     </filesets>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <classifier>javadoc</classifier>
-                    <links>
-<!--                        <link>https://javadoc.io/doc/org.jetbrains/annotations/</link>-->
-                        <link>https://hub.spigotmc.org/javadocs/bukkit/</link>
-                        <link>https://carmjos.github.io/EasyPlugin/</link>
-                        <link>https://carmjos.github.io/MineConfiguration/</link>
-                    </links>
-                    <detectJavaApiLink>true</detectJavaApiLink>
-                    <encoding>UTF-8</encoding>
-                    <charset>UTF-8</charset>
-                    <docencoding>UTF-8</docencoding>
-                    <locale>zh_CN</locale>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -310,6 +283,33 @@
                         </filter>
                     </filters>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <classifier>javadoc</classifier>
+                    <links>
+                        <link>https://javadoc.io/doc/org.jetbrains/annotations/</link>
+                        <link>https://hub.spigotmc.org/javadocs/bukkit/</link>
+                        <link>https://carmjos.github.io/EasyPlugin/</link>
+                        <link>https://carmjos.github.io/MineConfiguration/</link>
+                    </links>
+                    <detectJavaApiLink>true</detectJavaApiLink>
+                    <encoding>UTF-8</encoding>
+                    <charset>UTF-8</charset>
+                    <docencoding>UTF-8</docencoding>
+                    <locale>zh_CN</locale>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

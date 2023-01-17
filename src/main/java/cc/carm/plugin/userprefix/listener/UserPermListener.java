@@ -1,4 +1,4 @@
-package cc.carm.plugin.userprefix.listener.processor;
+package cc.carm.plugin.userprefix.listener;
 
 import cc.carm.plugin.userprefix.Main;
 import cc.carm.plugin.userprefix.UserPrefixAPI;
@@ -7,7 +7,7 @@ import net.luckperms.api.event.user.UserDataRecalculateEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-public class UserNodeUpdateProcessor {
+public class UserPermListener {
 
     public static void process(UserDataRecalculateEvent event) {
         Player player = Bukkit.getPlayer(event.getUser().getUniqueId());

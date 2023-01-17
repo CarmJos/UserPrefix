@@ -1,7 +1,7 @@
 package cc.carm.plugin.userprefix.manager;
 
+import cc.carm.lib.easyplugin.gui.configuration.GUIActionConfiguration;
 import cc.carm.lib.mineconfiguration.bukkit.data.ItemConfig;
-import cc.carm.lib.mineconfiguration.bukkit.source.CraftSectionWrapper;
 import cc.carm.plugin.userprefix.Main;
 import cc.carm.plugin.userprefix.conf.PluginConfig;
 import cc.carm.plugin.userprefix.conf.prefix.PrefixConfig;
@@ -41,9 +41,9 @@ public class PrefixManager {
 
         String[] filesList = prefixDataFolder.list();
         if (filesList == null || filesList.length < 1) {
-            Main.serve("配置文件夹中暂无任何前缀配置问，请检查。");
-            Main.serve("There's no configured prefix.");
-            Main.serve("Path: " + prefixDataFolder.getAbsolutePath());
+            Main.severe("配置文件夹中暂无任何前缀配置问，请检查。");
+            Main.severe("There's no configured prefix.");
+            Main.severe("Path: " + prefixDataFolder.getAbsolutePath());
             return;
         }
 
@@ -57,12 +57,12 @@ public class PrefixManager {
         if (files.size() > 0) {
             for (File file : files) {
                 try {
-                    PrefixConfig prefix = adPrefix(file);
+                    PrefixConfig prefix = addPrefix(file);
                     Main.debugging("完成前缀加载 " + prefix.getIdentifier() + " : " + prefix.getName());
                     loaded.put(prefix.getIdentifier(), prefix);
                 } catch (Exception ex) {
-                    Main.serve("在加载前缀 " + file.getAbsolutePath() + " 时出错，请检查配置！");
-                    Main.serve("Error occurred when loading prefix #" + file.getAbsolutePath() + " !");
+                    Main.severe("在加载前缀 " + file.getAbsolutePath() + " 时出错，请检查配置！");
+                    Main.severe("Error occurred when loading prefix #" + file.getAbsolutePath() + " !");
                     ex.printStackTrace();
                 }
             }
@@ -78,6 +78,7 @@ public class PrefixManager {
                 PluginConfig.DEFAULT_PREFIX.CONTENT.getNotNull(),
                 PluginConfig.DEFAULT_PREFIX.WEIGHT.getNotNull(),
                 null,
+                readActions(PluginConfig.DEFAULT_PREFIX.ACTIONS.get()),
                 PluginConfig.DEFAULT_PREFIX.ITEM.NOT_USING.getNotNull(),
                 PluginConfig.DEFAULT_PREFIX.ITEM.USING.get(),
                 null
@@ -122,10 +123,11 @@ public class PrefixManager {
         }
     }
 
-    public static @NotNull PrefixConfig adPrefix(@NotNull File file) throws Exception {
+    public static @NotNull PrefixConfig addPrefix(@NotNull File file) throws Exception {
         FileConfiguration configuration = YamlConfiguration.loadConfiguration(file);
         String identifier = configuration.getString("identifier");
-        if (identifier == null) throw new Exception("配置文件 " + file.getAbsolutePath() + " 中没有配置前缀的唯一标识。");
+        if (identifier == null)
+            throw new Exception("配置文件 " + file.getAbsolutePath() + " 中没有配置前缀的唯一标识。");
 
         String name = configuration.getString("name");
         if (name == null) throw new Exception("配置文件 " + file.getAbsolutePath() + " 中没有配置前缀的显示名称。");
@@ -135,6 +137,7 @@ public class PrefixManager {
                 configuration.getString("content", "&r"),
                 configuration.getInt("weight", 1),
                 configuration.getString("permission"),
+                readActions(configuration.getStringList("actions")),
                 readItem(
                         configuration.getConfigurationSection("item.has-perm"),
                         new ItemConfig(Material.STONE, name, Arrays.asList(" ", "§a➥ 点击切换到该前缀"))
@@ -148,8 +151,11 @@ public class PrefixManager {
     @Contract("_,!null->!null")
     protected static ItemConfig readItem(@Nullable ConfigurationSection section, @Nullable ItemConfig defaultValue) throws Exception {
         if (section == null) return defaultValue;
-        else return ItemConfig.deserialize(CraftSectionWrapper.of(section));
+        else return ItemConfig.deserialize(section);
     }
 
+    protected static List<GUIActionConfiguration> readActions(@NotNull List<String> strings) {
+        return strings.stream().map(GUIActionConfiguration::deserialize).filter(Objects::nonNull).collect(Collectors.toList());
+    }
 
 }

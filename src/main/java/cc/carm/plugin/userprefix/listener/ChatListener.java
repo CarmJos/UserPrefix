@@ -19,8 +19,8 @@ public class ChatListener implements Listener {
         try {
             event.setFormat(MessageUtils.setPlaceholders(event.getPlayer(), format));
         } catch (Exception exception) {
-            Main.serve("请检查配置文件中聊天相关是否配置正确。");
-            Main.serve("Please check the chat configuration.");
+            Main.severe("请检查配置文件中聊天相关是否配置正确。");
+            Main.severe("Please check the chat configuration.");
             exception.printStackTrace();
         }
 

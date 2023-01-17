@@ -1,8 +1,9 @@
 package cc.carm.plugin.userprefix.command;
 
 import cc.carm.lib.easyplugin.command.CommandHandler;
-import cc.carm.plugin.userprefix.command.sub.ListCommand;
-import cc.carm.plugin.userprefix.command.sub.ReloadCommand;
+import cc.carm.plugin.userprefix.command.admin.ListCommand;
+import cc.carm.plugin.userprefix.command.admin.ReloadCommand;
+import cc.carm.plugin.userprefix.command.admin.SetCommand;
 import cc.carm.plugin.userprefix.conf.PluginMessages;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,19 +14,20 @@ public class AdminCommand extends CommandHandler {
 
     public AdminCommand(@NotNull JavaPlugin plugin) {
         super(plugin);
-        registerSubCommand(new ListCommand("list", "l"));
-        registerSubCommand(new ReloadCommand("reload"));
-
+        registerSubCommand(new ListCommand(this, "list", "l"));
+        registerSubCommand(new SetCommand(this, "set"));
+        registerSubCommand(new ReloadCommand(this, "reload"));
     }
 
     @Override
-    public void noArgs(CommandSender sender) {
-        help(sender);
+    public Void noArgs(CommandSender sender) {
+        return help(sender);
     }
 
     @Override
-    public void noPermission(CommandSender sender) {
+    public Void noPermission(CommandSender sender) {
         PluginMessages.COMMAND_USAGE.NO_PERM.send(sender);
+        return null;
     }
 
     public static Void help(CommandSender sender) {

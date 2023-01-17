@@ -1,16 +1,18 @@
-package cc.carm.plugin.userprefix.command.sub;
+package cc.carm.plugin.userprefix.command.admin;
 
 import cc.carm.lib.easyplugin.command.SubCommand;
 import cc.carm.plugin.userprefix.UserPrefixAPI;
+import cc.carm.plugin.userprefix.command.AdminCommand;
 import cc.carm.plugin.userprefix.conf.PluginMessages;
 import cc.carm.plugin.userprefix.conf.prefix.PrefixConfig;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
-public class ListCommand extends SubCommand {
+public class ListCommand extends SubCommand<AdminCommand> {
 
-    public ListCommand(String name, String... aliases) {
-        super(name, aliases);
+    public ListCommand(@NotNull AdminCommand parent, String name, String... aliases) {
+        super(parent, name, aliases);
     }
 
     @Override
