@@ -3,7 +3,6 @@ package cc.carm.plugin.userprefix.hooker;
 import cc.carm.plugin.userprefix.Main;
 import cc.carm.plugin.userprefix.UserPrefixAPI;
 import cc.carm.plugin.userprefix.conf.prefix.PrefixConfig;
-import cc.carm.plugin.userprefix.manager.PrefixManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
