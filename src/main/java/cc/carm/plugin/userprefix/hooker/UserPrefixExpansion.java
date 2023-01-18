@@ -14,7 +14,7 @@ public class UserPrefixExpansion extends PlaceholderExpansion {
 
     protected final @NotNull Main plugin;
     protected final @NotNull List<String> placeholders = Arrays.asList(
-            "%UserPrefix_prefix%", "%UserPrefix_weight%",
+            "%UserPrefix_prefix%", "%UserPrefix_amount%",  "%UserPrefix_weight%",
             "%UserPrefix_identifier%", "%UserPrefix_name%",
             "%UserPrefix_has_<Identifier>%"
     );
@@ -64,6 +64,9 @@ public class UserPrefixExpansion extends PlaceholderExpansion {
             }
             case "prefix": {
                 return UserPrefixAPI.getUserManager().getPrefix(player).getContent();
+            }
+            case "amount": {
+                return String.valueOf(UserPrefixAPI.getUserManager().getUsablePrefixes(player).size() + 1);
             }
             case "name": {
                 return UserPrefixAPI.getUserManager().getPrefix(player).getName();
