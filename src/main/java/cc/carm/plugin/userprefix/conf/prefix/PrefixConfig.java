@@ -82,7 +82,7 @@ public class PrefixConfig {
 
     @Nullable
     public ItemStack getItemWhenUsing(@Nullable Player player) {
-        if (this.itemWhenUsing == null) return getItemHasPermission(player);
+        if (this.itemWhenUsing == null) return null;
         else return this.itemWhenUsing.getItemStack(player);
     }
 
@@ -95,7 +95,7 @@ public class PrefixConfig {
     }
 
     public boolean isVisible(Player player) {
-        return this.itemWhenUsing != null || checkPermission(player);
+        return this.itemNoPermission != null || checkPermission(player);
     }
 
     /**

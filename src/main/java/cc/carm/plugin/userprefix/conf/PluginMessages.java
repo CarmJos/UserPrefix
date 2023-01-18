@@ -6,7 +6,7 @@ import cc.carm.lib.mineconfiguration.bukkit.value.ConfiguredMessageList;
 
 public class PluginMessages extends ConfigurationRoot {
 
-    public static final class COMMAND_USAGE {
+    public static final class COMMAND_USAGE extends ConfigurationRoot {
 
         public static ConfiguredMessageList<String> CONSOLE = ConfiguredMessageList.asStrings().defaults(
                 "&f请输入 &b/prefix <玩家ID> &f为指定玩家打开前缀GUI。"
@@ -47,7 +47,7 @@ public class PluginMessages extends ConfigurationRoot {
             .defaults("&7您先前使用的前缀已被移除，现在已为您重新调整为 &f%(newName) &7。")
             .params("newName").build();
 
-    public static final class RELOAD {
+    public static final class RELOAD extends ConfigurationRoot {
 
         public static ConfiguredMessageList<String> SUCCESS = ConfiguredMessageList.asStrings()
                 .defaults("&a&l重载完成！&7耗时 &f%(time)ms&7，共加载了 &b%(count) &7个前缀。")
@@ -58,7 +58,7 @@ public class PluginMessages extends ConfigurationRoot {
                 .params("error").build();
     }
 
-    public static final class SET {
+    public static final class SET extends ConfigurationRoot {
 
         public static ConfiguredMessageList<String> SUCCESS = ConfiguredMessageList.asStrings()
                 .defaults("&a&l设置成功！&7成功设定玩家 &b%(player) &f的前缀为 &r%(prefix) &f。")
@@ -77,7 +77,7 @@ public class PluginMessages extends ConfigurationRoot {
 
 
     @HeaderComment("管理员使用的 “/upa list” 指令的格式")
-    public static final class LIST {
+    public static final class LIST extends ConfigurationRoot {
 
         public static ConfiguredMessageList<String> HEADER = ConfiguredMessageList.asStrings()
                 .defaults("&3&l用户前缀系统 &f前缀列表").build();

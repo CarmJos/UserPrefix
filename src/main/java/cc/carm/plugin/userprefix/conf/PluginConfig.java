@@ -38,7 +38,7 @@ public class PluginConfig extends ConfigurationRoot {
     public static final ConfigValue<Boolean> CHECK_UPDATE = ConfiguredValue.of(Boolean.class, true);
 
     @HeaderComment({"自定义存储位置设定", "可以规定到远程文件夹中去加载前缀配置"})
-    public static final class CUSTOM_STORAGE {
+    public static final class CUSTOM_STORAGE extends ConfigurationRoot {
 
         @HeaderComment({"是否启用自定义存储位置"})
         public static final ConfigValue<Boolean> ENABLE = ConfiguredValue.of(Boolean.class, false);
@@ -53,7 +53,7 @@ public class PluginConfig extends ConfigurationRoot {
     }
 
     @HeaderComment("功能设定")
-    public static class FUNCTIONS {
+    public static class FUNCTIONS extends ConfigurationRoot {
 
         @ConfigPath("on-name-prefix")
         @HeaderComment({"头顶与TabList前缀功能，该方法用到了玩家名计分板接口，如有冲突请关掉哦~"})
@@ -79,28 +79,28 @@ public class PluginConfig extends ConfigurationRoot {
                 "- 注意聊天格式需要遵守Bukkit原格式，即不得缺失 “%1$s” 和 “%2$s” 。",
                 "- 本插件的聊天功能不影响其他插件对聊天事件的操作。"
         })
-        public static final class CHAT {
+        public static final class CHAT extends ConfigurationRoot {
 
             @HeaderComment("是否开启本功能")
-            public static ConfigValue<Boolean> ENABLE = ConfiguredValue.of(Boolean.class, false);
+            public static final ConfigValue<Boolean> ENABLE = ConfiguredValue.of(Boolean.class, false);
             @HeaderComment({
                     "聊天的格式，注意 “%1$s” 和 “%2$s” 不可缺少。",
                     "- %1$s -> 玩家名", "- %2$s -> 聊天内容"
             })
-            public static ConfigValue<String> FORMAT = ConfiguredValue.of(String.class, "<%1$s> %2$s");
+            public static final ConfigValue<String> FORMAT = ConfiguredValue.of(String.class, "<%1$s> %2$s");
 
         }
 
     }
 
     @HeaderComment({"前缀GUI界面设定"})
-    public static class GUI {
+    public static class GUI extends ConfigurationRoot {
 
         @HeaderComment("GUI的标题")
         public static final ConfigValue<String> TITLE = ConfiguredValue.of(String.class, "&f&l我的前缀 &8| 列表");
 
         @HeaderComment("GUI中的按钮")
-        public static final class ITEMS {
+        public static final class ITEMS extends ConfigurationRoot {
 
             @HeaderComment("前往下一页的物品 (只有存在下一页时才会显示)")
             public static final ConfiguredItem NEXT_PAGE = ConfiguredItem.create()
@@ -137,7 +137,7 @@ public class PluginConfig extends ConfigurationRoot {
     }
 
     @HeaderComment({"相关的声音，留空则不播放声音", "格式为 【声音名:音量:音调】 或 【声音名:音量】 或 【声音名】"})
-    public static final class SOUNDS {
+    public static final class SOUNDS extends ConfigurationRoot {
 
         public static final ConfiguredSound GUI_OPEN = ConfiguredSound.of("BLOCK_NOTE_BLOCK_PLING", 0.5F, 0.8F);
         public static final ConfiguredSound GUI_CLICK = ConfiguredSound.of("UI_BUTTON_CLICK");
@@ -147,7 +147,7 @@ public class PluginConfig extends ConfigurationRoot {
     }
 
     @HeaderComment({"默认前缀配置"})
-    public static final class DEFAULT_PREFIX {
+    public static final class DEFAULT_PREFIX extends ConfigurationRoot {
 
         @HeaderComment("默认前缀的显示名称，用于在消息提示中显示。")
         public static final ConfigValue<String> NAME = ConfiguredValue.of(String.class, "默认前缀");
@@ -164,7 +164,7 @@ public class PluginConfig extends ConfigurationRoot {
                 .build();
 
         @HeaderComment({"默认前缀的显示物品"})
-        public static final class ITEM {
+        public static final class ITEM extends ConfigurationRoot {
 
             @HeaderComment({"当未选择默认前缀时显示的物品"})
             public static final ConfiguredItem NOT_USING = ConfiguredItem.create()
