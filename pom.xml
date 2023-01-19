@@ -19,7 +19,7 @@
 
     <groupId>cc.carm.plugin</groupId>
     <artifactId>userprefix</artifactId>
-    <version>3.1.0</version>
+    <version>3.1.1</version>
 
     <name>UserPrefix</name>
     <description>轻便、高效、实时的用户前缀系统。</description>

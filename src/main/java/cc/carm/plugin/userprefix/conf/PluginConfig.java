@@ -57,7 +57,7 @@ public class PluginConfig extends ConfigurationRoot {
 
         @ConfigPath("on-name-prefix")
         @HeaderComment({"头顶与TabList前缀功能，该方法用到了玩家名计分板接口，如有冲突请关掉哦~"})
-        public static final class NAME_PREFIX {
+        public static final class NAME_PREFIX extends ConfigurationRoot {
 
             @HeaderComment("是否开启本功能")
             public static final ConfigValue<Boolean> ENABLE = ConfiguredValue.of(Boolean.class, true);
