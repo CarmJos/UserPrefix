@@ -32,6 +32,14 @@ public class UserPrefixExpansion extends PlaceholderExpansion {
     public boolean canRegister() {
         return true;
     }
+    
+    /**
+     * This is required or else PlaceholderAPI will unregister the Expansion on reload
+     */
+    @Override
+    public boolean persist() {
+        return true;
+    }
 
     @Override
     public @NotNull String getAuthor() {
