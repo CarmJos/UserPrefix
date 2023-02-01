@@ -12,12 +12,13 @@ import java.util.List;
 
 public class UserPrefixExpansion extends PlaceholderExpansion {
 
-    protected final @NotNull Main plugin;
-    protected final @NotNull List<String> placeholders = Arrays.asList(
-            "%UserPrefix_prefix%", "%UserPrefix_amount%",  "%UserPrefix_weight%",
+    protected static final @NotNull List<String> SUPPORTED_PLACEHOLDERS = Arrays.asList(
+            "%UserPrefix_prefix%", "%UserPrefix_amount%", "%UserPrefix_weight%",
             "%UserPrefix_identifier%", "%UserPrefix_name%",
             "%UserPrefix_has_<Identifier>%"
     );
+
+    protected final @NotNull Main plugin;
 
     public UserPrefixExpansion(@NotNull Main plugin) {
         this.plugin = plugin;
@@ -25,11 +26,11 @@ public class UserPrefixExpansion extends PlaceholderExpansion {
 
     @Override
     public @NotNull List<String> getPlaceholders() {
-        return this.placeholders;
+        return SUPPORTED_PLACEHOLDERS;
     }
 
     @Override
-    public boolean canRegister() {
+    public boolean persist() {
         return true;
     }
 
