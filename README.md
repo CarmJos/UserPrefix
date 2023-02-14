@@ -117,11 +117,10 @@ README LANGUAGES [ [**中文**](README.md) | [English](README-en.md)  ]
 本项目由 [YourCraft(你的世界)](https://www.ycraft.cn) 团队提供长期支持与维护。
 ![TeamLogo](.documentation/images/team-logo.png)
 
-若您觉得本插件做的不错，您可以捐赠支持我！
+若您觉得本插件做的不错，您可以捐赠支持我！感谢您成为开源项目的支持者！
 
-感谢您成为开源项目的支持者！
-
-<img height=25% width=25% src="https://raw.githubusercontent.com/CarmJos/CarmJos/main/img/donate-code.jpg"  alt=""/>
+Many thanks to Jetbrains for kindly providing a license for me to work on this and other open-source projects.  
+[![](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/?from=https://github.com/CarmJos/UserPrefix)
 
 ## 开源协议
 
@@ -146,3 +145,5 @@ README LANGUAGES [ [**中文**](README.md) | [English](README-en.md)  ]
 >
 > *以上文字来自 [五种开源协议GPL,LGPL,BSD,MIT,Apache](https://www.oschina.net/question/54100_9455) 。*
 </details>
+
+## Project supported by JetBrains
