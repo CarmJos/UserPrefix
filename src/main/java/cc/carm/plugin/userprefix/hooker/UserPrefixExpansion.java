@@ -1,36 +1,46 @@
 package cc.carm.plugin.userprefix.hooker;
 
-import cc.carm.plugin.userprefix.Main;
+import cc.carm.lib.easyplugin.papi.EasyPlaceholder;
+import cc.carm.lib.easyplugin.papi.expansion.SubExpansion;
+import cc.carm.lib.easyplugin.papi.handler.PlaceholderHandler;
 import cc.carm.plugin.userprefix.UserPrefixAPI;
 import cc.carm.plugin.userprefix.conf.prefix.PrefixConfig;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
-public class UserPrefixExpansion extends PlaceholderExpansion {
+public class UserPrefixExpansion extends EasyPlaceholder {
 
-    protected final @NotNull Main plugin;
-    protected final @NotNull List<String> placeholders = Arrays.asList(
-            "%UserPrefix_prefix%", "%UserPrefix_amount%",  "%UserPrefix_weight%",
-            "%UserPrefix_identifier%", "%UserPrefix_name%",
-            "%UserPrefix_has_<Identifier>%"
-    );
+    public UserPrefixExpansion(@NotNull JavaPlugin plugin, @NotNull String rootIdentifier) {
+        super(plugin, rootIdentifier);
 
-    public UserPrefixExpansion(@NotNull Main plugin) {
-        this.plugin = plugin;
+        handle("version", (player, args) -> getVersion());
+
+        handle("identifier", handlePrefix(PrefixConfig::getIdentifier), "id");
+        handle("prefix", handlePrefix(PrefixConfig::getContent));
+        handle("name", handlePrefix(PrefixConfig::getName));
+        handle("weight", handlePrefix(PrefixConfig::getWeight));
+        handle("amount", handlePlayer(
+                (player) -> UserPrefixAPI.getUserManager().getUsablePrefixes(player).size() + 1)
+        );
+
+        handle("has", handlePlayer((player, args) -> {
+            if (args.length < 1) return "参数不足";
+            PrefixConfig prefix = UserPrefixAPI.getPrefixManager().getPrefix(args[0]);
+            if (prefix == null) return "该前缀不存在";
+            return prefix.checkPermission(player);
+        }), Collections.singletonList("<前缀ID>"));
+
     }
 
-    @Override
-    public @NotNull List<String> getPlaceholders() {
-        return this.placeholders;
-    }
-
-    @Override
-    public boolean canRegister() {
-        return true;
+    public PlaceholderHandler handlePrefix(Function<PrefixConfig, Object> handler) {
+        return handlePlayer((player, args) -> handler.apply(UserPrefixAPI.getUserManager().getPrefix(player)));
     }
     
     /**
@@ -41,60 +51,27 @@ public class UserPrefixExpansion extends PlaceholderExpansion {
         return true;
     }
 
-    @Override
-    public @NotNull String getAuthor() {
-        return plugin.getDescription().getAuthors().toString();
+    public PlaceholderHandler handlePlayer(BiFunction<Player, String[], Object> handler) {
+        return (player, args) -> {
+            if (player == null || !player.isOnline()) return "Loading...";
+            return handler.apply((Player) player, args);
+        };
+    }
+
+    public PlaceholderHandler handlePlayer(Function<Player, Object> handler) {
+        return handlePlayer((player, args) -> handler.apply(player));
     }
 
     @Override
-    public @NotNull String getIdentifier() {
-        return "UserPrefix";
+    public String onErrorParams(@Nullable OfflinePlayer player) {
+        return "参数不足";
     }
 
     @Override
-    public @NotNull String getVersion() {
-        return plugin.getDescription().getVersion();
-    }
-
-    @Override
-    public String onPlaceholderRequest(Player player, @NotNull String identifier) {
-        if (player == null) return "加载中...";
-        String[] args = identifier.split("_");
-
-
-        if (args.length < 1) {
-            return "参数不足";
-        }
-
-        switch (args[0].toLowerCase()) {
-            case "identifier": {
-                return UserPrefixAPI.getUserManager().getPrefix(player).getIdentifier();
-            }
-            case "prefix": {
-                return UserPrefixAPI.getUserManager().getPrefix(player).getContent();
-            }
-            case "amount": {
-                return String.valueOf(UserPrefixAPI.getUserManager().getUsablePrefixes(player).size() + 1);
-            }
-            case "name": {
-                return UserPrefixAPI.getUserManager().getPrefix(player).getName();
-            }
-            case "weight": {
-                return Integer.toString(UserPrefixAPI.getUserManager().getPrefix(player).getWeight());
-            }
-            case "has": {
-                if (args.length < 2) return "参数不足";
-                PrefixConfig prefix = UserPrefixAPI.getPrefixManager().getPrefix(args[1]);
-                if (prefix == null) return "该前缀不存在";
-                return Boolean.toString(prefix.checkPermission(player));
-            }
-            case "version": {
-                return getVersion();
-            }
-            default: {
-                return "参数错误";
-            }
-        }
+    public String onException(@Nullable OfflinePlayer player, @NotNull SubExpansion<?> expansion,
+                              @NotNull Exception exception) {
+        exception.printStackTrace();
+        return "参数错误";
     }
 
 }

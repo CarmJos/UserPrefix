@@ -6,17 +6,12 @@ import cc.carm.lib.configuration.core.annotation.HeaderComment;
 import cc.carm.lib.configuration.core.value.ConfigValue;
 import cc.carm.lib.configuration.core.value.type.ConfiguredList;
 import cc.carm.lib.configuration.core.value.type.ConfiguredValue;
-import cc.carm.lib.easyplugin.gui.configuration.GUIActionConfiguration;
-import cc.carm.lib.easyplugin.gui.configuration.GUIActionType;
-import cc.carm.lib.easyplugin.gui.configuration.GUIItemConfiguration;
-import cc.carm.lib.mineconfiguration.bukkit.source.CraftSectionWrapper;
 import cc.carm.lib.mineconfiguration.bukkit.value.ConfiguredItem;
 import cc.carm.lib.mineconfiguration.bukkit.value.ConfiguredSound;
+import cc.carm.plugin.userprefix.conf.gui.GUIItems;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
-
-import java.util.Collections;
 
 public class PluginConfig extends ConfigurationRoot {
 
@@ -99,8 +94,8 @@ public class PluginConfig extends ConfigurationRoot {
         @HeaderComment("GUI的标题")
         public static final ConfigValue<String> TITLE = ConfiguredValue.of(String.class, "&f&l我的前缀 &8| 列表");
 
-        @HeaderComment("GUI中的按钮")
-        public static final class ITEMS extends ConfigurationRoot {
+        @HeaderComment("GUI中的基本按钮物品")
+        public static final class BOTTOMS extends ConfigurationRoot {
 
             @HeaderComment("前往下一页的物品 (只有存在下一页时才会显示)")
             public static final ConfiguredItem NEXT_PAGE = ConfiguredItem.create()
@@ -117,22 +112,15 @@ public class PluginConfig extends ConfigurationRoot {
                     .defaultLore("&7&o右键可前往第一页哦")
                     .build();
 
-            @HeaderComment("GUI中其他的物品配置")
-            public static final ConfigValue<GUIItemConfiguration> BACK = ConfiguredValue.builder(GUIItemConfiguration.class)
-                    .fromSection()
-                    .serializeValue(GUIItemConfiguration::serialize)
-                    .parseValue((v, d) -> {
-                        if (!(v instanceof CraftSectionWrapper)) return null;
-                        return GUIItemConfiguration.readFrom(((CraftSectionWrapper) v).getSource());
-                    })
-                    .defaults(new GUIItemConfiguration(
-                            Material.BARRIER, 1, 0, "&c&l返回",
-                            Collections.singletonList("&f点击即可返回上一菜单"),
-                            Collections.singletonList(GUIActionConfiguration.of(GUIActionType.CHAT, "/menu")),
-                            Collections.singletonList(49)
-                    )).build();
-
         }
+
+        @HeaderComment("GUI中的其他按钮物品 (若与现有物品位置冲突，将被覆盖）")
+        public static final ConfigValue<GUIItems> ITEMS = ConfiguredValue
+                .builder(GUIItems.class).fromSection()
+                .defaults(GUIItems::defaults)
+                .serializeValue(GUIItems::serialize)
+                .parseValue((v, d) -> GUIItems.parse(v))
+                .build();
 
     }
 

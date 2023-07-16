@@ -61,12 +61,12 @@ public class Main extends EasyPlugin {
 
         log("初始化GUI管理器...");
         GUI.initialize(this);
-        AutoPagedGUI.defaultNextPage = (PluginConfig.GUI.ITEMS.NEXT_PAGE::getItem);
-        AutoPagedGUI.defaultPreviousPage = (PluginConfig.GUI.ITEMS.PREV_PAGE::getItem);
+        AutoPagedGUI.defaultNextPage = (PluginConfig.GUI.BOTTOMS.NEXT_PAGE::getItem);
+        AutoPagedGUI.defaultPreviousPage = (PluginConfig.GUI.BOTTOMS.PREV_PAGE::getItem);
 
         if (MessageUtils.hasPlaceholderAPI()) {
             log("注册变量...");
-            new UserPrefixExpansion(getInstance()).register();
+            new UserPrefixExpansion(this, getName()).register();
         } else {
             log("未安装 PlaceholderAPI ，跳过变量注册...");
             log("若您想使用变量进行前缀的显示，请安装PlaceholderAPI！");

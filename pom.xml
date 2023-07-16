@@ -13,13 +13,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
-        <easyplugin.version>1.4.18</easyplugin.version>
-        <mineconfig.version>2.3.0</mineconfig.version>
+        <deps.easyplugin.version>1.5.2</deps.easyplugin.version>
+        <deps.mineconfig.version>2.4.0</deps.mineconfig.version>
     </properties>
 
     <groupId>cc.carm.plugin</groupId>
     <artifactId>userprefix</artifactId>
-    <version>3.1.1</version>
+    <version>3.2.0</version>
 
     <name>UserPrefix</name>
     <description>轻便、高效、实时的用户前缀系统。</description>
@@ -108,7 +108,7 @@
         <dependency>
             <groupId>cc.carm.lib</groupId>
             <artifactId>easyplugin-main</artifactId>
-            <version>${easyplugin.version}</version>
+            <version>${deps.easyplugin.version}</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
@@ -116,7 +116,7 @@
         <dependency>
             <groupId>cc.carm.lib</groupId>
             <artifactId>easyplugin-command</artifactId>
-            <version>${easyplugin.version}</version>
+            <version>${deps.easyplugin.version}</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
@@ -124,15 +124,24 @@
         <dependency>
             <groupId>cc.carm.lib</groupId>
             <artifactId>easyplugin-gui</artifactId>
-            <version>${easyplugin.version}</version>
+            <version>${deps.easyplugin.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!--suppress VulnerableLibrariesLocal -->
+        <dependency>
+            <groupId>cc.carm.lib</groupId>
+            <artifactId>easyplugin-githubchecker</artifactId>
+            <version>${deps.easyplugin.version}</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>cc.carm.lib</groupId>
-            <artifactId>easyplugin-githubchecker</artifactId>
-            <version>${easyplugin.version}</version>
+            <artifactId>easyplugin-placeholderapi</artifactId>
+            <version>${deps.easyplugin.version}</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
@@ -140,7 +149,7 @@
         <dependency>
             <groupId>cc.carm.lib</groupId>
             <artifactId>mineconfiguration-bukkit</artifactId>
-            <version>${mineconfig.version}</version>
+            <version>${deps.mineconfig.version}</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>

@@ -28,7 +28,7 @@ public class PrefixSelectGUI extends AutoPagedGUI {
         setPreviousPageSlot(18);
         setNextPageSlot(26);
 
-        loadBackButton();
+        loadExtraIcons();
         loadItems();
     }
 
@@ -36,8 +36,8 @@ public class PrefixSelectGUI extends AutoPagedGUI {
         return player;
     }
 
-    public void loadBackButton() {
-        PluginConfig.GUI.ITEMS.BACK.getOptional().ifPresent(item -> item.setupItems(player, this));
+    public void loadExtraIcons() {
+        PluginConfig.GUI.ITEMS.getNotNull().getItems().values().forEach(v -> v.setupItems(player, this));
     }
 
     public void loadItems() {
