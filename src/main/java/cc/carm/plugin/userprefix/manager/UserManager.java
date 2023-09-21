@@ -209,7 +209,7 @@ public class UserManager {
      */
     @NotNull
     public PrefixConfig getHighestPrefix(Player player) {
-        if (PluginConfig.FUNCTIONS.AUTO_USE.getNotNull()) {
+        if (!PluginConfig.FUNCTIONS.AUTO_USE.getNotNull()) {
             // 关闭了自动选择，就直接给默认的前缀，让玩家自己去设置吧~
             return UserPrefixAPI.getDefaultPrefix();
         }
