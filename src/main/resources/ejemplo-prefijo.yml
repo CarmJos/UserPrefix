@@ -1,0 +1,58 @@
+
+# Nombre [Necesario]
+# Uso en mensajes.
+name: "&b&lPro&b"
+
+# Contenido [Necesario]
+# Uso en Placeholders
+content: "&b&lPro &b"
+
+# Weight [Necesario]
+# utilizado para ordenar en la GUI y TabList
+# En GUI : el más grande se muestra en la parte posterior
+# En TabList : el más grande se muestra en la parte superior
+weight: 1
+
+# Permisos [Innecesario]
+# Si no hay permiso para la detección, todo el mundo puede utilizarlo,
+# lo que significa que no es necesario configurar "itemNoPermission"
+# (porque es imposible mostrar elementos sin permiso en absoluto)
+permission: "yc.vip"
+
+# Acciones al seleccionar [Innecesario]
+#  Por favor, compruebe https://github.com/CarmJos/UserPrefix/tree/master/.documentation/ACTIONS.md
+actions:
+  - "[CONSOLE] say %player_name% PRO seleccionado ！"
+
+item:
+  # itemHasPermission  [Necesario]
+  # Este elemento se mostrará cuando el jugador tenga permiso
+  has-perm:
+    type: DIAMOND
+    name: "&b&lVIP Prefix"
+    lore:
+      - ""
+      - "&a➥ Pulse para utilizar"
+
+  # itemUsing [Innecesario]
+  # Este elemento se mostrará cuando se seleccione el prefijo.
+  # Si no existe tal configuración, se mostrará automáticamente "itemHasPermission".
+  using:
+    type: DIAMOND
+    name: "&b&lVIP Prefix"
+    enchants:
+      PROTECTION_ENVIRONMENTAL: 1 #Añade un encantamiento para que parezca que está seleccionado
+    lore:
+      - ""
+      - "&a✔ Seleccionado"
+
+  # itemNoPermission [Innecesario]
+  # Si el jugador no tiene el permiso,este item sera mostrado.
+  # Si este elemento no está configurado, no se mostrará en la GUI cuando el jugador no tenga permiso para usarlo.
+  no-perm:
+    type: INK_SACK
+    data: 8
+    name: "&b&lVIP &c(¡Cómpralo!)"
+    lore:
+      - ""
+      - "&e✯ Comprar el VIP para utilizarlo!"
