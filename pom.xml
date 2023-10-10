@@ -281,6 +281,10 @@
                             <pattern>org.json</pattern>
                             <shadedPattern>${project.package}.lib.json</shadedPattern>
                         </relocation>
+                        <relocation>
+                            <pattern>com.cryptomorin.xseries</pattern>
+                            <shadedPattern>${project.package}.lib.xseries</shadedPattern>
+                        </relocation>
                     </relocations>
                     <filters>
                         <filter>
