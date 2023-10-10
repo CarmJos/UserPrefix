@@ -61,8 +61,8 @@ public class Main extends EasyPlugin {
 
         log("初始化GUI管理器...");
         GUI.initialize(this);
-        AutoPagedGUI.defaultNextPage = (PluginConfig.GUI.BOTTOMS.NEXT_PAGE::getItem);
-        AutoPagedGUI.defaultPreviousPage = (PluginConfig.GUI.BOTTOMS.PREV_PAGE::getItem);
+        AutoPagedGUI.defaultNextPage = (PluginConfig.GUI.BOTTOMS.NEXT_PAGE::get);
+        AutoPagedGUI.defaultPreviousPage = (PluginConfig.GUI.BOTTOMS.PREV_PAGE::get);
 
         if (MessageUtils.hasPlaceholderAPI()) {
             log("注册变量...");

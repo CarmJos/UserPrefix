@@ -1,15 +1,17 @@
 package cc.carm.plugin.userprefix.manager;
 
 import cc.carm.lib.easyplugin.gui.configuration.GUIActionConfiguration;
-import cc.carm.lib.mineconfiguration.bukkit.data.ItemConfig;
+import cc.carm.lib.easyplugin.utils.ItemStackFactory;
 import cc.carm.plugin.userprefix.Main;
 import cc.carm.plugin.userprefix.conf.PluginConfig;
 import cc.carm.plugin.userprefix.conf.prefix.PrefixConfig;
+import com.cryptomorin.xseries.XItemStack;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -80,8 +82,7 @@ public class PrefixManager {
                 null,
                 readActions(PluginConfig.DEFAULT_PREFIX.ACTIONS.get()),
                 PluginConfig.DEFAULT_PREFIX.ITEM.NOT_USING.getNotNull(),
-                PluginConfig.DEFAULT_PREFIX.ITEM.USING.get(),
-                null
+                PluginConfig.DEFAULT_PREFIX.ITEM.USING.get(), null
         );
         Main.debugging("  完成默认前缀加载 " + defaultPrefix.getName());
     }
@@ -124,34 +125,38 @@ public class PrefixManager {
     }
 
     public static @NotNull PrefixConfig addPrefix(@NotNull File file) throws Exception {
-        FileConfiguration configuration = YamlConfiguration.loadConfiguration(file);
-        String identifier = configuration.getString("identifier");
+        FileConfiguration conf = YamlConfiguration.loadConfiguration(file);
+        String identifier = conf.getString("identifier");
         if (identifier == null)
             throw new Exception("配置文件 " + file.getAbsolutePath() + " 中没有配置前缀的唯一标识。");
 
-        String name = configuration.getString("name");
+        String name = conf.getString("name");
         if (name == null) throw new Exception("配置文件 " + file.getAbsolutePath() + " 中没有配置前缀的显示名称。");
 
         return new PrefixConfig(
                 identifier, name,
-                configuration.getString("content", "&r"),
-                configuration.getInt("weight", 1),
-                configuration.getString("permission"),
-                readActions(configuration.getStringList("actions")),
+                conf.getString("content", "&r"),
+                conf.getInt("weight", 1),
+                conf.getString("permission"),
+                readActions(conf.getStringList("actions")),
                 readItem(
-                        configuration.getConfigurationSection("item.has-perm"),
-                        new ItemConfig(Material.STONE, name, Arrays.asList(" ", "§a➥ 点击切换到该前缀"))
+                        conf.getConfigurationSection("item.has-perm"),
+                        new ItemStackFactory(Material.STONE)
+                                .setDisplayName(name)
+                                .addLore("§a➥ 点击切换到该前缀")
+                                .toItemStack()
                 ),
-                readItem(configuration.getConfigurationSection("item.using"), null),
-                readItem(configuration.getConfigurationSection("item.no-perm"), null)
+                readItem(conf.getConfigurationSection("item.using"), null),
+                readItem(conf.getConfigurationSection("item.no-perm"), null)
         );
     }
 
 
     @Contract("_,!null->!null")
-    protected static ItemConfig readItem(@Nullable ConfigurationSection section, @Nullable ItemConfig defaultValue) throws Exception {
+    protected static ItemStack readItem(@Nullable ConfigurationSection section,
+                                        @Nullable ItemStack defaultValue) throws Exception {
         if (section == null) return defaultValue;
-        else return ItemConfig.deserialize(section);
+        else return XItemStack.deserialize(section);
     }
 
     protected static List<GUIActionConfiguration> readActions(@NotNull List<String> strings) {

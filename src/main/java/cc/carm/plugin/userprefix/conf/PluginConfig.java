@@ -6,8 +6,8 @@ import cc.carm.lib.configuration.core.annotation.HeaderComment;
 import cc.carm.lib.configuration.core.value.ConfigValue;
 import cc.carm.lib.configuration.core.value.type.ConfiguredList;
 import cc.carm.lib.configuration.core.value.type.ConfiguredValue;
-import cc.carm.lib.mineconfiguration.bukkit.value.ConfiguredItem;
 import cc.carm.lib.mineconfiguration.bukkit.value.ConfiguredSound;
+import cc.carm.lib.mineconfiguration.bukkit.value.item.ConfiguredItem;
 import cc.carm.plugin.userprefix.conf.gui.GUIItems;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -116,7 +116,7 @@ public class PluginConfig extends ConfigurationRoot {
 
         @HeaderComment("GUI中的其他按钮物品 (若与现有物品位置冲突，将被覆盖）")
         public static final ConfigValue<GUIItems> ITEMS = ConfiguredValue
-                .builder(GUIItems.class).fromSection()
+                .builderOf(GUIItems.class).fromSection()
                 .defaults(GUIItems::defaults)
                 .serializeValue(GUIItems::serialize)
                 .parseValue((v, d) -> GUIItems.parse(v))
@@ -147,7 +147,7 @@ public class PluginConfig extends ConfigurationRoot {
         public static final ConfigValue<String> CONTENT = ConfiguredValue.of(String.class, "&r");
 
         @HeaderComment({"选择默认前缀时执行的操作"})
-        public static final ConfiguredList<String> ACTIONS = ConfiguredList.builder(String.class).fromString()
+        public static final ConfiguredList<String> ACTIONS = ConfiguredList.builderOf(String.class).fromString()
                 .defaults("[CONSOLE] " + "say %player_name% 选择了默认前缀")
                 .build();
 

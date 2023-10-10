@@ -2,10 +2,11 @@ package cc.carm.plugin.userprefix.conf.prefix;
 
 import cc.carm.lib.easyplugin.gui.configuration.GUIActionConfiguration;
 import cc.carm.lib.easyplugin.utils.ColorParser;
-import cc.carm.lib.mineconfiguration.bukkit.data.ItemConfig;
+import cc.carm.lib.mineconfiguration.bukkit.value.item.PreparedItem;
 import cc.carm.plugin.userprefix.manager.ServiceManager;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,16 +25,16 @@ public class PrefixConfig {
 
     protected final @NotNull List<GUIActionConfiguration> actions;
 
-    protected final @NotNull ItemConfig itemHasPermission;
-    protected final @Nullable ItemConfig itemNoPermission;
-    protected final @Nullable ItemConfig itemWhenUsing;
+    protected final @NotNull ItemStack itemHasPermission;
+    protected final @Nullable ItemStack itemNoPermission;
+    protected final @Nullable ItemStack itemWhenUsing;
 
     public PrefixConfig(@NotNull String identifier, @NotNull String name,
                         @NotNull String content, int weight, @Nullable String permission,
                         @NotNull List<GUIActionConfiguration> actions,
-                        @NotNull ItemConfig itemHasPermission,
-                        @Nullable ItemConfig itemWhenUsing,
-                        @Nullable ItemConfig itemNoPermission) {
+                        @NotNull ItemStack itemHasPermission,
+                        @Nullable ItemStack itemWhenUsing,
+                        @Nullable ItemStack itemNoPermission) {
         this.identifier = identifier;
         this.name = name;
         this.content = content;
@@ -71,20 +72,25 @@ public class PrefixConfig {
 
     @NotNull
     public ItemStack getItemHasPermission(@Nullable Player player) {
-        return this.itemHasPermission.getItemStack(player);
+        return getItem(player, this.itemHasPermission);
     }
 
     @Nullable
     public ItemStack getItemNoPermission(@Nullable Player player) {
-        if (this.itemNoPermission == null) return null;
-        return this.itemNoPermission.getItemStack(player);
+        return getItem(player, this.itemNoPermission);
     }
 
     @Nullable
     public ItemStack getItemWhenUsing(@Nullable Player player) {
-        if (this.itemWhenUsing == null) return null;
-        else return this.itemWhenUsing.getItemStack(player);
+        return getItem(player, this.itemWhenUsing);
     }
+
+    @Contract("_,!null->!null")
+    protected @Nullable ItemStack getItem(@Nullable Player player, @Nullable ItemStack item) {
+        if (item == null) return null;
+        return PreparedItem.of(item).get(player);
+    }
+
 
     public boolean isPublic() {
         return getPermission() == null;
