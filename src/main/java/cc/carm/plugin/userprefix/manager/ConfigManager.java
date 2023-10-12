@@ -26,7 +26,7 @@ public class ConfigManager {
         File configFile = new File(dataFolder, "config.yml");
         if (!configFile.exists()) {
             try {
-                JarResourceUtils.copyFolderFromJar("en_US", dataFolder, JarResourceUtils.CopyOption.COPY_IF_NOT_EXIST);
+                JarResourceUtils.copyFolderFromJar("i18n", dataFolder, JarResourceUtils.CopyOption.COPY_IF_NOT_EXIST);
                 JarResourceUtils.copyFolderFromJar("prefixes", dataFolder, JarResourceUtils.CopyOption.COPY_IF_NOT_EXIST);
             } catch (IOException e) {
                 e.printStackTrace();

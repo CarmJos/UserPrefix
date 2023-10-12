@@ -30,6 +30,7 @@ actions:
   - "[CONSOLE] say %player_name% 选择了 Pro会员前缀 ！"
 
 # 该前缀的GUI物品配置
+# 物品配置方式详见 https://github.com/CryptoMorin/XSeries/wiki/XItemStack
 item:
 
   # 有权限时显示的物品  [必须]
