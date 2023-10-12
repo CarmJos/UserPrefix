@@ -14,6 +14,7 @@ import org.bukkit.event.inventory.ClickType;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 public class PrefixSelectGUI extends AutoPagedGUI {
 
@@ -49,7 +50,10 @@ public class PrefixSelectGUI extends AutoPagedGUI {
 
         for (PrefixConfig prefix : prefixList) {
             if (prefix.getIdentifier().equals(usingPrefix.getIdentifier())) {
-                addItem(new GUIItem(prefix.getItemWhenUsing(player) != null ? prefix.getItemWhenUsing(player) : prefix.getItemHasPermission(player)));
+                addItem(new GUIItem(Optional
+                        .ofNullable(prefix.getItemWhenUsing(player))
+                        .orElse(prefix.getItemHasPermission(player))
+                ));
             } else if (prefix.checkPermission(player)) {
                 addItem(new GUIItem(prefix.getItemHasPermission(player)) {
 

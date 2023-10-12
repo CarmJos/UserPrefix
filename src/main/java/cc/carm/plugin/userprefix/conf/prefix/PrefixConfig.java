@@ -87,7 +87,6 @@ public class PrefixConfig {
 
     @Contract("_,!null->!null")
     protected @Nullable ItemStack getItem(@Nullable Player player, @Nullable ItemStack item) {
-        if (item == null) return null;
         return PreparedItem.of(item).get(player);
     }
 

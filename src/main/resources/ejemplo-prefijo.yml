@@ -28,7 +28,7 @@ item:
   # itemHasPermission  [Necesario]
   # Este elemento se mostrará cuando el jugador tenga permiso
   has-perm:
-    type: DIAMOND
+    material: DIAMOND
     name: "&b&lVIP Prefix"
     lore:
       - ""
@@ -38,7 +38,7 @@ item:
   # Este elemento se mostrará cuando se seleccione el prefijo.
   # Si no existe tal configuración, se mostrará automáticamente "itemHasPermission".
   using:
-    type: DIAMOND
+    material: DIAMOND
     name: "&b&lVIP Prefix"
     enchants:
       PROTECTION_ENVIRONMENTAL: 1 #Añade un encantamiento para que parezca que está seleccionado
@@ -50,7 +50,7 @@ item:
   # Si el jugador no tiene el permiso,este item sera mostrado.
   # Si este elemento no está configurado, no se mostrará en la GUI cuando el jugador no tenga permiso para usarlo.
   no-perm:
-    type: INK_SACK
+    material: INK_SACK
     data: 8
     name: "&b&lVIP &c(¡Cómpralo!)"
     lore:
