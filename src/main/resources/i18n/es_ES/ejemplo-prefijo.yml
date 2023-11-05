@@ -22,7 +22,7 @@ permission: "yc.vip"
 # Acciones al seleccionar [Innecesario]
 #  Por favor, compruebe https://github.com/CarmJos/UserPrefix/tree/master/.documentation/ACTIONS.md
 actions:
-  - "[CONSOLE] say %player_name% PRO seleccionado ！"
+  - "[CONSOLE] say %player_name% La etiqueta PRO asido seleccionado！"
 
 item:
   # itemHasPermission  [Necesario]
@@ -32,14 +32,14 @@ item:
     name: "&b&lVIP Prefix"
     lore:
       - ""
-      - "&a➥ Pulse para utilizar"
+      - "&a➥ Pulsa para utilizar"
 
   # itemUsing [Innecesario]
   # Este elemento se mostrará cuando se seleccione el prefijo.
   # Si no existe tal configuración, se mostrará automáticamente "itemHasPermission".
   using:
     material: DIAMOND
-    name: "&b&lVIP Prefix"
+    name: "&b&lPrefix VIP"
     enchants:
       PROTECTION_ENVIRONMENTAL: 1 #Añade un encantamiento para que parezca que está seleccionado
     lore:
@@ -55,4 +55,4 @@ item:
     name: "&b&lVIP &c(¡Cómpralo!)"
     lore:
       - ""
-      - "&e✯ Comprar el VIP para utilizarlo!"
+      - "&e✯ Necesitas Comprar el VIP para utilizarlo!"
