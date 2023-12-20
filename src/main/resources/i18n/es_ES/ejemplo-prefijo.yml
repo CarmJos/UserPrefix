@@ -22,7 +22,7 @@ permission: "yc.vip"
 # Acciones al seleccionar [Innecesario]
 #  Por favor, compruebe https://github.com/CarmJos/UserPrefix/tree/master/.documentation/ACTIONS.md
 actions:
-  - "[CONSOLE] say %player_name% La etiqueta PRO asido seleccionado！"
+  - "[CONSOLE] say %player_name% Has seleccionado La etiqueta PRO！"
 
 item:
   # itemHasPermission  [Necesario]
