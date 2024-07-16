@@ -164,6 +164,8 @@
             <groupId>com.cryptomorin.xseries</groupId>
             <artifactId>XSeries</artifactId>
             <version>11.2.0.1</version>
+            <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
