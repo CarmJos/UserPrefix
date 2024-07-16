@@ -152,6 +152,18 @@
             <version>${deps.mineconfig.version}</version>
             <scope>compile</scope>
             <optional>true</optional>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.cryptomorin.xseries</groupId>
+                    <artifactId>XSeries</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.cryptomorin.xseries</groupId>
+            <artifactId>XSeries</artifactId>
+            <version>11.2.0.1</version>
         </dependency>
 
         <dependency>
