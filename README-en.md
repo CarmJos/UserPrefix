@@ -49,6 +49,8 @@ For development dependencies, please see  [Dependencies](https://github.com/Carm
 - Support PlaceholderAPI variables!
 - Support [Hex Color](https://www.hexcolortool.com/)! (Version 1.16 and above)  `&(#Color)`
     - Example: LightSlateBlue `&(#8470FF)` 、 DarkSlateBlue `&(#483D8B)`
+- Support Gradient Color! (Version 1.16 and above)  `&<#Color1>Message&<#Color2>`
+    - Example: `&<#8470FF>Hello World!&<#483D8B>`
 
 ## Notice
 

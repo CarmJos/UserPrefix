@@ -45,6 +45,9 @@ README LANGUAGES [ [**中文**](README.md) | [English](README-en.md)  ]
 - 支持[Hex颜色](https://www.hexcolortool.com/)！(1.16以上版本) `[自 v1.2.3 版本起]`
     - 格式： `&(#颜色代码)`
     - 示例： LightSlateBlue `&(#8470FF)` 、 DarkSlateBlue `&(#483D8B)`
+- 支持渐变色！(1.16以上版本) `[自 v1.2.3 版本起]`
+    - 格式： `&<#颜色代码1>消息内容&<#颜色代码2>`
+    - 示例： `&<#8470FF>Hello World!&<#483D8B>`
 
 ## 注意事项
 
