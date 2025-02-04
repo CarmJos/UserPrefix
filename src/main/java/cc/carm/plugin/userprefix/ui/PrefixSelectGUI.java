@@ -107,7 +107,7 @@ public class PrefixSelectGUI extends AutoPagedGUI {
     }
 
     public static void open(Player player) {
-        player.closeInventory(); // 防止冲突
+//        player.closeInventory(); // 防止冲突
         PluginConfig.SOUNDS.GUI_OPEN.playTo(player);
         new PrefixSelectGUI(player).openGUI(player);
         openingUsers.add(player);
