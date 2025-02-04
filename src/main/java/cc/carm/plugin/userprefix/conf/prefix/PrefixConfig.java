@@ -1,9 +1,10 @@
 package cc.carm.plugin.userprefix.conf.prefix;
 
 import cc.carm.lib.easyplugin.gui.configuration.GUIActionConfiguration;
-import cc.carm.lib.easyplugin.utils.ColorParser;
+import cc.carm.lib.easyplugin.utils.MessageUtils;
 import cc.carm.lib.mineconfiguration.bukkit.value.item.PreparedItem;
 import cc.carm.plugin.userprefix.manager.ServiceManager;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Contract;
@@ -57,8 +58,8 @@ public class PrefixConfig {
     }
 
     @NotNull
-    public String getContent() {
-        return ColorParser.parse(content);
+    public String getContent(CommandSender viewer) {
+        return MessageUtils.setPlaceholders(viewer, content);
     }
 
     public int getWeight() {

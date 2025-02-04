@@ -22,7 +22,7 @@ public class ListCommand extends SubCommand<AdminCommand> {
             PluginMessages.LIST.VALUE.send(sender,
                     value.getWeight(), value.getIdentifier(),
                     value.getName(), value.getPermission(),
-                    value.getContent(), sender.getName()
+                    value.getContent(sender), sender.getName()
             );
         }
         return null;

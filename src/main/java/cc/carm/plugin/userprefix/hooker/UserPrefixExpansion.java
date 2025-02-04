@@ -42,7 +42,11 @@ public class UserPrefixExpansion extends EasyPlaceholder {
     public PlaceholderHandler handlePrefix(Function<PrefixConfig, Object> handler) {
         return handlePlayer((player, args) -> handler.apply(UserPrefixAPI.getUserManager().getPrefix(player)));
     }
-    
+
+    public PlaceholderHandler handlePrefix(BiFunction<PrefixConfig, Player, Object> handler) {
+        return handlePlayer((player, args) -> handler.apply(UserPrefixAPI.getUserManager().getPrefix(player), player));
+    }
+
     /**
      * This is required or else PlaceholderAPI will unregister the Expansion on reload
      */
