@@ -14,7 +14,7 @@ public class UserPermListener {
         if (player == null) return;
         UserPrefixAPI.getUserManager().checkPrefix(player, true);
         if (PrefixSelectGUI.openingUsers.contains(player)) {
-            Main.getInstance().getScheduler().run(() -> {
+            Main.getInstance().getFoliaScheduler().runOnEntity(player, true, () -> {
                 // 玩家权限更新，同步关闭其GUI，以令其重新打开刷新自己的前缀。
                 player.closeInventory();
                 PrefixSelectGUI.removeOpening(player);

@@ -33,9 +33,9 @@ public class ReloadCommand extends SubCommand<AdminCommand> {
                  */
                 UserPrefixAPI.getUserManager().updatePrefixView(onlinePlayer, false);
             }
-            PluginMessages.RELOAD.SUCCESS.send(sender, System.currentTimeMillis() - s1, num);
+            PluginMessages.RELOAD.SUCCESS.sendTo(sender, System.currentTimeMillis() - s1, num);
         } catch (Exception e) {
-            PluginMessages.RELOAD.FAILED.send(sender, e.getMessage());
+            PluginMessages.RELOAD.FAILED.sendTo(sender, e.getMessage());
             e.printStackTrace();
         }
         return null;

@@ -23,7 +23,7 @@ public class SetCommand extends SubCommand<AdminCommand> {
 
         Player target = Bukkit.getPlayer(args[0]);
         if (target == null) {
-            PluginMessages.NOT_ONLINE.send(sender, args[0]);
+            PluginMessages.NOT_ONLINE.sendTo(sender, args[0]);
             return null;
         }
 
@@ -37,17 +37,17 @@ public class SetCommand extends SubCommand<AdminCommand> {
         }
 
         if (prefixConfig == null) {
-            PluginMessages.SET.PREFIX_NOT_FOUND.send(sender, prefixInput);
+            PluginMessages.SET.PREFIX_NOT_FOUND.sendTo(sender, prefixInput);
             return null;
         }
 
         if (!prefixConfig.checkPermission(target)) {
-            PluginMessages.SET.NO_PERM.send(sender, target.getName(), prefixConfig.getName());
+            PluginMessages.SET.NO_PERM.sendTo(sender, target.getName(), prefixConfig.getName());
             return null;
         }
 
         UserPrefixAPI.getUserManager().setPrefix(target, prefixConfig, true);
-        PluginMessages.SET.SUCCESS.send(sender, target.getName(), prefixConfig.getName());
+        PluginMessages.SET.SUCCESS.sendTo(sender, target.getName(), prefixConfig.getName());
         return null;
     }
 

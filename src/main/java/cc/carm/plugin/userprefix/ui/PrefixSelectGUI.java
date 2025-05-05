@@ -65,7 +65,7 @@ public class PrefixSelectGUI extends AutoPagedGUI {
 
                             // 发送消息与提示
                             PluginConfig.SOUNDS.PREFIX_CHANGE.playTo(player);
-                            PluginMessages.SELECTED.send(player, prefix.getName());
+                            PluginMessages.SELECTED.sendTo(player, prefix.getName());
 
                             UserPrefixChangeEvent.call(player, usingPrefix, prefix, config -> {
                                 if (config == null) return;

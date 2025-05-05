@@ -2,6 +2,7 @@ package cc.carm.plugin.userprefix.event;
 
 import cc.carm.plugin.userprefix.Main;
 import cc.carm.plugin.userprefix.conf.prefix.PrefixConfig;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
@@ -61,8 +62,11 @@ public class UserPrefixChangeEvent extends UserPrefixEvent implements Cancellabl
                             @Nullable PrefixConfig before,
                             @NotNull PrefixConfig after,
                             @Nullable Consumer<@Nullable PrefixConfig> finish) {
-        Main.getInstance().callSync(new UserPrefixChangeEvent(who, before, after))
-                .thenAccept((e) -> Optional.ofNullable(finish).ifPresent(f -> f.accept(e.getAfter())));
+        UserPrefixChangeEvent event = new UserPrefixChangeEvent(who, before, after);
+        Main.getInstance().getFoliaScheduler().runGlobal(true, () -> {
+            Bukkit.getPluginManager().callEvent(event);
+            Optional.ofNullable(finish).ifPresent(f -> f.accept(event.getAfter()));
+        });
     }
 
 }
