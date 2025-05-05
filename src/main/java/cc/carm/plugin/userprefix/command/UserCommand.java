@@ -18,7 +18,7 @@ public class UserCommand implements CommandExecutor {
             PrefixSelectGUI.open((Player) sender);
         } else {
             if (strings.length != 1) {
-                PluginMessages.COMMAND_USAGE.CONSOLE.send(sender);
+                PluginMessages.COMMAND_USAGE.CONSOLE.sendTo(sender);
             } else {
                 Player player = Bukkit.getPlayer(strings[0]);
                 if (player != null) {

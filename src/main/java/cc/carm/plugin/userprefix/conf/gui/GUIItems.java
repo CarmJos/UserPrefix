@@ -1,11 +1,12 @@
 package cc.carm.plugin.userprefix.conf.gui;
 
-import cc.carm.lib.configuration.core.source.ConfigurationWrapper;
+import cc.carm.lib.configuration.source.section.ConfigureSection;
 import cc.carm.lib.easyplugin.gui.configuration.GUIActionConfiguration;
 import cc.carm.lib.easyplugin.gui.configuration.GUIActionType;
 import cc.carm.lib.easyplugin.gui.configuration.GUIConfiguration;
 import cc.carm.lib.easyplugin.gui.configuration.GUIItemConfiguration;
-import cc.carm.lib.mineconfiguration.bukkit.source.CraftSectionWrapper;
+import cc.carm.lib.mineconfiguration.bukkit.source.BukkitSection;
+import cc.carm.plugin.userprefix.Main;
 import org.bukkit.Material;
 
 import java.util.Collections;
@@ -33,10 +34,15 @@ public class GUIItems {
         ));
     }
 
-    public static GUIItems parse(ConfigurationWrapper<?> section) {
-        if (!(section instanceof CraftSectionWrapper)) return new GUIItems(new LinkedHashMap<>());
-        CraftSectionWrapper craft = (CraftSectionWrapper) section;
-        return new GUIItems(GUIConfiguration.readItems(craft.getSource()));
+    public static GUIItems parse(ConfigureSection section) {
+        if (!(section instanceof BukkitSection)) {
+            Main.severe("Unknown configure source, it should never happened!");
+            Main.severe("Required: " + BukkitSection.class.getSimpleName());
+            Main.severe("Found: " + section.getClass().getSimpleName());
+            return new GUIItems(new LinkedHashMap<>());
+        }
+        BukkitSection craft = (BukkitSection) section;
+        return new GUIItems(GUIConfiguration.readItems(craft.data()));
     }
 
     public static GUIItems defaults() {

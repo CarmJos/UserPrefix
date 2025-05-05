@@ -26,12 +26,12 @@ public class AdminCommand extends CommandHandler {
 
     @Override
     public Void noPermission(CommandSender sender) {
-        PluginMessages.COMMAND_USAGE.NO_PERM.send(sender);
+        PluginMessages.COMMAND_USAGE.NO_PERM.sendTo(sender);
         return null;
     }
 
     public static Void help(CommandSender sender) {
-        PluginMessages.COMMAND_USAGE.ADMIN.send(sender);
+        PluginMessages.COMMAND_USAGE.ADMIN.sendTo(sender);
         return null;
     }
 
