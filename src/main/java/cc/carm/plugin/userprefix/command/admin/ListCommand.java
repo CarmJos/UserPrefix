@@ -17,9 +17,9 @@ public class ListCommand extends SubCommand<AdminCommand> {
 
     @Override
     public Void execute(JavaPlugin plugin, CommandSender sender, String[] args) {
-        PluginMessages.LIST.HEADER.send(sender);
+        PluginMessages.LIST.HEADER.sendTo(sender);
         for (PrefixConfig value : UserPrefixAPI.getPrefixManager().getPrefixes().values()) {
-            PluginMessages.LIST.VALUE.send(sender,
+            PluginMessages.LIST.VALUE.sendTo(sender,
                     value.getWeight(), value.getIdentifier(),
                     value.getName(), value.getPermission(),
                     value.getContent(sender), sender.getName()
