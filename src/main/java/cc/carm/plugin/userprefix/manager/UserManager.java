@@ -131,13 +131,13 @@ public class UserManager {
                 UserPrefixExpireEvent.call(player, currentPrefix);
 
                 // 发送消息
-                PluginMessages.EXPIRED.send(player, currentPrefix.getName(), newPrefix.getName());
+                PluginMessages.EXPIRED.sendTo(player, currentPrefix.getName(), newPrefix.getName());
 
                 // 播放声音
                 PluginConfig.SOUNDS.PREFIX_EXPIRED.playTo(player);
             } else {
                 // 当前前缀为空，则代表是旧的前缀不存在了，
-                PluginMessages.REMOVED.send(player, newPrefix.getName());
+                PluginMessages.REMOVED.sendTo(player, newPrefix.getName());
             }
 
             UserPrefixChangeEvent.call(player, currentPrefix, newPrefix, (after) -> {
