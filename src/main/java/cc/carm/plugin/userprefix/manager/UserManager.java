@@ -32,7 +32,7 @@ public class UserManager {
 
     @Nullable
     public UserNameTag getNameTag(Player player) {
-        if (PluginConfig.FUNCTIONS.NAME_PREFIX.ENABLE.getNotNull()) {
+        if (this.isNamePrefixEnabled()) {
             if (nameTags.containsKey(player.getUniqueId())) {
                 return nameTags.get(player.getUniqueId());
             } else {
@@ -53,7 +53,7 @@ public class UserManager {
 
     public void initPlayer(Player player) {
         checkPrefix(player, false);
-        if (PluginConfig.FUNCTIONS.NAME_PREFIX.ENABLE.getNotNull()) {
+        if (this.isNamePrefixEnabled()) {
             createNameTag(player);
             updatePrefixView(player, true);
         }
@@ -73,7 +73,7 @@ public class UserManager {
      * @param loadOthers 是否为玩家更新其他人的前缀(一般用于加入游戏)
      */
     public void updatePrefixView(Player player, boolean loadOthers) {
-        if (!PluginConfig.FUNCTIONS.NAME_PREFIX.ENABLE.getNotNull()) return; //未启用的情况下，不需要进行任何操作。
+        if (!this.isNamePrefixEnabled()) return; //未启用的情况下，不需要进行任何操作。
         UserNameTag tag = getNameTag(player);
         if (tag == null) return;  //未启用的情况下，不需要进行任何操作。
 
@@ -273,4 +273,7 @@ public class UserManager {
         user.data().clear(NodeType.META.predicate(mn -> mn.getMetaKey().equals(META_KEY)));
     }
 
+    private boolean isNamePrefixEnabled() {
+        return PluginConfig.FUNCTIONS.NAME_PREFIX.ENABLE.getNotNull() && !Main.getInstance().isOnFolia();
+    }
 }

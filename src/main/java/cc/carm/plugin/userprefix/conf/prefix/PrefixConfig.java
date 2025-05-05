@@ -1,8 +1,10 @@
 package cc.carm.plugin.userprefix.conf.prefix;
 
 import cc.carm.lib.easyplugin.gui.configuration.GUIActionConfiguration;
+import cc.carm.lib.easyplugin.gui.configuration.GUIActionType;
 import cc.carm.lib.easyplugin.utils.MessageUtils;
 import cc.carm.lib.mineconfiguration.bukkit.value.item.PreparedItem;
+import cc.carm.plugin.userprefix.Main;
 import cc.carm.plugin.userprefix.manager.ServiceManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -97,7 +99,13 @@ public class PrefixConfig {
     }
 
     public void executeActions(@NotNull Player player) {
-        this.actions.forEach(action -> action.executeAction(player));
+        this.actions.forEach(action -> {
+            if (action.getActionType() == GUIActionType.CONSOLE) { // 控制台执行命令必须在全局调度器中执行
+                Main.getInstance().getFoliaScheduler().runGlobal(false, () -> action.executeAction(player));
+            } else {
+                action.executeAction(player);
+            }
+        });
     }
 
     public boolean isVisible(Player player) {

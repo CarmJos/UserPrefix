@@ -8,6 +8,7 @@ import cc.carm.lib.easyplugin.utils.MessageUtils;
 import cc.carm.plugin.userprefix.command.AdminCommand;
 import cc.carm.plugin.userprefix.command.UserCommand;
 import cc.carm.plugin.userprefix.conf.PluginConfig;
+import cc.carm.plugin.userprefix.folia.FoliaScheduler;
 import cc.carm.plugin.userprefix.hooker.UserPrefixExpansion;
 import cc.carm.plugin.userprefix.listener.ChatListener;
 import cc.carm.plugin.userprefix.listener.UserListener;
@@ -28,6 +29,9 @@ public class Main extends EasyPlugin {
 
     private static Main instance;
 
+    protected FoliaScheduler foliaScheduler;
+    protected boolean onFolia;
+
     protected ConfigManager configManager;
     protected PrefixManager prefixManager;
     protected UserManager userManager;
@@ -35,6 +39,14 @@ public class Main extends EasyPlugin {
     @Override
     protected boolean initialize() {
         instance = this;
+
+        try {
+            Class.forName("io.papermc.paper.threadedregions.RegionizedServerInitEvent");
+            this.onFolia = true;
+        } catch (ClassNotFoundException e) {
+            this.onFolia = false;
+        }
+        this.foliaScheduler = new FoliaScheduler(this, this.onFolia);
 
         log("加载插件配置...");
         this.configManager = new ConfigManager(getDataFolder());
@@ -87,11 +99,14 @@ public class Main extends EasyPlugin {
 
         if (PluginConfig.CHECK_UPDATE.getNotNull()) {
             log("开始检查更新...");
-            getScheduler().runAsync(GHUpdateChecker.runner(this));
+            this.foliaScheduler.runAsync(GHUpdateChecker.runner(this));
         } else {
             log("已禁用检查更新，跳过。");
         }
 
+        if (PluginConfig.FUNCTIONS.NAME_PREFIX.ENABLE.getNotNull() && this.isOnFolia()) {
+            log("插件正运行在 Folia 服务端上，头顶前缀功能不可用");
+        }
         Bukkit.getOnlinePlayers().forEach(userManager::initPlayer);  // 适配热重载
 
         log("&7感谢您使用 &3&lUserPrefix " + getDescription().getVersion() + "&7!");
@@ -111,6 +126,14 @@ public class Main extends EasyPlugin {
 
         log("&7感谢您使用 &3&lUserPrefix " + getDescription().getVersion() + "&7!");
         log("&7本插件由 &b&lYourCraft &7提供长期支持与维护。");
+    }
+
+    public boolean isOnFolia() {
+        return this.onFolia;
+    }
+
+    public FoliaScheduler getFoliaScheduler() {
+        return this.foliaScheduler;
     }
 
     @Override
