@@ -163,7 +163,7 @@ public class PluginConfig implements Configuration {
             @HeaderComments({"当选择了默认前缀时显示的物品"})
             public static final ConfiguredItem USING = ConfiguredItem.create()
                     .defaultType(Material.NAME_TAG)
-                    .defaultEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1)
+                    .defaultEnchant(Enchantment.PROTECTION, 1)
                     .defaultFlags(ItemFlag.HIDE_ENCHANTS)
                     .defaultName("&f默认玩家前缀")
                     .defaultLore("", "&a✔ 您正在使用该前缀")
