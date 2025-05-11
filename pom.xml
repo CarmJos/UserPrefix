@@ -63,7 +63,7 @@
 
         <repository>
             <id>maven-central</id>
-            <url>https://repo.nju.edu.cn/maven/</url>
+            <url>https://repo1.maven.org/maven2/</url>
         </repository>
 
         <repository>
