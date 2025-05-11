@@ -8,8 +8,8 @@ import cc.carm.lib.configuration.value.standard.ConfiguredValue;
 import cc.carm.lib.mineconfiguration.bukkit.value.ConfiguredSound;
 import cc.carm.lib.mineconfiguration.bukkit.value.item.ConfiguredItem;
 import cc.carm.plugin.userprefix.conf.gui.GUIItems;
+import cc.carm.plugin.userprefix.folia.MajorUtil;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 
 public class PluginConfig implements Configuration {
@@ -163,7 +163,7 @@ public class PluginConfig implements Configuration {
             @HeaderComments({"当选择了默认前缀时显示的物品"})
             public static final ConfiguredItem USING = ConfiguredItem.create()
                     .defaultType(Material.NAME_TAG)
-                    .defaultEnchant(Enchantment.PROTECTION, 1)
+                    .defaultEnchant(MajorUtil.getEnchantProtection(), 1) // 附魔改过名
                     .defaultFlags(ItemFlag.HIDE_ENCHANTS)
                     .defaultName("&f默认玩家前缀")
                     .defaultLore("", "&a✔ 您正在使用该前缀")

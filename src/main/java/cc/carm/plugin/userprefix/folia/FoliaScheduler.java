@@ -1,14 +1,18 @@
 package cc.carm.plugin.userprefix.folia;
 
+import cc.carm.plugin.userprefix.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.plugin.Plugin;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.function.Consumer;
+
 public class FoliaScheduler {
-    private final Plugin plugin;
+    private final Main plugin;
     private final boolean folia;
 
-    public FoliaScheduler(Plugin plugin, boolean folia) {
+    public FoliaScheduler(Main plugin, boolean folia) {
         this.plugin = plugin;
         this.folia = folia;
     }
@@ -26,7 +30,20 @@ public class FoliaScheduler {
     }
 
     private void runAsyncFolia(Runnable task) {
-        Bukkit.getAsyncScheduler().runNow(this.plugin, t -> task.run());
+//        AsyncScheduler asyncScheduler = Bukkit.getAsyncScheduler();
+//        asyncScheduler.runNow(this.plugin, t -> task.run());
+
+        try {
+            Object asyncScheduler = Bukkit.class.getMethod("getAsyncScheduler")
+                    .invoke(null);
+            asyncScheduler.getClass().getMethod("runNow", Plugin.class, Consumer.class)
+                    .invoke(asyncScheduler, this.plugin, (Consumer<?>) t -> task.run());
+        } catch (IllegalAccessException | NoSuchMethodException e) {
+            Main.severe("unexpected exception during reflection (#runAsyncFolia), it should never happen!");
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            throw (RuntimeException) e.getTargetException();
+        }
     }
 
     /**
@@ -47,7 +64,19 @@ public class FoliaScheduler {
     }
 
     private void runOnEntityFolia(Entity entity, Runnable task) {
-        entity.getScheduler().run(this.plugin, t -> task.run(), null);
+//        EntityScheduler entityScheduler = entity.getScheduler();
+//        entityScheduler.run(this.plugin, t -> task.run(), null);
+        try {
+            Object entityScheduler = Entity.class.getMethod("getScheduler")
+                    .invoke(entity);
+            entityScheduler.getClass().getMethod("run", Plugin.class, Consumer.class, Runnable.class)
+                    .invoke(entityScheduler, this.plugin, (Consumer<?>) t -> task.run(), null);
+        } catch (IllegalAccessException | NoSuchMethodException e) {
+            Main.severe("unexpected exception during reflection (#runOnEntityFolia), it should never happen!");
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            throw (RuntimeException) e.getTargetException();
+        }
     }
 
     /**
@@ -67,7 +96,19 @@ public class FoliaScheduler {
     }
 
     private void runGlobalFolia(Runnable task) {
-        Bukkit.getGlobalRegionScheduler().execute(this.plugin, task);
+//        GlobalRegionScheduler globalRegionScheduler = Bukkit.getGlobalRegionScheduler();
+//        globalRegionScheduler.execute(this.plugin, task);
+        try {
+            Object globalRegionScheduler = Bukkit.class.getMethod("getGlobalRegionScheduler")
+                    .invoke(null);
+            globalRegionScheduler.getClass().getMethod("execute", Plugin.class, Runnable.class)
+                    .invoke(globalRegionScheduler, this.plugin, task);
+        } catch (IllegalAccessException | NoSuchMethodException e) {
+            Main.severe("unexpected exception during reflection (#runGlobalFolia), it should never happen!");
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            throw (RuntimeException) e.getTargetException();
+        }
     }
 
     private void runBukkit(boolean forceSync, Runnable task) {
