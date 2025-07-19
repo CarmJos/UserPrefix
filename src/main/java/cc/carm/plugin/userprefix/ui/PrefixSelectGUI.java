@@ -20,7 +20,7 @@ public class PrefixSelectGUI extends AutoPagedGUI {
 
     public static HashSet<Player> openingUsers = new HashSet<>();
 
-    Player player;
+   protected final Player player;
 
     public PrefixSelectGUI(Player player) {
         super(GUIType.SIX_BY_NINE, PluginConfig.GUI.TITLE.get(), 10, 43);

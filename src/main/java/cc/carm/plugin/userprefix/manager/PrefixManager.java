@@ -77,6 +77,7 @@ public class PrefixManager {
         this.defaultPrefix = new PrefixConfig(
                 "default",
                 PluginConfig.DEFAULT_PREFIX.NAME.getNotNull(),
+                PluginConfig.DEFAULT_PREFIX.DESCRIPTION.getNotNull(),
                 PluginConfig.DEFAULT_PREFIX.CONTENT.getNotNull(),
                 PluginConfig.DEFAULT_PREFIX.WEIGHT.getNotNull(),
                 null,
@@ -135,6 +136,7 @@ public class PrefixManager {
 
         return new PrefixConfig(
                 identifier, name,
+                conf.getStringList("description"),
                 conf.getString("content", "&r"),
                 conf.getInt("weight", 1),
                 conf.getString("permission"),

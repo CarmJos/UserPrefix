@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PrefixConfig {
@@ -21,6 +22,7 @@ public class PrefixConfig {
 
     protected final @NotNull String name;
     protected final @NotNull String content;
+    protected final @NotNull List<String> description;
 
     protected final int weight;
 
@@ -38,8 +40,23 @@ public class PrefixConfig {
                         @NotNull ItemStack itemHasPermission,
                         @Nullable ItemStack itemWhenUsing,
                         @Nullable ItemStack itemNoPermission) {
+        this(
+                identifier, name, new ArrayList<>(),
+                content, weight, permission, actions,
+                itemHasPermission, itemWhenUsing, itemNoPermission
+        );
+    }
+
+    public PrefixConfig(@NotNull String identifier,
+                        @NotNull String name, @NotNull List<String> description,
+                        @NotNull String content, int weight, @Nullable String permission,
+                        @NotNull List<GUIActionConfiguration> actions,
+                        @NotNull ItemStack itemHasPermission,
+                        @Nullable ItemStack itemWhenUsing,
+                        @Nullable ItemStack itemNoPermission) {
         this.identifier = identifier;
         this.name = name;
+        this.description = description;
         this.content = content;
         this.weight = weight;
         this.permission = permission;
@@ -57,6 +74,11 @@ public class PrefixConfig {
     @NotNull
     public String getName() {
         return name;
+    }
+
+    @NotNull
+    public List<String> getDescription() {
+        return description;
     }
 
     @NotNull
@@ -90,7 +112,23 @@ public class PrefixConfig {
 
     @Contract("_,!null->!null")
     protected @Nullable ItemStack getItem(@Nullable Player player, @Nullable ItemStack item) {
-        return PreparedItem.of(item).get(player);
+        PreparedItem prepared = PreparedItem.of(item);
+
+        if (!getDescription().isEmpty()) {
+            prepared.insert("description", getDescription());
+            prepared.placeholder("description", String.join("\n", getDescription()));
+        }
+
+        prepared.placeholder("name", getName());
+        prepared.placeholder("identifier", getIdentifier());
+        prepared.placeholder("content", getContent(player));
+        prepared.placeholder("permission", getPermission());
+        prepared.placeholder("weight", String.valueOf(getWeight()));
+        prepared.placeholder("hasPermission", String.valueOf(checkPermission(player)));
+        prepared.placeholder("public", String.valueOf(isPublic()));
+        prepared.placeholder("visible", String.valueOf(isVisible(player)));
+
+        return prepared.get(player);
     }
 
 

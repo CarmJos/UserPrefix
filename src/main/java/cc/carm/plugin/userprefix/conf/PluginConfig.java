@@ -139,6 +139,11 @@ public class PluginConfig implements Configuration {
         @HeaderComments("默认前缀的显示名称，用于在消息提示中显示。")
         public static final ConfiguredValue<String> NAME = ConfiguredValue.of(String.class, "默认前缀");
 
+        @HeaderComments({"默认前缀的描述信息。"})
+        public static final ConfiguredList<String> DESCRIPTION = ConfiguredList.builderOf(String.class).fromString()
+                .defaults("&7这是一个默认前缀", "&7您可以在前缀列表中选择其他前缀")
+                .build();
+
         @HeaderComments({"默认前缀的权重，默认为0。"})
         public static final ConfiguredValue<Integer> WEIGHT = ConfiguredValue.of(Integer.class, 0);
 
@@ -157,7 +162,7 @@ public class PluginConfig implements Configuration {
             public static final ConfiguredItem NOT_USING = ConfiguredItem.create()
                     .defaultType(Material.NAME_TAG)
                     .defaultName("&f默认玩家前缀 &f(点击切换)")
-                    .defaultLore("", "&a➥ 点击切换到该前缀")
+                    .defaultLore("","{&f&o  }#description#{1,1}", "&a➥ 点击切换到该前缀")
                     .build();
 
             @HeaderComments({"当选择了默认前缀时显示的物品"})
@@ -166,7 +171,7 @@ public class PluginConfig implements Configuration {
                     .defaultEnchant(MajorUtil.getEnchantProtection(), 1) // 附魔改过名
                     .defaultFlags(ItemFlag.HIDE_ENCHANTS)
                     .defaultName("&f默认玩家前缀")
-                    .defaultLore("", "&a✔ 您正在使用该前缀")
+                    .defaultLore("","{&f&o  }#description#{1,1}", "&a✔ 您正在使用该前缀")
                     .build();
 
         }
