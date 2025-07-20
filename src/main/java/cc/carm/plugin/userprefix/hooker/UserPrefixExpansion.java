@@ -25,6 +25,7 @@ public class UserPrefixExpansion extends EasyPlaceholder {
         handle("identifier", handlePrefix(PrefixConfig::getIdentifier), "id");
         handle("prefix", handlePrefix(PrefixConfig::getContent));
         handle("name", handlePrefix(PrefixConfig::getName));
+        handle("description", handlePrefix(p -> String.join("\n", p.getDescription())));
         handle("weight", handlePrefix(PrefixConfig::getWeight));
         handle("amount", handlePlayer(
                 (player) -> UserPrefixAPI.getUserManager().getUsablePrefixes(player).size() + 1)
