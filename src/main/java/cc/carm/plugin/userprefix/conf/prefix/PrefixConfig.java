@@ -14,15 +14,21 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class PrefixConfig {
+
+    static final Random RANDOM = new Random();
 
     protected final @NotNull String identifier;
 
     protected final @NotNull String name;
-    protected final @NotNull String content;
+    protected final @NotNull List<String> content;
     protected final @NotNull List<String> description;
+
+    protected final long period; // 内容变更周期，单位为毫秒
 
     protected final int weight;
 
@@ -54,10 +60,26 @@ public class PrefixConfig {
                         @NotNull ItemStack itemHasPermission,
                         @Nullable ItemStack itemWhenUsing,
                         @Nullable ItemStack itemNoPermission) {
+        this(
+                identifier, name, description,
+                Collections.singletonList(content), 0, weight, permission, actions,
+                itemHasPermission, itemWhenUsing, itemNoPermission
+        );
+    }
+
+    public PrefixConfig(@NotNull String identifier,
+                        @NotNull String name, @NotNull List<String> description,
+                        @NotNull List<String> content, long period,
+                        int weight, @Nullable String permission,
+                        @NotNull List<GUIActionConfiguration> actions,
+                        @NotNull ItemStack itemHasPermission,
+                        @Nullable ItemStack itemWhenUsing,
+                        @Nullable ItemStack itemNoPermission) {
         this.identifier = identifier;
         this.name = name;
         this.description = description;
         this.content = content;
+        this.period = period;
         this.weight = weight;
         this.permission = permission;
         this.actions = actions;
@@ -83,7 +105,21 @@ public class PrefixConfig {
 
     @NotNull
     public String getContent(CommandSender viewer) {
-        return MessageUtils.setPlaceholders(viewer, content);
+        if (content.isEmpty()) return "?";
+        if (period < 0 || content.size() == 1) {
+            return MessageUtils.setPlaceholders(viewer, content.get(0));
+        }
+        if (period == 0) {
+            // PERIOD 为0时，随机返回一个内容
+            int index = RANDOM.nextInt(content.size());
+            return MessageUtils.setPlaceholders(viewer, content.get(index));
+        } else {
+            // 可变化的内容，则基于偏移量与时间戳计算目标index
+            long curr = System.currentTimeMillis();
+            long offset = curr % period; // 计算偏移量
+            int index = (int) (offset / (period / content.size())); // 计算索引
+            return MessageUtils.setPlaceholders(viewer, content.get(index));
+        }
     }
 
     public int getWeight() {

@@ -1,6 +1,7 @@
 package cc.carm.plugin.userprefix.conf;
 
 import cc.carm.lib.configuration.Configuration;
+import cc.carm.lib.configuration.adapter.ValueType;
 import cc.carm.lib.configuration.annotation.ConfigPath;
 import cc.carm.lib.configuration.annotation.HeaderComments;
 import cc.carm.lib.configuration.value.standard.ConfiguredList;
@@ -11,6 +12,10 @@ import cc.carm.plugin.userprefix.conf.gui.GUIItems;
 import cc.carm.plugin.userprefix.folia.MajorUtil;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class PluginConfig implements Configuration {
 
@@ -148,7 +153,32 @@ public class PluginConfig implements Configuration {
         public static final ConfiguredValue<Integer> WEIGHT = ConfiguredValue.of(Integer.class, 0);
 
         @HeaderComments({"默认前缀的内容，即用于显示的实际前缀"})
-        public static final ConfiguredValue<String> CONTENT = ConfiguredValue.of(String.class, "&r");
+        public static final ConfiguredValue<List<String>> CONTENT = ConfiguredValue
+                .builderOf(ValueType.ofList(String.class))
+                .from(Object.class)
+                .parse(obj -> {
+                    if (obj instanceof List<?>) {
+                        List<?> list = (List<?>) obj;
+                        return list.stream()
+                                .map(Object::toString)
+                                .collect(Collectors.toList());
+                    } else return Collections.singletonList(String.valueOf(obj));
+                })
+                .serialize(list -> {
+                    if (list.isEmpty()) {
+                        return "";
+                    } else if (list.size() == 1) {
+                        return list.get(0);
+                    } else {
+                        return list;
+                    }
+                })
+                .defaults(Collections.singletonList("&r"))
+                .build();
+
+
+        @HeaderComments({"默认前缀的切换周期，单位为毫秒。（小于0则表示不进行切换，等于0则代表所及选取）"})
+        public static final ConfiguredValue<Long> PERIOD = ConfiguredValue.of(-1L);
 
         @HeaderComments({"选择默认前缀时执行的操作"})
         public static final ConfiguredList<String> ACTIONS = ConfiguredList.builderOf(String.class).fromString()
@@ -162,7 +192,7 @@ public class PluginConfig implements Configuration {
             public static final ConfiguredItem NOT_USING = ConfiguredItem.create()
                     .defaultType(Material.NAME_TAG)
                     .defaultName("&f默认玩家前缀 &f(点击切换)")
-                    .defaultLore("","{&f&o  }#description#{1,1}", "&a➥ 点击切换到该前缀")
+                    .defaultLore("", "{&f&o  }#description#{1,1}", "&a➥ 点击切换到该前缀")
                     .build();
 
             @HeaderComments({"当选择了默认前缀时显示的物品"})
@@ -171,7 +201,7 @@ public class PluginConfig implements Configuration {
                     .defaultEnchant(MajorUtil.getEnchantProtection(), 1) // 附魔改过名
                     .defaultFlags(ItemFlag.HIDE_ENCHANTS)
                     .defaultName("&f默认玩家前缀")
-                    .defaultLore("","{&f&o  }#description#{1,1}", "&a✔ 您正在使用该前缀")
+                    .defaultLore("", "{&f&o  }#description#{1,1}", "&a✔ 您正在使用该前缀")
                     .build();
 
         }
