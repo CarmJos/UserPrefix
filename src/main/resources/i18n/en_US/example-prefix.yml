@@ -8,7 +8,15 @@ name: "&b&lPro&b"
 
 # Content [Necessary]
 # Use in Placeholders
+# Supports multiple lines for content rotation.
 content: "&b&lPro &b"
+
+# Period [Unnecessary]
+# Set the rotation period of the prefix content, in milliseconds.
+# If set to -1, it will not rotate.
+# If set to 0, it will randomly select a line each time the prefix is fetched
+# If set to a value greater than 0, it will rotate the content every specified milliseconds.
+period: -1
 
 # Weight [Necessary]
 # used for sorting in the GUI and TabList

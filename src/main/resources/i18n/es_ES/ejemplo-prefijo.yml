@@ -5,7 +5,17 @@ name: "&b&lPro&b"
 
 # Contenido [Necesario]
 # Uso en Placeholders
+# Soporta múltiples líneas para la rotación de contenido.
 content: "&b&lPro &b"
+
+# Periodo [Innecesario]
+# Establece el periodo de rotación del contenido del prefijo, en milisegundos.
+# Si se establece en -1, no rotará.
+# Si se establece en 0, seleccionará aleatoriamente una línea cada vez que se
+# obtenga el prefijo.
+# Si se establece en un valor mayor que 0, rotará el contenido cada los mil
+# segundos especificados.
+period: -1
 
 # Weight [Necesario]
 # utilizado para ordenar en la GUI y TabList

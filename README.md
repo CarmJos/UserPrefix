@@ -40,6 +40,7 @@ README LANGUAGES [ [**中文**](README.md) | [English](README-en.md)  ]
 - TabList自动按照前缀的权重排序 (如有冲突可关掉)
 - 玩家头顶前缀显示 (如有冲突可关掉)
 - 简单的聊天变量修改功能！(不推荐使用) `[自 v2.1.0 版本起]`
+- 支持动态前缀内容轮换！`[自 v3.3.0 版本起]`
 - 自动排序，且可翻页的GUI！
 - 支持PlaceholderAPI变量！(凡支持的都可以使用，如BungeeTabListPlus)
 - 支持[Hex颜色](https://www.hexcolortool.com/)！(1.16以上版本) `[自 v1.2.3 版本起]`
