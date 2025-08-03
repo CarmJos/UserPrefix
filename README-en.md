@@ -20,8 +20,6 @@ development.
 
 > This plugin has been published on [SpigotMC](https://www.spigotmc.org/resources/userprefix.96277/) .
 
-> 本插件已在 [MCBBS](https://www.mcbbs.net/forum.php?mod=viewthread&tid=1261503) 上发布，欢迎中文用户来这里下载。
-
 ## Examples
 
 ![example](.documentation/images/using-example.png)

@@ -15,8 +15,7 @@ README LANGUAGES [ [**中文**](README.md) | [English](README-en.md)  ]
 
 本插件基于Spigot实现，**理论上支持全版本**。
 
-> 本插件已在 [MCBBS](https://www.mcbbs.net/forum.php?mod=viewthread&tid=1261503)
-> 与 [SpigotMC](https://www.spigotmc.org/resources/userprefix-hex-color-support-all-version.96277/) 上发布。
+> 本插件已在  [SpigotMC](https://www.spigotmc.org/resources/userprefix-hex-color-support-all-version.96277/) 上发布。
 
 ## 示例
 
