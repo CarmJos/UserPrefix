@@ -2,6 +2,7 @@ package cc.carm.plugin.userprefix.conf.prefix;
 
 import cc.carm.lib.easyplugin.gui.configuration.GUIActionConfiguration;
 import cc.carm.lib.easyplugin.gui.configuration.GUIActionType;
+import cc.carm.lib.easyplugin.utils.ColorParser;
 import cc.carm.lib.easyplugin.utils.MessageUtils;
 import cc.carm.lib.mineconfiguration.bukkit.value.item.PreparedItem;
 import cc.carm.plugin.userprefix.Main;
@@ -95,12 +96,12 @@ public class PrefixConfig {
 
     @NotNull
     public String getName() {
-        return name;
+        return ColorParser.parse(name);
     }
 
     @NotNull
     public List<String> getDescription() {
-        return description;
+        return ColorParser.parse(description);
     }
 
     @NotNull
@@ -149,6 +150,8 @@ public class PrefixConfig {
     @Contract("_,!null->!null")
     protected @Nullable ItemStack getItem(@Nullable Player player, @Nullable ItemStack item) {
         PreparedItem prepared = PreparedItem.of(item);
+
+        prepared.parser((p, s) -> ColorParser.parse(MessageUtils.setPlaceholders(p, s)));
 
         if (!getDescription().isEmpty()) {
             prepared.insert("description", getDescription());
