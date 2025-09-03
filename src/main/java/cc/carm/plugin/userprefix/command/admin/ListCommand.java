@@ -9,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Optional;
+
 public class ListCommand extends SubCommand<AdminCommand> {
 
     public ListCommand(@NotNull AdminCommand parent, String name, String... aliases) {
@@ -21,7 +23,7 @@ public class ListCommand extends SubCommand<AdminCommand> {
         for (PrefixConfig value : UserPrefixAPI.getPrefixManager().getPrefixes().values()) {
             PluginMessages.LIST.VALUE.sendTo(sender,
                     value.getWeight(), value.getIdentifier(),
-                    value.getName(), value.getPermission(),
+                    value.getName(), Optional.ofNullable(value.getPermission()).orElse("~"),
                     value.getContent(sender), sender.getName()
             );
         }

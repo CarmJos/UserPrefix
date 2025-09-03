@@ -108,18 +108,18 @@ public class PrefixConfig {
     public String getContent(CommandSender viewer) {
         if (content.isEmpty()) return "?";
         if (period < 0 || content.size() == 1) {
-            return MessageUtils.setPlaceholders(viewer, content.get(0));
+            return ColorParser.parse(MessageUtils.setPlaceholders(viewer, content.get(0)));
         }
         if (period == 0) {
             // PERIOD 为0时，随机返回一个内容
             int index = RANDOM.nextInt(content.size());
-            return MessageUtils.setPlaceholders(viewer, content.get(index));
+            return ColorParser.parse(MessageUtils.setPlaceholders(viewer, content.get(index)));
         } else {
             // 可变化的内容，则基于偏移量与时间戳计算目标index
             long curr = System.currentTimeMillis();
             long offset = curr % period; // 计算偏移量
             int index = (int) (offset / (period / content.size())); // 计算索引
-            return MessageUtils.setPlaceholders(viewer, content.get(index));
+            return ColorParser.parse(MessageUtils.setPlaceholders(viewer, content.get(index)));
         }
     }
 
