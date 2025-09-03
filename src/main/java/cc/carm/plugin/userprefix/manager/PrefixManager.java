@@ -135,10 +135,20 @@ public class PrefixManager {
         String name = conf.getString("name");
         if (name == null) throw new Exception("配置文件 " + file.getAbsolutePath() + " 中没有配置前缀的显示名称。");
 
+
+        List<String> content = new ArrayList<>();
+        if (conf.isList("content")) {
+            content = conf.getStringList("content");
+        } else {
+            String single = conf.getString("content");
+            if (single != null) content.add(single);
+        }
+
+
         return new PrefixConfig(
                 identifier, name,
                 conf.getStringList("description"),
-                conf.getStringList("content"),
+                content,
                 conf.getLong("period", -1L),
                 conf.getInt("weight", 1),
                 conf.getString("permission"),
