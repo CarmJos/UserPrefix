@@ -41,7 +41,7 @@ public class Main extends EasyPlugin {
         instance = this;
 
         try {
-            Class.forName("io.papermc.paper.threadedregions.RegionizedServerInitEvent");
+            Class.forName("io.papermc.paper.threadedregions.RegionizedServer");
             this.onFolia = true;
         } catch (ClassNotFoundException e) {
             this.onFolia = false;
