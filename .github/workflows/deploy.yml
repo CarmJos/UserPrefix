@@ -97,7 +97,7 @@ jobs:
           modrinth-featured: true
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
           files: |
-            .asset/*.jar
+            asset/*.jar
           loaders: |
             spigot
             paper
