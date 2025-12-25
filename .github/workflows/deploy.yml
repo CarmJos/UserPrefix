@@ -102,6 +102,8 @@ jobs:
             spigot
             paper
             purpur
+            folia
+            bukkit
           game-versions: |
             >=1.8 <=1.21.8
           game-version-filter: releases
