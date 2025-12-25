@@ -88,3 +88,24 @@ jobs:
         run: |
           cd docs
           git push origin HEAD:gh-pages --force
+
+      - name: "Modrinth Publish"
+        id: publish-modrinth
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: tLcVHCPk
+          modrinth-featured: true
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          files: |
+            .asset/*.jar
+          loaders: |
+            spigot
+            paper
+            purpur
+          game-versions: |
+            >=1.8 <=1.21.8
+          game-version-filter: releases
+          java: |
+            8
+          dependencies: |
+            placeholderapi(recommended)
