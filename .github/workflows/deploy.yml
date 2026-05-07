@@ -105,7 +105,7 @@ jobs:
             folia
             bukkit
           game-versions: |
-            >=1.8 <=1.21.8
+            >=1.8 <=1.26.1
           game-version-filter: releases
           java: |
             8
