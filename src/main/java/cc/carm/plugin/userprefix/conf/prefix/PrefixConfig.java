@@ -35,6 +35,8 @@ public class PrefixConfig {
 
     protected final @Nullable String permission;
 
+    protected final @Nullable String group;
+
     protected final @NotNull List<GUIActionConfiguration> actions;
 
     protected final @NotNull ItemStack itemHasPermission;
@@ -76,6 +78,21 @@ public class PrefixConfig {
                         @NotNull ItemStack itemHasPermission,
                         @Nullable ItemStack itemWhenUsing,
                         @Nullable ItemStack itemNoPermission) {
+        this(
+                identifier, name, description,
+                content, period, weight, permission, null, actions,
+                itemHasPermission, itemWhenUsing, itemNoPermission
+        );
+    }
+
+    public PrefixConfig(@NotNull String identifier,
+                        @NotNull String name, @NotNull List<String> description,
+                        @NotNull List<String> content, long period,
+                        int weight, @Nullable String permission, @Nullable String group,
+                        @NotNull List<GUIActionConfiguration> actions,
+                        @NotNull ItemStack itemHasPermission,
+                        @Nullable ItemStack itemWhenUsing,
+                        @Nullable ItemStack itemNoPermission) {
         this.identifier = identifier;
         this.name = name;
         this.description = description;
@@ -83,6 +100,7 @@ public class PrefixConfig {
         this.period = period;
         this.weight = weight;
         this.permission = permission;
+        this.group = group;
         this.actions = actions;
         this.itemHasPermission = itemHasPermission;
         this.itemNoPermission = itemNoPermission;
@@ -102,6 +120,11 @@ public class PrefixConfig {
     @NotNull
     public List<String> getDescription() {
         return ColorParser.parse(description);
+    }
+
+    @Nullable
+    public String getGroup() {
+        return group;
     }
 
     @NotNull

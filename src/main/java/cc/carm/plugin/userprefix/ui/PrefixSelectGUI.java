@@ -10,6 +10,7 @@ import cc.carm.plugin.userprefix.conf.prefix.PrefixConfig;
 import cc.carm.plugin.userprefix.event.UserPrefixChangeEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -20,11 +21,17 @@ public class PrefixSelectGUI extends AutoPagedGUI {
 
     public static HashSet<Player> openingUsers = new HashSet<>();
 
-   protected final Player player;
+    protected final Player player;
+    protected final @Nullable String group;
 
     public PrefixSelectGUI(Player player) {
+        this(player, null);
+    }
+
+    public PrefixSelectGUI(Player player, @Nullable String group) {
         super(GUIType.SIX_BY_NINE, PluginConfig.GUI.TITLE.get(), 10, 43);
         this.player = player;
+        this.group = group;
 
         setPreviousPageSlot(18);
         setNextPageSlot(26);
@@ -37,6 +44,11 @@ public class PrefixSelectGUI extends AutoPagedGUI {
         return player;
     }
 
+    @Nullable
+    public String getGroup() {
+        return group;
+    }
+
     public void loadExtraIcons() {
         PluginConfig.GUI.ITEMS.getNotNull().getItems().values().forEach(v -> v.setupItems(player, this));
     }
@@ -44,7 +56,7 @@ public class PrefixSelectGUI extends AutoPagedGUI {
     public void loadItems() {
         List<PrefixConfig> prefixList = new ArrayList<>();
         prefixList.add(UserPrefixAPI.getPrefixManager().getDefaultPrefix());
-        prefixList.addAll(UserPrefixAPI.getPrefixManager().getVisiblePrefix(player)); //只需要读取看得见的
+        prefixList.addAll(UserPrefixAPI.getPrefixManager().getVisiblePrefix(player, group));
 
         PrefixConfig usingPrefix = UserPrefixAPI.getUserManager().getPrefix(getPlayer());
 
@@ -60,10 +72,7 @@ public class PrefixSelectGUI extends AutoPagedGUI {
                     @Override
                     public void onClick(Player clicker, ClickType type) {
                         player.closeInventory();
-                        //再次检查，防止打开GUI后、选择前的时间段内权限消失
                         if (prefix.checkPermission(player)) {
-
-                            // 发送消息与提示
                             PluginConfig.SOUNDS.PREFIX_CHANGE.playTo(player);
                             PluginMessages.SELECTED.sendTo(player, prefix.getName());
 
@@ -86,8 +95,6 @@ public class PrefixSelectGUI extends AutoPagedGUI {
                 });
             }
         }
-
-
     }
 
     @Override
@@ -107,11 +114,12 @@ public class PrefixSelectGUI extends AutoPagedGUI {
     }
 
     public static void open(Player player) {
-//        player.closeInventory(); // 防止冲突
-        PluginConfig.SOUNDS.GUI_OPEN.playTo(player);
-        new PrefixSelectGUI(player).openGUI(player);
-        openingUsers.add(player);
+        open(player, null);
     }
 
-
+    public static void open(Player player, @Nullable String group) {
+        PluginConfig.SOUNDS.GUI_OPEN.playTo(player);
+        new PrefixSelectGUI(player, group).openGUI(player);
+        openingUsers.add(player);
+    }
 }

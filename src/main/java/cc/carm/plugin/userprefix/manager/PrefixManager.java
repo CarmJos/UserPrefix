@@ -38,39 +38,63 @@ public class PrefixManager {
 
         File prefixDataFolder = getStorageFolder();
         if (!prefixDataFolder.isDirectory() || !prefixDataFolder.exists()) {
-            prefixDataFolder.mkdir();
+            prefixDataFolder.mkdirs();
         }
 
-        String[] filesList = prefixDataFolder.list();
-        if (filesList == null || filesList.length < 1) {
+        List<File> files = new ArrayList<>();
+        collectYamlFiles(prefixDataFolder, files);
+
+        if (files.isEmpty()) {
             Main.severe("配置文件夹中暂无任何前缀配置问，请检查。");
             Main.severe("There's no configured prefix.");
             Main.severe("Path: " + prefixDataFolder.getAbsolutePath());
             return;
         }
 
-        List<File> files = Arrays.stream(filesList)
-                .map(s -> new File(prefixDataFolder, s))
-                .filter(File::isFile)
-                .collect(Collectors.toList());
-
         HashMap<String, PrefixConfig> loaded = new HashMap<>();
 
-        if (files.size() > 0) {
-            for (File file : files) {
-                try {
-                    PrefixConfig prefix = addPrefix(file);
-                    Main.debugging("完成前缀加载 " + prefix.getIdentifier() + " : " + prefix.getName());
-                    loaded.put(prefix.getIdentifier(), prefix);
-                } catch (Exception ex) {
-                    Main.severe("在加载前缀 " + file.getAbsolutePath() + " 时出错，请检查配置！");
-                    Main.severe("Error occurred when loading prefix #" + file.getAbsolutePath() + " !");
-                    ex.printStackTrace();
-                }
+        for (File file : files) {
+            try {
+                PrefixConfig prefix = addPrefix(file);
+                Main.debugging("完成前缀加载 " + prefix.getIdentifier() + " : " + prefix.getName());
+                loaded.put(prefix.getIdentifier(), prefix);
+            } catch (Exception ex) {
+                Main.severe("在加载前缀 " + file.getAbsolutePath() + " 时出错，请检查配置！");
+                Main.severe("Error occurred when loading prefix #" + file.getAbsolutePath() + " !");
+                ex.printStackTrace();
             }
         }
 
         this.prefixes = loaded;
+    }
+
+    /**
+     * 递归收集文件夹下的所有YAML文件
+     *
+     * @param folder 目标文件夹
+     * @param files  文件列表
+     */
+    private void collectYamlFiles(@NotNull File folder, @NotNull List<File> files) {
+        File[] children = folder.listFiles();
+        if (children == null) return;
+        for (File child : children) {
+            if (child.isDirectory()) {
+                collectYamlFiles(child, files);
+            } else if (child.isFile() && isYamlFile(child)) {
+                files.add(child);
+            }
+        }
+    }
+
+    /**
+     * 判断文件是否为YAML文件
+     *
+     * @param file 文件
+     * @return 如果是.yml或.yaml文件返回true
+     */
+    private boolean isYamlFile(@NotNull File file) {
+        String name = file.getName().toLowerCase();
+        return name.endsWith(".yml") || name.endsWith(".yaml");
     }
 
     public void loadDefaultPrefix() {
@@ -94,6 +118,36 @@ public class PrefixManager {
                 .filter(c -> c.isVisible(player))
                 .sorted(Comparator.comparingInt(PrefixConfig::getWeight))
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * 根据group获取可见的前缀列表
+     *
+     * @param player 玩家
+     * @param group  分组名称，为null时返回所有前缀
+     * @return 过滤后的前缀列表
+     */
+    public List<PrefixConfig> getVisiblePrefix(Player player, @Nullable String group) {
+        if (group == null || group.isEmpty()) {
+            return getVisiblePrefix(player);
+        }
+        return getPrefixes().values().stream()
+                .filter(c -> c.isVisible(player))
+                .filter(c -> group.equalsIgnoreCase(c.getGroup()))
+                .sorted(Comparator.comparingInt(PrefixConfig::getWeight))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 获取所有已配置的group列表
+     *
+     * @return group名称集合
+     */
+    public Set<String> getGroups() {
+        return getPrefixes().values().stream()
+                .map(PrefixConfig::getGroup)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
     }
 
     @NotNull
@@ -152,6 +206,7 @@ public class PrefixManager {
                 conf.getLong("period", -1L),
                 conf.getInt("weight", 1),
                 conf.getString("permission"),
+                conf.getString("group"),
                 readActions(conf.getStringList("actions")),
                 readItem(
                         conf.getConfigurationSection("item.has-perm"),
