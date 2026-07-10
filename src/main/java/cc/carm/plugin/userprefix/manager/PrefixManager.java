@@ -26,6 +26,7 @@ public class PrefixManager {
 
     protected @NotNull Map<String, PrefixConfig> prefixes = new HashMap<>();
     protected PrefixConfig defaultPrefix;
+    
 
     public int loadPrefixes() {
         loadDefaultPrefix();

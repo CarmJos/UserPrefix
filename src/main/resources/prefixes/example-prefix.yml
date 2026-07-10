@@ -25,6 +25,11 @@ period: -1
 # 在TabList中，显示顺序可以在 config.yml 中自定义
 weight: 1
 
+# 分组 [非必须]
+# 用于将前缀分组，玩家可以通过 /prefix <group> 查看对应分组的前缀
+# 若不配置则代表不在任何分组中
+group: vip
+
 
 # 检测的权限 [非必须]
 # 如果没有就是人人都能用，也代表不用配置“itemNoPermission”了(因为压根不可能显示没权限时候的物品)

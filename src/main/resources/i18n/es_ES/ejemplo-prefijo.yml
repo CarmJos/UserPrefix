@@ -23,6 +23,11 @@ period: -1
 # En TabList : el más grande se muestra en la parte superior
 weight: 1
 
+# Grupo [Innecesario]
+# Se utiliza para agrupar prefijos, los jugadores pueden usar /prefix <group> para ver prefijos en el grupo correspondiente
+# Si no se configura, significa que el prefijo no está en ningún grupo
+group: vip
+
 # Permisos [Innecesario]
 # Si no hay permiso para la detección, todo el mundo puede utilizarlo,
 # lo que significa que no es necesario configurar "itemNoPermission"

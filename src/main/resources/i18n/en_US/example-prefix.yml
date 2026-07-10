@@ -24,6 +24,11 @@ period: -1
 # At TabList : the larger is displayed at the top
 weight: 1
 
+# Group [Unnecessary]
+# Used to group prefixes, players can use /prefix <group> to view prefixes in the corresponding group
+# If not configured, it means the prefix is not in any group
+group: vip
+
 # Permission [Unnecessary]
 # If there is no permission for detection, everyone can use it,
 # which means there is no need to configure "itemNoPermission"
