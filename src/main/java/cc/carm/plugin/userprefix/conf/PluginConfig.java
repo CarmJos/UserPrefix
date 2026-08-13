@@ -98,6 +98,14 @@ public class PluginConfig implements Configuration {
         @HeaderComments("GUI的标题")
         public static final ConfiguredValue<String> TITLE = ConfiguredValue.of(String.class, "&f&l我的前缀 &8| 列表");
 
+        @ConfigPath("show-default-in-group")
+        @HeaderComments({
+                "打开指定分类(Group)时，是否仍显示默认前缀",
+                "设置为 false 时，玩家通过 /prefix <group> 打开指定分类时，默认前缀将不会显示在列表中。",
+                "不影响玩家直接使用 /prefix 查看全部前缀时的显示。"
+        })
+        public static final ConfiguredValue<Boolean> SHOW_DEFAULT_IN_GROUP = ConfiguredValue.of(Boolean.class, false);
+
         @HeaderComments("GUI中的基本按钮物品")
         public static final class BOTTOMS implements Configuration {
 

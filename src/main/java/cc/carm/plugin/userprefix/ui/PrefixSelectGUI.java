@@ -55,7 +55,13 @@ public class PrefixSelectGUI extends AutoPagedGUI {
 
     public void loadItems() {
         List<PrefixConfig> prefixList = new ArrayList<>();
-        prefixList.add(UserPrefixAPI.getPrefixManager().getDefaultPrefix());
+
+        boolean isGroupView = group != null && !group.isEmpty();
+        boolean showDefault = !isGroupView || PluginConfig.GUI.SHOW_DEFAULT_IN_GROUP.getNotNull();
+
+        if (showDefault) {
+            prefixList.add(UserPrefixAPI.getPrefixManager().getDefaultPrefix());
+        }
         prefixList.addAll(UserPrefixAPI.getPrefixManager().getVisiblePrefix(player, group));
 
         PrefixConfig usingPrefix = UserPrefixAPI.getUserManager().getPrefix(getPlayer());
