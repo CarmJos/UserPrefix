@@ -1,0 +1,12 @@
+cc.carm.plugin.userprefix
+cc.carm.plugin.userprefix.command
+cc.carm.plugin.userprefix.command.admin
+cc.carm.plugin.userprefix.conf
+cc.carm.plugin.userprefix.conf.gui
+cc.carm.plugin.userprefix.conf.prefix
+cc.carm.plugin.userprefix.event
+cc.carm.plugin.userprefix.folia
+cc.carm.plugin.userprefix.hooker
+cc.carm.plugin.userprefix.listener
+cc.carm.plugin.userprefix.manager
+cc.carm.plugin.userprefix.ui
